@@ -1,0 +1,40 @@
+#gameWindow {
+  background-image: url(assets/sprites/background-day.png);
+  text-align: center;
+  position: relative;
+  background-position: center bottom;
+  width: 500px;
+  height: 512px;
+  border: 3px solid green;
+  font-size: calc(10px + 2vmin);
+  color: red;
+}
+
+.tech-slideshow {
+  height: 112px;
+  max-width: 500px;
+  margin: 0 auto;
+  position: absolute;
+  overflow: hidden;
+  bottom: 0px;
+  transform: translate3d(0, 0, 0);
+}
+
+.tech-slideshow > div {
+  height: 200px;
+  width: 2526px;
+  background: url(assets/sprites/base.png);
+  top: 0;
+  left: 0;
+  height: 100%;
+  transform: translate3d(0, 0, 0);
+}
+.tech-slideshow .mover-1 {
+  animation: moveSlideshow 14s linear infinite;
+}
+
+@keyframes moveSlideshow {
+  100% {
+    transform: translateX(-66.6666%);
+  }
+}

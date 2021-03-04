@@ -1,8 +1,8 @@
 import React from 'react';
 
-export const birdPhysics = (sprite: string) => {
+export const birdPhysics = (sprite: string) => {    
 
-    function moveY() {
+    function moveY() { 
 
         var id: any = document.getElementById(sprite);
     
@@ -27,7 +27,7 @@ export const birdPhysics = (sprite: string) => {
 
     function control(e: any) {
 
-        // Checks or spacebar release
+        // Checks if press is Space bar press
         if (e.keyCode === 32) {
 
             jump()
@@ -48,6 +48,7 @@ export const birdPhysics = (sprite: string) => {
         }
     }
 
+    // Lisens for Space bar press
     document.addEventListener('keypress', control)
     
     

@@ -3,9 +3,9 @@ import birdPng from '../assets/sprites/bluebird-downflap.png';
 
 import '../birdSprite.css';
 
-const Sprite = (props:any) => {
+const BirdSprite = (props:any) => {
 
   return <img src={birdPng}/>
 }
 
-export default Sprite;
+export default BirdSprite;

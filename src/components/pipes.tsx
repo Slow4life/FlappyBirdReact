@@ -2,38 +2,29 @@ import React, { Component } from 'react';
 import pipeN from '../assets/sprites/pipeN.png'
 import pipeS from '../assets/sprites/pipeS.png'
 
-const PipeNSprite = (props:any) => { 
+import '../birdSprite.css'
+
+const PipesSprite = (props:any) => { 
 
     const gap: number = 450
-    const bottomS: number = Math.random() * 100
+    const bottom: number = Math.random() * 200
+   
+   return (<div id='pipesBoth'>
 
-  return (
-      
-   <div>
+      <div id='pipeUpper' style={{
+          width: 60,
+          height: 200,
+          bottom:bottom+gap
+      }}><img src={pipeN}/></div>
 
-<div id='pipeSouth' style={{
-            position: 'absolute',
-            width: 60,
-            right: -65,
-            height: 200,
-            bottom:bottomS
-        }}><img src={pipeS}/></div>
+      <div id='pipeLower' style={{
+          width: 60,
+          height: 200,
+          bottom: bottom
+      }}><img src={pipeS}/></div>
 
-<div id='pipeNorth' style={{
-            position: 'absolute',
-            width: 60,
-            right: -65,
-            height: 200,
-            bottom: bottomS+gap
-        }}><img src={pipeN}/></div>
-
-
-</div>
-
-    
-    
-
-  )
+    </div>
+   )
 }
 
-export default PipeNSprite;
+export default PipesSprite;

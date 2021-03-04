@@ -2,3 +2,19 @@
     position: absolute;
     padding-left: 40%;
 }
+
+#pipes {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+#pipeUpper {
+
+    position: absolute;
+}
+
+#pipeLower {
+
+    position: absolute;
+}

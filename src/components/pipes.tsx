@@ -9,26 +9,25 @@ const PipeNSprite = (props:any) => {
 
   return (
       
-   <div>
+    <div>
 
-<div id='pipeSouth' style={{
-            position: 'absolute',
-            width: 60,
-            right: -65,
-            height: 200,
-            bottom:bottomS
+      <div id='pipeSouth' style={{
+        position: 'absolute',
+        width: 60,
+        right: -65,
+        height: 200,
+        bottom:bottomS
         }}><img src={pipeS}/></div>
 
-<div id='pipeNorth' style={{
-            position: 'absolute',
-            width: 60,
-            right: -65,
-            height: 200,
-            bottom: bottomS+gap
+      <div id='pipeNorth' style={{
+        position: 'absolute',
+        width: 60,
+        right: -65,
+        height: 200,
+        bottom: bottomS+gap
         }}><img src={pipeN}/></div>
 
-
-</div>
+    </div>
 
     
     

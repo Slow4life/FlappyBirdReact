@@ -1,4 +1,4 @@
-export const GameEngine = (playerSprite: string, obstacle1Sprite: string, obstacle2Sprite: string, bothObstacles: string, obstacleMoveSpeed: number) => {
+export const GameEngine = (playerSprite: string, obstacle1Sprite: string, obstacle2Sprite: string, bothObstacles: string, obstacleMoveSpeed: number, jumpKey: number) => {
 
 // ########################################### COLLISION ###########################################
 
@@ -18,16 +18,12 @@ export const GameEngine = (playerSprite: string, obstacle1Sprite: string, obstac
         
         if (playerDim.right >= obstacleDim1.left && playerDim.left <= obstacleDim1.right && playerDim.bottom >= obstacleDim1.top) {
 
-            console.log("lower collision")
-            clearInterval(playerMove);
-            clearInterval(collisionCheck);
+            gameOver();
         }
 
         if (playerDim.right >= obstacleDim2.left && playerDim.left <= obstacleDim2.right && playerDim.top <= obstacleDim2.bottom+100) {
 
-            console.log("upper collision")
-            clearInterval(playerMove);
-            clearInterval(collisionCheck);
+            gameOver();
         }
     }
 
@@ -42,14 +38,13 @@ export const GameEngine = (playerSprite: string, obstacle1Sprite: string, obstac
         var x: number = rect.left;
 
         id.style.left = x - obstacleMoveSpeed + "px";
-    
     }
 
     // ########################################### PLAYER MOVEMENT ###########################################
 
     addJumpListener();
 
-    function moveY() { 
+    function moveY() {
 
         var id: any = document.getElementById(playerSprite);
     
@@ -64,35 +59,58 @@ export const GameEngine = (playerSprite: string, obstacle1Sprite: string, obstac
         }
     }
 
-    function control(e: any) {
+    function jump(e:any) {
 
-        // Checks if press is Space bar press
-        if (e.keyCode === 32) { jump() }
+        if (e.keyCode === jumpKey) {
+            
+            var id: any = document.getElementById(playerSprite);
+
+            var rect = id.getBoundingClientRect();
+        
+            var y: number = rect.top;
+    
+            if (y <= 378) { id.style.top = y - 80 + "px"; }}
     }
 
-    function jump() {
-
-        var id: any = document.getElementById(playerSprite);
-    
-        var rect = id.getBoundingClientRect();
-    
-        var y: number = rect.top;
-
-        if (y <= 378) {
-    
-            id.style.top = y - 80 + "px";
-        }
-    }
-    
     function addJumpListener() {
 
-        // Listens for Space bar press
-        document.addEventListener('keypress', control)
+        var jumpListener = document.addEventListener('keypress', jump); 
     }
+
+    // ########################################### GAME ###########################################
+
+    function removeJumpListener() {
+
+        document.removeEventListener('keypress', jump)
+    }
+
+    function gameOver() {
+
+        removeJumpListener();
+        clearInterval(playerMove);
+        clearInterval(collisionCheck);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // Runs until collision is detected
     var playerFall = setInterval(moveY, 1000/60)
     var playerMove = setInterval(moveX, 1000/60)
     var collisionCheck = setInterval(collide, 1000/60)
 }
+
 

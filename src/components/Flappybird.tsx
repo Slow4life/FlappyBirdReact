@@ -12,7 +12,9 @@ import { GameEngine } from '../ts/gameEngine'
 //playerPhysics("playerSprite");
 //obstaclePhysics("pipesBoth");
 //collisionObstacle("playerSprite", "pipeLower", "pipeUpper");
-GameEngine("playerSprite", "pipeLower", "pipeUpper", "pipesBoth", 4.9)
+
+// Takes player sprite, first obstacle, second obstacle, both obstacles, obstacle speed, jump key 
+GameEngine("playerSprite", "pipeLower", "pipeUpper", "pipesBoth", 4.9, 32)
 
 const gameStarted = Date.now();
 interface FlappybirdProps{};

@@ -8,6 +8,7 @@
   border: 3px solid green;
   font-size: calc(10px + 2vmin);
   color: red;
+  overflow: hidden;
 }
 
 .tech-slideshow {

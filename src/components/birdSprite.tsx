@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import birdPng from '../assets/sprites/bluebird-downflap.png';
 
-import '../birdSprite.css';
+import '../sprite.css';
 
 const BirdSprite = (props:any) => {
 

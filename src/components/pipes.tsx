@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import pipeN from '../assets/sprites/pipeN.png'
 import pipeS from '../assets/sprites/pipeS.png'
 
-import '../birdSprite.css'
+import '../sprite.css'
 
 const Pipes  = (props:any) => {
 
@@ -14,7 +14,7 @@ const Pipes  = (props:any) => {
       <div id='pipeUpper' style={{
           width: 60,
           height: 200,
-          bottom:bottom+gap // Bottom pipe y + gap
+          bottom: bottom+gap // Bottom pipe y + gap
       }}><img src={pipeN}/></div>
 
       <div id='pipeLower' style={{

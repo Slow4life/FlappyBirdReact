@@ -38,3 +38,7 @@
     transform: translateX(-66.6666%);
   }
 }
+
+#z-index {
+  z-index: +1;
+}

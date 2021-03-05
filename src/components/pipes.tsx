@@ -4,7 +4,7 @@ import pipeS from '../assets/sprites/pipeS.png'
 
 import '../birdSprite.css'
 
-const PipeNSprite = (props:any) => { 
+const PipeNSprite  = (props:any) => {
 
   const gap: number = 450
   const bottomS: number = Math.random() * 100

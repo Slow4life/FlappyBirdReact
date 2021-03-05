@@ -15,8 +15,11 @@ import { GameEngine } from '../ts/gameEngine'
 GameEngine("playerSprite", "pipeLower", "pipeUpper", "pipesBoth", 4.9)
 
 interface FlappybirdProps{};
+interface FlappybirdState{
+  gameTime: number;
+};
 
-class Flappybird extends React.Component<FlappybirdProps, any>{
+class Flappybird extends React.Component<FlappybirdProps, FlappybirdState>{
     render(){
         return(
             <div id='gameWindow'>

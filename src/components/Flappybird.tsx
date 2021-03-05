@@ -20,6 +20,13 @@ interface FlappybirdState{
 };
 
 class Flappybird extends React.Component<FlappybirdProps, FlappybirdState>{
+    readonly gameLaunched = Date.now();
+    state = {
+        gameTime: 0
+    }
+    constructor(props: FlappybirdProps){
+        super(props);
+    }
     render(){
         return(
             <div id='gameWindow'>

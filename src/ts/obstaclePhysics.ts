@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const obstaclePhysics = (sprite: string) => {
 
     function moveX() {

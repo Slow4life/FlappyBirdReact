@@ -5,7 +5,9 @@ import '../birdSprite.css';
 
 const BirdSprite = (props:any) => {
 
-  return <img src={birdPng}/>
+  var bird = <div id='playerSprite'><img src={birdPng}/></div>
+
+  return bird
 }
 
 export default BirdSprite;

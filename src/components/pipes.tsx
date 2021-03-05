@@ -7,14 +7,14 @@ import '../birdSprite.css'
 const PipesSprite = (props:any) => { 
 
     const gap: number = 450
-    const bottom: number = Math.random() * 200
+    const bottom: number = Math.random() * 170
    
-   return (<div id='pipesBoth'>
+    var pipes = <div id='pipesBoth'>
 
       <div id='pipeUpper' style={{
           width: 60,
           height: 200,
-          bottom:bottom+gap
+          bottom:bottom+gap // Bottom pipe y + gap
       }}><img src={pipeN}/></div>
 
       <div id='pipeLower' style={{
@@ -24,7 +24,8 @@ const PipesSprite = (props:any) => {
       }}><img src={pipeS}/></div>
 
     </div>
-   )
+
+   return pipes;
 }
 
 export default PipesSprite;

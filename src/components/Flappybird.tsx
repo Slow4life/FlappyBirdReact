@@ -1,20 +1,24 @@
 import React from 'react';
+
 import Scrollingbase from "./scrollingbase";
 import PlayerSprite from './birdSprite';
 import Pipes from './pipes';
-import { birdPhysics } from "../ts/playerPhysics";
+
+import { playerPhysics } from "../ts/playerPhysics";
 import { obstaclePhysics } from "../ts/obstaclePhysics";
+import { collisionObstacle1 } from "../ts/collisionObstacle1";
 
 
-birdPhysics("playerSprite");
-obstaclePhysics("pipes");
+playerPhysics("playerSprite");
+obstaclePhysics("pipesBoth");
+collisionObstacle1("playerSprite", "pipeLower", "pipeUpper");
 
 const Flappybird = (props:any) =>{
     return(
         <div id='gameWindow'>
                 <Scrollingbase/>
-                <div id='playerSprite'><PlayerSprite/></div>
-                <div id='pipes'><Pipes/></div>
+                <PlayerSprite/>
+                <Pipes/>
         </div>
     )
 }

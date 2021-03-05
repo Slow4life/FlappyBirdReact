@@ -1,20 +1,16 @@
 #playerSprite {
     position: absolute;
-    padding-left: 40%;
+    left: 200px;
+    top: 100px
 }
 
-#pipes {
+#pipesBoth {
     position: absolute;
     right: 0;
     bottom: 0;
 }
 
-#pipeUpper {
-
-    position: absolute;
-}
-
-#pipeLower {
+#pipeUpper, #pipeLower {
 
     position: absolute;
 }

@@ -36,6 +36,12 @@ class Flappybird extends React.Component<FlappybirdProps, FlappybirdState>{
             </div>
         )
     }
+
+    updateClock(){
+        this.setState({gameTime: Date.now() - this.gameLaunched});
+        console.log(this.state.gameTime.toString());
+        setTimeout(this.updateClock.bind(this), 200);
+    }
 }
 
 export default Flappybird;

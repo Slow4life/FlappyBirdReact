@@ -14,11 +14,8 @@ obstaclePhysics("pipesBoth");
 collisionObstacle1("playerSprite", "pipeLower", "pipeUpper");
 
 interface FlappybirdProps{};
-interface FlappybirdState{
-    gameTime: number;
-}
 
-const Flappybird = (props:any) =>{
+const Flappybird = (props:FlappybirdProps) =>{
     return(
         <div id='gameWindow'>
                 <Scrollingbase/>

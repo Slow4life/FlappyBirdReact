@@ -6,30 +6,28 @@ import '../birdSprite.css'
 
 const PipeNSprite  = (props:any) => {
 
-  const gap: number = 450
-  const bottomS: number = Math.random() * 100
+    const gap: number = 450
+    const bottom: number = Math.random() * 170
+   
+    var pipes = (<div id='pipesBoth'>
 
-  return (<div id='pipesBoth'>
-
-    
-      <div id='pipeSouth' style={{
-      position: 'absolute',
-      width: 60,
-
-      height: 200,
-      bottom:bottomS,
-      }}><img src={pipeS}/></div>
-
-      <div id='pipeNorth' style={{
-      position: 'absolute',
-      width: 60,
-
-      height: 200,
-      bottom: bottomS+gap
+      <div id='pipeUpper' style={{
+          width: 60,
+          height: 200,
+          bottom:bottom+gap // Bottom pipe y + gap
       }}><img src={pipeN}/></div>
 
-    </div>
-  )
+      <div id='pipeLower' style={{
+      position: 'absolute',
+      width: 60,
+      height: 200,
+      bottom: bottom
+      }}><img src={pipeS}/></div>
+
+    </div>)
+
+   return pipes;
+
 }
 
 export default PipeNSprite;

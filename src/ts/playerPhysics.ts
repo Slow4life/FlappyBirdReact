@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const birdPhysics = (sprite: string) => {    
+export const playerPhysics = (sprite: string) => {    
 
     function moveY() { 
 
@@ -14,12 +14,6 @@ export const birdPhysics = (sprite: string) => {
         if (y <= 378) {
     
             id.style.top = y + 1 + "px";
-        }
-    
-        // Bottom pseudo-collision, to be fixed
-        if (y >= 378) {
-    
-            id.style.top = 3 + "px";
         }
     }
     

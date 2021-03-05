@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Scrollingbase from "./scrollingbase";
-import PlayerSprite from './birdSprite';
+import PlayerSprite from './playerSprite';
 import Pipes from './pipes';
 
 //import { playerPhysics } from "../ts/playerPhysics";

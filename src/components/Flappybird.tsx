@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Scrollingbase from "./scrollingbase";
 import PlayerSprite from './playerSprite';
@@ -14,18 +14,18 @@ import { GameEngine } from '../ts/gameEngine'
 //collisionObstacle("playerSprite", "pipeLower", "pipeUpper");
 GameEngine("playerSprite", "pipeLower", "pipeUpper", "pipesBoth", 4.9)
 
-const gameStarted = Date.now();
 interface FlappybirdProps{};
 
-const Flappybird = (props:FlappybirdProps) =>{
-    const[gameTime, setGameTime] = useState(0);
-    return(
-        <div id='gameWindow'>
-                <Scrollingbase/>
-                <PlayerSprite/>
-                <Pipes/>
-        </div>
-    )
+class Flappybird extends React.Component<FlappybirdProps, any>{
+    render(){
+        return(
+            <div id='gameWindow'>
+                    <Scrollingbase/>
+                    <PlayerSprite/>
+                    <Pipes/>
+            </div>
+        )
+    }
 }
 
 export default Flappybird;

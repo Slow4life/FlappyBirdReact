@@ -6,12 +6,12 @@ import Pipes from './pipes';
 
 import { playerPhysics } from "../ts/playerPhysics";
 import { obstaclePhysics } from "../ts/obstaclePhysics";
-import { collisionObstacle1 } from "../ts/collisionObstacle1";
+import { collisionObstacle } from "../ts/collisionObstacle";
 
 
 playerPhysics("playerSprite");
 obstaclePhysics("pipesBoth");
-collisionObstacle1("playerSprite", "pipeLower", "pipeUpper");
+collisionObstacle("playerSprite", "pipeLower", "pipeUpper");
 
 const Flappybird = (props:any) =>{
     return(

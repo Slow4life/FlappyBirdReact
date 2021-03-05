@@ -1,4 +1,4 @@
-export const collisionObstacle1 = (playerSprite: string, obstacle1Sprite: string, obstacle2Sprite: string) => {
+export const collisionObstacle = (playerSprite: string, obstacle1Sprite: string, obstacle2Sprite: string) => {
 
     function collide() {
 
@@ -21,7 +21,7 @@ export const collisionObstacle1 = (playerSprite: string, obstacle1Sprite: string
             console.log("lower collision")
         }
 
-        if (playerDim.right >= obstacleDim2.left && playerDim.left <= obstacleDim2.right && playerDim.top <= obstacleDim2.bottom) {
+        if (playerDim.right >= obstacleDim2.left && playerDim.left <= obstacleDim2.right && playerDim.top <= obstacleDim2.bottom+100) {
 
             console.log("upper collision")
         }

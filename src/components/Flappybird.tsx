@@ -13,6 +13,7 @@ playerPhysics("playerSprite");
 obstaclePhysics("pipesBoth");
 collisionObstacle1("playerSprite", "pipeLower", "pipeUpper");
 
+const gameStarted = Date.now();
 interface FlappybirdProps{};
 
 const Flappybird = (props:FlappybirdProps) =>{

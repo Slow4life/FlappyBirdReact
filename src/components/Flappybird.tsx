@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Scrollingbase from "./scrollingbase";
-import PlayerSprite from './birdSprite';
+import PlayerSprite from './playerSprite';
 import Pipes from './pipes';
 
 //import { playerPhysics } from "../ts/playerPhysics";
@@ -16,18 +16,34 @@ import { GameEngine } from '../ts/gameEngine'
 // Takes player sprite, first obstacle, second obstacle, both obstacles, obstacle speed, jump key 
 GameEngine("playerSprite", "pipeLower", "pipeUpper", "pipesBoth", 4.9, 32)
 
-const gameStarted = Date.now();
 interface FlappybirdProps{};
+interface FlappybirdState{
+  gameTime: number;
+};
 
-const Flappybird = (props:FlappybirdProps) =>{
-    const[gameTime, setGameTime] = useState(0);
-    return(
-        <div id='gameWindow'>
-                <Scrollingbase/>
-                <PlayerSprite/>
-                <Pipes/>
-        </div>
-    )
+class Flappybird extends React.Component<FlappybirdProps, FlappybirdState>{
+    readonly gameLaunched = Date.now();
+    state = {
+        gameTime: 0
+    }
+    constructor(props: FlappybirdProps){
+        super(props);
+    }
+    render(){
+        return(
+            <div id='gameWindow'>
+                    <Scrollingbase/>
+                    <PlayerSprite/>
+                    <Pipes/>
+            </div>
+        )
+    }
+
+    updateClock(){
+        this.setState({gameTime: Date.now() - this.gameLaunched});
+        console.log(this.state.gameTime.toString());
+        setTimeout(this.updateClock.bind(this), 200);
+    }
 }
 
 export default Flappybird;

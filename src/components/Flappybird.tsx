@@ -17,6 +17,7 @@ const gameStarted = Date.now();
 interface FlappybirdProps{};
 
 const Flappybird = (props:FlappybirdProps) =>{
+    const[gameTime, setGameTime] = useState(0);
     return(
         <div id='gameWindow'>
                 <Scrollingbase/>

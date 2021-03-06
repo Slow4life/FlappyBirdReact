@@ -10,15 +10,15 @@ birdPhysics("playerSprite");
 obstaclePhysics("pipes");
 
 const Flappybird = (props:any) =>{
+
     AudioManager.loadAudioFile("jump", "/audio/wing.ogg", false);
     AudioManager.loadAudioFile("die", "/audio/die.ogg", false);
+    
     const playSoundJump = () => {
-        //audio.play();
-        AudioManager.playSound("jump");
+        AudioManager.playAudio("jump");
     }
     const playSoundDie = () => {
-        //audio.play();
-        AudioManager.playSound("die");
+        AudioManager.playAudio("die");
     }
  
     return(

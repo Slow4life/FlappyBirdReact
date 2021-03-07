@@ -19,14 +19,14 @@ const Pipes  = (props: PipesProps) => {
           width: 60,
           height: 200,
           bottom: bottom+gap // Bottom pipe y + gap
-      }}><img src={pipeN}/></div>
+      }}><img src={pipeN} alt={"Upper part of obstacle"}/></div>
 
       <div id='pipeLower' style={{
       position: 'absolute',
       width: 60,
       height: 200,
       bottom: bottom
-      }}><img src={pipeS}/></div>
+      }}><img src={pipeS} alt={"Lower part of obstacle"}/></div>
 
     </div>)
 

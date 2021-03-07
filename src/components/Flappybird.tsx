@@ -32,9 +32,9 @@ class Flappybird extends React.Component<FlappybirdProps, FlappybirdState>{
     render(){
         return(
             <div id='gameWindow'>
-                    <Scrollingbase/>
-                    <PlayerSprite/>
-                    <Pipes/>
+                    <Scrollingbase gameTime={this.state.gameTime} />
+                    <PlayerSprite gameTime={this.state.gameTime} />
+                    <Pipes gameTime={this.state.gameTime} />
             </div>
         )
     }

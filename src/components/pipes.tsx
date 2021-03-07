@@ -4,7 +4,11 @@ import pipeS from '../assets/sprites/pipeS.png'
 
 import '../sprite.css'
 
-const Pipes  = (props:any) => {
+interface PipesProps{
+    gameTime: number
+}
+
+const Pipes  = (props: PipesProps) => {
 
     const gap: number = 450
     const bottom: number = Math.random() * 170

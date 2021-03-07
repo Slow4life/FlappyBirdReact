@@ -1,6 +1,9 @@
 import React from 'react'
+interface ScrollingbaseProps{
+  gameTime: number
+}
 
-const Scrollingbase = (props:any) => {
+const Scrollingbase = (props: ScrollingbaseProps) => {
 return(
 
   <div className="tech-slideshow" id='z-index'>

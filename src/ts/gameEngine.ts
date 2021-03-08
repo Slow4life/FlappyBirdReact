@@ -28,17 +28,50 @@ export const GameEngine = (playerSprite: string, obstacle1Sprite: string, obstac
     }
 
     // ########################################### OBSTACLE MOVEMENT ###########################################
-
+/*
     function moveX() {
 
-        var id: any = document.getElementById(bothObstacles);
-    
-        var rect = id.getBoundingClientRect();
+        var pipeClass: any = document.getElementsByClassName(bothObstacles);
         
-        var x: number = rect.left;
+        
+        
+        
+        Array.from(pipeClass).forEach((i:any) => {
 
-        id.style.left = x - obstacleMoveSpeed + "px";
-    }
+            //var pipeQuery: any = document.querySelector('.pipesBoth');
+
+            //for (let i = 0; i < pipeQuery.length; i++) {
+
+                var pipeId: any = document.getElementById(pipeClass[i]);
+
+                console.log(pipeClass[i]);
+
+                var idDim = pipeId.getBoundingClientRect();
+
+                var x: number = idDim.left;
+
+                idDim.style.left = x + "px";
+            }
+
+
+
+
+
+    
+
+
+        )}
+*/
+        
+    
+        //var rect = id.getBoundingClientRect();
+        
+        //var x: number = rect.left;
+
+        //var boxLeftPos = id.offsetLeft;
+
+        //boxLeftPos.style.left = boxLeftPos - obstacleMoveSpeed + "px";
+    
 
     // ########################################### PLAYER MOVEMENT ###########################################
 
@@ -55,7 +88,7 @@ export const GameEngine = (playerSprite: string, obstacle1Sprite: string, obstac
         // Bird fall speed
         if (y <= 378) {
     
-            id.style.top = y + 1 + "px";
+            id.style.top = y + 3/20 + "px";
         }
     }
 
@@ -69,7 +102,7 @@ export const GameEngine = (playerSprite: string, obstacle1Sprite: string, obstac
         
             var y: number = rect.top;
     
-            if (y <= 378) { id.style.top = y - 80 + "px"; }}
+            if (y <= 378) { id.style.top = y - 70 + "px"; }}
     }
 
     function addJumpListener() {
@@ -83,12 +116,23 @@ export const GameEngine = (playerSprite: string, obstacle1Sprite: string, obstac
 
         document.removeEventListener('keypress', jump)
     }
+/*
+    function movePipes() {
+
+        while (true) {
+
+            var pipeMove = setInterval(moveX, 1000/60)
+            clearInter
+        }
+    }*/
 
     function gameOver() {
 
         removeJumpListener();
-        clearInterval(playerMove);
+        //clearInterval(pipeMove);
         clearInterval(collisionCheck);
+
+        return true;
     }
 
 
@@ -109,7 +153,7 @@ export const GameEngine = (playerSprite: string, obstacle1Sprite: string, obstac
 
     // Runs until collision is detected
     var playerFall = setInterval(moveY, 1000/60)
-    var playerMove = setInterval(moveX, 1000/60)
+    //var pipeMove = setInterval(moveX, 1000/60)
     var collisionCheck = setInterval(collide, 1000/60)
 }
 

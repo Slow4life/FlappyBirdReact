@@ -3,6 +3,7 @@ import React from 'react';
 import Scrollingbase from "./scrollingbase";
 import PlayerSprite from './playerSprite';
 import Pipes from './pipes';
+import { Pipe } from './pipes';
 
 //import { playerPhysics } from "../ts/playerPhysics";
 //import { obstaclePhysics } from "../ts/obstaclePhysics";
@@ -13,7 +14,7 @@ import { GameEngine } from '../ts/gameEngine'
 //obstaclePhysics("pipesBoth");
 //collisionObstacle("playerSprite", "pipeLower", "pipeUpper");
 
-// Takes player sprite, first obstacle, second obstacle, both obstacles, obstacle speed, jump key 
+// Takes player sprite, first obstacle, second obstacle, both obstacles in one, obstacle speed, jump key 
 GameEngine("playerSprite", "pipeLower", "pipeUpper", "pipesBoth", 4.9, 32)
 
 interface FlappybirdProps{};

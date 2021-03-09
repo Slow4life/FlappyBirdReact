@@ -1,9 +1,12 @@
+
+
 export class GameEngine {
+
+
 
 // ########################################### COLLISION ###########################################
     //playerSprite: string, obstacle1Sprite: string, obstacle2Sprite: string, bothObstacles: string, obstacleMoveSpeed: number, jumpKey: number
     public static checkCollision(playerSprite: string, obstacle1Sprite: string, obstacle2Sprite: string) {
-        console.log(playerSprite, obstacle1Sprite, obstacle2Sprite)
 
         var player: any = document.getElementById(playerSprite);
 
@@ -11,7 +14,6 @@ export class GameEngine {
 
         var obstacle2: any = document.getElementById(obstacle2Sprite);
 
-        console.log(player, obstacle1, obstacle2)
 
     
         var playerDim = player.getBoundingClientRect();
@@ -32,6 +34,7 @@ export class GameEngine {
 
         return false;
     }
+
 
     // ########################################### OBSTACLE MOVEMENT ###########################################
 /*

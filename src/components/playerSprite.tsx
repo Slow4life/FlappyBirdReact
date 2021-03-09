@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
+import React, { CSSProperties } from 'react';
 import birdPng from '../assets/sprites/bluebird-downflap.png';
 
 import '../sprite.css';
 
-const PlayerSprite = (props:any) => {
+function PlayerSprite() {
 
-  var bird = <div id='playerSprite'><img src={birdPng}/></div>
 
-  return bird
+   return(
+     <div><img src={birdPng} alt=""/></div>
+     
+   )
 }
 
 export default PlayerSprite;

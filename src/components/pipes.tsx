@@ -7,7 +7,7 @@ import { GameEngine } from '../ts/gameEngine'
 import '../sprite.css'
 
 interface PipesProps{};
-
+/*
 interface PipesState {
   pipes: Array<number>;
 }
@@ -110,3 +110,4 @@ class Pipe extends React.Component<PipeProps> {
 
 export { Pipe };
 export default Pipes;
+*/

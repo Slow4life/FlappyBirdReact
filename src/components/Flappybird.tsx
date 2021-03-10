@@ -12,6 +12,7 @@ import { Pipe } from './pipes';
 import { GameEngine } from '../ts/gameEngine'
 import { AudioManager } from "../ts/AudioManager";
 import birdPng from '../assets/sprites/bluebird-downflap.png';
+
 //playerPhysics("playerSprite");
 //obstaclePhysics("pipesBoth");
 //collisionObstacle("playerSprite", "pipeLower", "pipeUpper");
@@ -20,22 +21,28 @@ import birdPng from '../assets/sprites/bluebird-downflap.png';
 //GameEngine("playerSprite", "pipeLower", "pipeUpper", "pipesBoth", 4.9, 32)
 
 
-
-
-
 function Flappybird() {
+    //player values
     const [playerBottom, setPlayerBottom] = useState(256)
-    const playerHeight = 24
-    const playerWidth = 24
-    const playerLeft = 250
-    const gravity = 3
-    let gameTimerId: any
+    const playerHeight = 24;
+    const playerWidth = 34;
+    const playerLeft = 250;
+    const gravity = 3;
+    let gameTimerId: any;
+    let id: any;
+    Pipe.bind(id);
+
+    //console.log(Pipe.bind(id))
+    console.log(Pipes)
+    //console.log(id.pipeRef.pipeUpper, id.pipeRef.pipeLower)
+    //console.log(GameEngine.checkCollision("player", "pipeUpper", "pipeLower"))
 
     AudioManager.loadAudioFile("jumpEffect", "/audio/wing.wav", false)
 
 
-    const playerStyle: React.CSSProperties = {
+    const playerStyle: any = {
                 position: 'absolute',
+                backgroundImage: `url(${birdPng})`,
                 width: playerWidth,
                 height: playerHeight,
                 left: playerLeft - (playerWidth/2),
@@ -51,15 +58,14 @@ function Flappybird() {
         return () => {
             clearInterval(gameTimerId)
         }
-    })
+    },[playerBottom])
 
     const jump = (event: any): void =>{
-        //console.log(event);  
-        setPlayerBottom(playerBottom => playerBottom + 50)
-        console.log("jump")
-        AudioManager.playAudio("jumpEffect");
-        if(event.keycode === 32){
-           
+        //console.log(event);
+        if(playerBottom < 512 && event.keyCode === 32){
+            setPlayerBottom(playerBottom => playerBottom + 50)
+            console.log("jump")
+            AudioManager.playAudio("jumpEffect");
         }
     }
 
@@ -67,8 +73,11 @@ function Flappybird() {
         <div id='gameWindow' onKeyDown={jump}>
             <a href='#' onKeyDown={jump} onClick={jump} >clock</a>
             <Scrollingbase/>
-            <div style={playerStyle}><img src={birdPng} alt=""/></div>
-            <Pipes/>
+            <div id="player"style={playerStyle}/>
+            <Pipes></Pipes>
+            <div/>
+            <div/>
+            
         </div>
     )
 

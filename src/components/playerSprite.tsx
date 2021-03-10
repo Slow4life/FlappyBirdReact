@@ -3,11 +3,11 @@ import birdPng from '../assets/sprites/bluebird-downflap.png';
 
 import '../sprite.css';
 
-function PlayerSprite() {
+function PlayerSprite(props: any) {
 
 
    return(
-     <div><img src={birdPng} alt=""/></div>
+     <div style={props.playerStyle}><img src={props.image} alt=""/></div>
      
    )
 }

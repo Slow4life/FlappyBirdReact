@@ -2,7 +2,7 @@
 
 export class GameEngine {
 
-
+    
 
 // ########################################### COLLISION ###########################################
     //playerSprite: string, obstacle1Sprite: string, obstacle2Sprite: string, bothObstacles: string, obstacleMoveSpeed: number, jumpKey: number

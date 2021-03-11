@@ -7,6 +7,11 @@ export const GameEngine = (playerSprite: string, obstacle1Sprite: string, obstac
         let player: any = document.getElementById(playerSprite);
 
         let obstacle1: any = document.getElementById(obstacle1Sprite);
+            // Risikomoment:
+            // getElementById() forutsetter at id er entydig, men det er den ikke.
+            // Dette kan gå i stykker når som helst, eller i andre browsere.
+            // getElementByClass()[0] er en mulighet, men jeg er fortsatt litt usikker på
+            // om det nødvendigvis finner den rette?
 
         let obstacle2: any = document.getElementById(obstacle2Sprite);
     

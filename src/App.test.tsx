@@ -9,5 +9,6 @@ test('renders learn react link', () => {
   const groundElement = document.getElementById('ground') as HTMLElement;   // <Scrollingbase/>
   expect(gameWindowElement).toContainElement(groundElement);
   const mover1Element = document.getElementsByClassName('mover-1')[0] as HTMLElement;
-  expect (gameWindowElement).toContainElement(mover1Element);   // Rather redunant.
+  expect(gameWindowElement).toContainElement(mover1Element);   // Rather redundant.
+  expect(document.getElementsByClassName('mover-1').length).toEqual(1);
 });

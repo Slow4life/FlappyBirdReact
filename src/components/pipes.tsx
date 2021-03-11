@@ -105,13 +105,13 @@ class Pipe extends React.Component<PipeProps> {
         width: 60,
         height: 200,
         bottom: this.bottomY + this.gap // Bottom pipe y + gap
-      }}><img src={pipeN}/></div>
+      }}><img src={pipeN} alt={''}/></div>
 
       <div id='pipeLower' style={{
         width: 60,
         height: 200,
         bottom: this.bottomY
-      }}><img src={pipeS}/></div>
+      }}><img src={pipeS} alt={''}/></div>
 
     </div>
     )

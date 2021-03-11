@@ -7,11 +7,11 @@
   height: 512px;
   border: 3px solid green;
   font-size: calc(10px + 2vmin);
-  color: red;
+  color: black;
   overflow: hidden;
 }
 
-.tech-slideshow {
+.ground {
   height: 112px;
   max-width: 500px;
   margin: 0 auto;
@@ -21,7 +21,7 @@
   transform: translate3d(0, 0, 0);
 }
 
-.tech-slideshow > div {
+.ground > div {
   height: 200px;
   width: 2526px;
   background: url(assets/sprites/base.png);
@@ -30,16 +30,16 @@
   height: 100%;
   transform: translate3d(0, 0, 0);
 }
-.tech-slideshow .mover-1 {
-  animation: moveSlideshow 14s linear infinite;
+.ground .mover-1 {
+  animation: moveGround 14s linear infinite;
 }
 
-@keyframes moveSlideshow {
+@keyframes moveGround {
   100% {
     transform: translateX(-66.6666%);
   }
 }
 
-#z-index {
+#ground {
   z-index: +1;
 }

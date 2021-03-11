@@ -2,40 +2,44 @@ import React from 'react';
 import pipeN from '../assets/sprites/pipeN.png'
 import pipeS from '../assets/sprites/pipeS.png'
 
-import { GameEngine } from '../ts/gameEngine'
-
 import '../sprite.css'
 
 interface PipesProps{};
 
-interface PipesState {
-  pipes: Array<number>;
-}
+interface PipesState { pipes: Array<number>; }
 
 class Pipes extends React.Component<PipesProps, PipesState> {
+  counter: number;
 
   constructor(props: PipesProps){
     super(props);
 
       let pipes = new Array();
-      pipes.push(0);
+      
+      this.counter = 0;
+      pipes.push(this.counter);
 
       this.state = { pipes: pipes };
   }
 
   createPipe = () => {
+
       let pipes = this.state.pipes;
-      pipes.push(0);
+      pipes.push(++this.counter);
+
+      if (pipes.length > 3) { pipes.shift(); }
+
       this.setState({ pipes: pipes });
   }
 
   componentDidMount() {
-    
+
     setInterval(this.createPipe, 2000)
   }
 
   render()  {
-    let pipeHtml = this.state.pipes.map(p => <Pipe />)
+
+    let pipeHtml = this.state.pipes.map(p => <Pipe key={p} />)
     return (<>{pipeHtml}</>);
   }
 }
@@ -46,16 +50,19 @@ class Pipe extends React.Component<PipeProps> {
   gap: number;
   bottomY: number;
   pipeRef: any;
+  private _ismounted: boolean;
 
   constructor(props: PipeProps) {
     super(props);
 
+    this._ismounted = false;
     this.pipeRef = React.createRef();
     this.gap = 450
     this.bottomY = Math.random() * 170
   }
 
   movePipe = () => {
+    if (!this._ismounted) { return; }
 
     let pipeId: any = this.pipeRef.current;
 
@@ -72,7 +79,7 @@ class Pipe extends React.Component<PipeProps> {
 
     let pipeDim = pipeId.getBoundingClientRect();
 
-    let x: number = pipeDim.left;
+    let x: number = pipeDim.left + 60;
 
     if (x <= 0) {
 
@@ -80,9 +87,13 @@ class Pipe extends React.Component<PipeProps> {
     } 
   }
 
-  componentDidMount() {
+  componentWillUnmount() {
+     this._ismounted = false;
+  }
 
-    setInterval(this.removePipe, 1000/60)
+  componentDidMount() {
+    this._ismounted = true;
+    //setInterval(this.removePipe, 1000/60)
     setInterval(this.movePipe, 1000/60)
   }
 

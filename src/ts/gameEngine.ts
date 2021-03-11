@@ -1,20 +1,20 @@
-export const GameEngine = (playerSprite: string, obstacle1Sprite: string, obstacle2Sprite: string, bothObstacles: string, obstacleMoveSpeed: number, jumpKey: number) => {
+export const GameEngine = (playerSprite: string, obstacle1Sprite: string, obstacle2Sprite: string, score: string, groundDiv: string, jumpKey: number) => {
 
 // ########################################### COLLISION ###########################################
 
     function collide() {
 
-        var player: any = document.getElementById(playerSprite);
+        let player: any = document.getElementById(playerSprite);
 
-        var obstacle1: any = document.getElementById(obstacle1Sprite);
+        let obstacle1: any = document.getElementById(obstacle1Sprite);
 
-        var obstacle2: any = document.getElementById(obstacle2Sprite);
+        let obstacle2: any = document.getElementById(obstacle2Sprite);
     
-        var playerDim = player.getBoundingClientRect();
+        let playerDim = player.getBoundingClientRect();
 
-        var obstacleDim1 = obstacle1.getBoundingClientRect();
+        let obstacleDim1 = obstacle1.getBoundingClientRect();
 
-        var obstacleDim2 = obstacle2.getBoundingClientRect();
+        let obstacleDim2 = obstacle2.getBoundingClientRect();
         
         if (playerDim.right >= obstacleDim1.left && playerDim.left <= obstacleDim1.right && playerDim.bottom >= obstacleDim1.top) {
 
@@ -27,68 +27,32 @@ export const GameEngine = (playerSprite: string, obstacle1Sprite: string, obstac
         }
     }
 
-    // ########################################### OBSTACLE MOVEMENT ###########################################
-/*
-    function moveX() {
-
-        var pipeClass: any = document.getElementsByClassName(bothObstacles);
-        
-        
-        
-        
-        Array.from(pipeClass).forEach((i:any) => {
-
-            //var pipeQuery: any = document.querySelector('.pipesBoth');
-
-            //for (let i = 0; i < pipeQuery.length; i++) {
-
-                var pipeId: any = document.getElementById(pipeClass[i]);
-
-                console.log(pipeClass[i]);
-
-                var idDim = pipeId.getBoundingClientRect();
-
-                var x: number = idDim.left;
-
-                idDim.style.left = x + "px";
-            }
-
-
-
-
-
-    
-
-
-        )}
-*/
-        
-    
-        //var rect = id.getBoundingClientRect();
-        
-        //var x: number = rect.left;
-
-        //var boxLeftPos = id.offsetLeft;
-
-        //boxLeftPos.style.left = boxLeftPos - obstacleMoveSpeed + "px";
-    
-
     // ########################################### PLAYER MOVEMENT ###########################################
 
     addJumpListener();
 
     function moveY() {
 
-        var id: any = document.getElementById(playerSprite);
+        let id: any = document.getElementById(playerSprite);
+
+        let ground: any = document.getElementById(groundDiv); // ID of ground
     
-        var rect = id.getBoundingClientRect();
+        let rect = id.getBoundingClientRect();
+
+        let groundDim = ground.getBoundingClientRect();
     
-        var y: number = rect.top;
+        let birdY: number = rect.top;
+
+        let groundY: number = groundDim.top - 25 // 25 = calibration, not optimal
     
+        console.log(groundY)
+
+        id.style.top = birdY + 3/20 + "px";
+
         // Bird fall speed
-        if (y <= 378) {
+        if (birdY >= groundY) {
     
-            id.style.top = y + 3/20 + "px";
+            clearInterval(playerFall);
         }
     }
 
@@ -96,65 +60,66 @@ export const GameEngine = (playerSprite: string, obstacle1Sprite: string, obstac
 
         if (e.keyCode === jumpKey) {
             
-            var id: any = document.getElementById(playerSprite);
+            let id: any = document.getElementById(playerSprite);
 
-            var rect = id.getBoundingClientRect();
+            let groundId: any = document.getElementById(groundDiv);
+
+            let rect = id.getBoundingClientRect();
+
+            let groundDim = groundId.getBoundingClientRect();
         
-            var y: number = rect.top;
+            let y: number = rect.top;
+
+            let groundY: number = groundDim.top - 25 // 25 = calibration, not optimal
     
-            if (y <= 378) { id.style.top = y - 70 + "px"; }}
+            if (y <= groundY) { id.style.top = y - 70 + "px"; }}
     }
 
     function addJumpListener() {
 
-        var jumpListener = document.addEventListener('keypress', jump); 
+        let jumpListener = document.addEventListener('keypress', jump); 
     }
 
     // ########################################### GAME ###########################################
+
+    let scoreCounter: number = 0;
+
+    /*
+    function scoreBoard() {
+
+        let player: any = document.getElementById(playerSprite);
+
+        let check: any = document.getElementById(obstacle1Sprite);
+
+        let playerDim = player.getBoundingClientRect();
+
+        let checkDim = check.getBoundingClientRect();
+
+        let scoreDiv = document.getElementById("score");
+
+        if (playerDim.left > checkDim.right) {
+
+            scoreCounter++;
+
+            //scoreDiv.innerHTML = "asd";
+        }
+    }*/
 
     function removeJumpListener() {
 
         document.removeEventListener('keypress', jump)
     }
-/*
-    function movePipes() {
-
-        while (true) {
-
-            var pipeMove = setInterval(moveX, 1000/60)
-            clearInter
-        }
-    }*/
 
     function gameOver() {
 
         removeJumpListener();
-        //clearInterval(pipeMove);
         clearInterval(collisionCheck);
-
-        return true;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // Runs until collision is detected
-    var playerFall = setInterval(moveY, 1000/60)
-    //var pipeMove = setInterval(moveX, 1000/60)
-    var collisionCheck = setInterval(collide, 1000/60)
+    //let scoreInterval = setInterval(scoreBoard, 100/60)
+    let playerFall = setInterval(moveY, 1000/60)
+    let collisionCheck = setInterval(collide, 1000/60)
 }
 
 

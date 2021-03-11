@@ -44,7 +44,7 @@ function Flappybird() {
     const [GameOver, setGameOver]= useState(false)
 
     //console.log(id.pipeRef.pipeUpper, id.pipeRef.pipeLower)
-    //console.log(GameEngine.checkCollision("player", "pipeUpper", "pipeLower"))
+
 
     AudioManager.loadAudioFile("jumpEffect", "/audio/wing.wav", false)
 
@@ -147,13 +147,23 @@ function Flappybird() {
         }
     }
 
+    useEffect(() => {
+       if (GameEngine.checkCollision("player", "upper", "lower")){
+           console.log("collide")
+           clearInterval(gameTimerId)
+           clearInterval(pipeNTimerId)
+           clearInterval(PipeSTimerId)
+       }
+    })
+    //console.log(document.getElementById("player")?.getBoundingClientRect())
+    //console.log(GameEngine.checkCollision("player", "upper", "lower"))
     return(
         <div id='gameWindow' onKeyDown={jump}>
             <a href='#' onKeyDown={jump} onClick={jump} >clock</a>
             <Scrollingbase/>
-            <div id="player"style={playerStyle}/>
-            <div style = {pipeNstyle}/>
-            <div style= {pipeSstyle} />
+            <div id="player" style={playerStyle}/>
+            <div id="upper" style = {pipeNstyle}/>
+            <div id="lower" style= {pipeSstyle} />
             <div style = {pipeNstyle2}/>
             <div style= {pipeSstyle2} />
             

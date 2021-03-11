@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import {  useEffect, useState, KeyboardEvent} from 'react';
 
 import Scrollingbase from "./scrollingbase";
@@ -14,6 +14,7 @@ import { AudioManager } from "../ts/AudioManager";
 import birdPng from '../assets/sprites/bluebird-downflap.png';
 import pipeNpng from '../assets/sprites/pipeN.png'
 import pipeSpng from '../assets/sprites/pipeS.png'
+import Obstacle from './obstacle'
 //playerPhysics("playerSprite");
 //obstaclePhysics("pipesBoth");
 //collisionObstacle("playerSprite", "pipeLower", "pipeUpper");
@@ -42,11 +43,12 @@ function Flappybird() {
     const [pipeNegHeight, setPipeNegHeight]= useState(0)
     const [pipeNegHeightTwo, setPipeNegHeightTwo]= useState(0)
     const [GameOver, setGameOver]= useState(false)
-
+    
     //console.log(id.pipeRef.pipeUpper, id.pipeRef.pipeLower)
 
 
     AudioManager.loadAudioFile("jumpEffect", "/audio/wing.wav", false)
+    AudioManager.loadAudioFile("die", "/audio/die.wav", false)
 
     const pipeNstyle: any = {
         position: 'absolute',
@@ -96,13 +98,14 @@ function Flappybird() {
                 height: playerHeight,
                 left: playerLeft - (playerWidth/2),
                 bottom: playerBottom - (playerHeight/2),
+                //transfrom: 'translate3d(150px, ${playerBottom}px, 0)' 
     }
 
     useEffect(() => {
         if (playerBottom > 112){
             gameTimerId = setInterval(() => {
                 setPlayerBottom(playerBottom => playerBottom - gravity)
-            }, 30)
+            }, 1000/60)
         }
         return () => {
             clearInterval(gameTimerId)
@@ -113,7 +116,7 @@ function Flappybird() {
         if (pipeSLeft > -60) {
         PipeSTimerId = setInterval(() => {
             setPipe2Left(pipeSLeft => pipeSLeft - 4)
-        }, 30)
+        }, 1000/60)
         return () => {
             clearInterval(PipeSTimerId)
         }
@@ -127,7 +130,7 @@ function Flappybird() {
         if (pipeNLeft > -60) {
             pipeNTimerId = setInterval(() => {
             setPipe1Left(pipeNLeft => pipeNLeft - 4)
-        }, 30)
+        }, 1000/60)
         return () => {
             clearInterval(pipeNTimerId)
         }
@@ -147,14 +150,27 @@ function Flappybird() {
         }
     }
 
-    useEffect(() => {
+    /*useEffect(() => {
+
+        if(playerLeft == (pipeNLeft + pipeHeight) || playerBottom > (pipeSLeft + pipeHeight)) {
+           
+           
+           console.log("collide")
+           AudioManager.playAudio("die")
+           clearInterval(gameTimerId)
+           clearInterval(pipeNTimerId)
+           clearInterval(PipeSTimerId)
+        }  
+    }) */
+   /* useEffect(() => {
        if (GameEngine.checkCollision("player", "upper", "lower")){
            console.log("collide")
+           AudioManager.playAudio("die")
            clearInterval(gameTimerId)
            clearInterval(pipeNTimerId)
            clearInterval(PipeSTimerId)
        }
-    })
+    })*/
     //console.log(document.getElementById("player")?.getBoundingClientRect())
     //console.log(GameEngine.checkCollision("player", "upper", "lower"))
     return(
@@ -162,14 +178,22 @@ function Flappybird() {
             <a href='#' onKeyDown={jump} onClick={jump} >clock</a>
             <Scrollingbase/>
             <div id="player" style={playerStyle}/>
-            <div id="upper" style = {pipeNstyle}/>
-            <div id="lower" style= {pipeSstyle} />
-            <div style = {pipeNstyle2}/>
-            <div style= {pipeSstyle2} />
+
+            <Obstacle 
+            bgImage1 = {pipeNpng}
+            bgImage2 = {pipeSpng}
+            obstacleWidth = {pipeWidth}
+            obstacleHeight = {pipeHeight}
+            randomBottom = {pipeNegHeight}
+            gap = {gap}
+            obstaclesLeft = {pipeNLeft}/>
             
         </div>
     )
 
-}
-
+}/*
+            <div id="upper" style = {pipeNstyle}/>
+            <div id="lower" style= {pipeSstyle} />
+            <div style = {pipeNstyle2}/>
+            <div style= {pipeSstyle2} />*/
 export default Flappybird;

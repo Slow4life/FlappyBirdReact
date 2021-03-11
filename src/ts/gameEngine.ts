@@ -6,23 +6,23 @@ export class GameEngine {
 
     public static obstacleCollision(playerSprite: string, obstacle1Sprite: string, obstacle2Sprite: string) {
 
-        let player: any = document.getElementById(playerSprite);
-        let obstacle1: any = document.getElementById(obstacle1Sprite);
-        let obstacle2: any = document.getElementById(obstacle2Sprite);
+        let player: any = document.getElementById("playerSprite");
+        let obstacle1: any = document.getElementById("pipeLowerFirst");
+        let obstacle2: any = document.getElementById("pipeUpperFirst");
     
         let playerDim = player.getBoundingClientRect();
         let obstacleDim1 = obstacle1.getBoundingClientRect();
         let obstacleDim2 = obstacle2.getBoundingClientRect();
         
-        if (playerDim.right >= obstacleDim1.left && playerDim.left <= obstacleDim1.right && playerDim.bottom >= obstacleDim1.top) {
+        if (playerDim.left + 34 >= obstacleDim1.left && playerDim.bottom >= obstacleDim1.top) {
 
             return true;
         }
 
-        if (playerDim.right >= obstacleDim2.left && playerDim.left <= obstacleDim2.right && playerDim.top <= obstacleDim2.bottom+100) {
+        //if (playerDim.right >= obstacleDim2.left && playerDim.left <= obstacleDim2.right && playerDim.top <= obstacleDim2.bottom+100) {
 
-            return true;
-        }
+        //    return true;
+        //}
 
         return false;
     }
@@ -66,8 +66,6 @@ export class GameEngine {
     
         let birdY: number = rect.top;
         let groundY: number = groundDim.top - 25 // 25 = calibration, not optimal
-    
-        console.log(groundY)
 
         // Bird fall speed
         if (birdY <= groundY) {
@@ -76,12 +74,16 @@ export class GameEngine {
         }
     }
 
-    public static jump (e: any, playerSprite: string, groundDiv: string, jumpKey: number) {
+    public static jump (e: any) {
 
-        if (e.key === jumpKey) {
+    console.log("asd")
+
+        if (e.key === 32) {
+
             
-            let id: any = document.getElementById(playerSprite);
-            let groundId: any = document.getElementById(groundDiv);
+            
+            let id: any = document.getElementById("playerSprite");
+            let groundId: any = document.getElementById("groundDiv");
 
             let rect = id.getBoundingClientRect();
             let groundDim = groundId.getBoundingClientRect();

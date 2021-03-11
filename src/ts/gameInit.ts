@@ -19,6 +19,7 @@ export const GameInit = () => {
     let upperThird: any;
 
     let movePipe: any;
+    let playerFall: any;
 
 
     function loadSprites() {
@@ -68,25 +69,12 @@ export const GameInit = () => {
         pipesSecond.style.right = pipeDimSecond.right - 256 + "px";
         pipesThird.style.right = pipeDimThird.right - 506 + "px";
 
-        //let checkCollision = setInterval(GameEngine.obstacleCollision, 1000/60, playerSprite, lowerFirst, upperFirst);
+        let checkCollision = setInterval(Dummy);
+        addJumpListener();
         //console.log(checkCollision);
         movePipe = setInterval(GameEngine.pipeMovement, 1000/60, pipesFirst, pipesSecond, pipesThird, gameWindow);
-        let playerFall = setInterval(GameEngine.moveY, 1000/60, playerSprite, groundSprite)
 
-        Dummy();
-
-        
-        
-/*
-        if (checkCollision == true) {
-
-            clearInterval()
-        }
-*/
-        //if (checkCollision == true) {
-
-        //    clearInterval(movePipe)
-        //}
+        playerFall = setInterval(GameEngine.moveY, 1000/60, playerSprite, groundSprite)
     }
 
 
@@ -94,19 +82,19 @@ export const GameInit = () => {
 
     function Dummy() {
 
-        useEffect(() => {
-            if (GameEngine.obstacleCollision(playerSprite, lowerFirst, upperFirst)){
-                console.log("collide")
+        if (GameEngine.obstacleCollision(pipesFirst, pipesSecond, pipesThird) == true) {
 
-            }
-        })
+            clearInterval(movePipe);
+        }
     }
 
 
-    /*function addJumpListener() {
+    function addJumpListener() {
 
-        document.addEventListener('keypress', GameEngine.jump(null, "asd","asd",3)); 
+        document.addEventListener('keypress', GameEngine.jump); 
+        console.log("jumpcall")
     }
+/*
 
     function removeJumpListener() {
 
@@ -117,8 +105,8 @@ export const GameInit = () => {
 
         removeJumpListener();
         clearInterval(collisionCheck);
-    }*/
-
+    }
+*/
     // Runs until collision is detected
     //let scoreInterval = setInterval(scoreBoard, 100/60)
 

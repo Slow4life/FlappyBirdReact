@@ -1,3 +1,4 @@
+import { Transform } from 'node:stream';
 import React from 'react';
 
 interface pipe {
@@ -22,12 +23,12 @@ const Obstacles = ({
     return (
         <>
             <div style={{
-                position: 'absolute',
+                position: 'fixed',
                 backgroundImage: `url(${bgImage1})`,
                 width: obstacleWidth,
                 height: 500,
-                left: obstaclesLeft,
-                bottom: randomBottom + obstacleHeight + gap,
+                willChange: 'transform', 
+                translate: `transform3d(${obstaclesLeft}px, ${randomBottom + obstacleHeight + gap}px, 0)`
             }}></div>
             <div style={{
                  backgroundImage: `url(${bgImage2})`,

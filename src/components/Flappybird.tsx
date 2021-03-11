@@ -115,7 +115,7 @@ function Flappybird() {
     useEffect(() => {
         if (pipeSLeft > -60) {
         PipeSTimerId = setInterval(() => {
-            setPipe2Left(pipeSLeft => pipeSLeft - 4)
+            setPipe2Left(pipeSLeft => pipeSLeft - 10)
         }, 1000/60)
         return () => {
             clearInterval(PipeSTimerId)
@@ -129,7 +129,7 @@ function Flappybird() {
     useEffect(() => {
         if (pipeNLeft > -60) {
             pipeNTimerId = setInterval(() => {
-            setPipe1Left(pipeNLeft => pipeNLeft - 4)
+            setPipe1Left(pipeNLeft => pipeNLeft - 10)
         }, 1000/60)
         return () => {
             clearInterval(pipeNTimerId)

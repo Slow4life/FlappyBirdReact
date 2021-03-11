@@ -57,7 +57,7 @@ class Pipe extends React.Component<PipeProps> {
 
     this._ismounted = false;
     this.pipeRef = React.createRef();
-    this.gap = 450
+    this.gap = 425
     this.bottomY = Math.random() * 170
   }
 

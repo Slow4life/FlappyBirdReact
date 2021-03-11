@@ -14,7 +14,7 @@ class Pipes extends React.Component<PipesProps, PipesState> {
   constructor(props: PipesProps){
     super(props);
 
-      let pipes = new Array();
+      let pipes = [];
       
       this.counter = 0;
       pipes.push(this.counter);

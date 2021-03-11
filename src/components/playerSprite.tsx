@@ -4,7 +4,7 @@ import '../sprite.css';
 
 const PlayerSprite = (props:any) => {
 
-  let bird = <div id='playerSprite'><img src={birdPng}/></div>
+  let bird = <div id='playerSprite'><img src={birdPng} alt='PlayerSprite'/></div>
 
   return bird
 }

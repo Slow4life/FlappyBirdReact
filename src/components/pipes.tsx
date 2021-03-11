@@ -101,13 +101,13 @@ class Pipe extends React.Component<PipeProps> {
     return(
       <div className='pipesBoth' ref={this.pipeRef}>
 
-      <div id='pipeUpper' style={{
+      <div id='pipeUpper' className='pipeUpper' style={{
         width: 60,
         height: 200,
         bottom: this.bottomY + this.gap // Bottom pipe y + gap
       }}><img src={pipeN} alt={''}/></div>
 
-      <div id='pipeLower' style={{
+      <div id='pipeLower' className='pipeLower' style={{
         width: 60,
         height: 200,
         bottom: this.bottomY

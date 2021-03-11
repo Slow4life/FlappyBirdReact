@@ -1,26 +1,23 @@
 #playerSprite {
     position: absolute;
-    left: 200px;
-    top: 100px
 }
 
-.pipesBoth {
+#pipesBothFirst {
     position: absolute;
-    right: 0;
     bottom: 0;
 }
 
-#pipeUpper, #pipeLower {
-
+#pipesBothSecond {
     position: absolute;
+    bottom: 0;
 }
 
-#score {
+#pipesBothThird {
+    position: absolute;
+    bottom: 0;
+}
+
+#pipeUpperFirst, #pipeLowerFirst, #pipeUpperSecond, #pipeLowerSecond, #pipeUpperThird, #pipeLowerThird {
 
     position: absolute;
-    font-family: 'Courier New', monospace;
-    border: 2px solid green;
-    width: 200px;
-    height: 50px;
-    left: 0px;
 }

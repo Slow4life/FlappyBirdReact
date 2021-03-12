@@ -1,12 +1,8 @@
-import React from 'react'
 import gameOverpng from '../assets/sprites/gameover.png'
-
 
 function GameOverScreen (){
 
-
-    const pStyle = {color: '##ffad33',
-                    fontFamily: 'Trebuchet MS'}
+    const pStyle = {color: '##ffad33', fontFamily: 'Trebuchet MS'}
 
     return (
         <div id="gameover" style= {{
@@ -23,7 +19,7 @@ function GameOverScreen (){
             <img src={gameOverpng}></img>
             <p style = {pStyle}>Score: 34 </p>
  
-            <button id="playAgain">Play again</button>
+            <button id="playAgain">Play Again</button>
         </div>
     )
     

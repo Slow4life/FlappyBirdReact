@@ -1,26 +1,25 @@
 import { useEffect } from 'react';
 import { GameEngine } from './gameEngine'
 
+export let gameWindow: any;
+export let groundSprite: any;
+export let playerSprite: any;
+
+export let pipesFirst: any;
+export let pipesSecond: any;
+export let pipesThird: any;
+
+export let lowerFirst: any;
+export let upperFirst: any;
+export let lowerSecond: any;
+export let upperSecond: any;
+export let lowerThird: any;
+export let upperThird: any;
+
+export let movePipe: any;
+export let playerFall: any;
+
 export const GameInit = () => {
-
-    let gameWindow: any;
-    let groundSprite: any;
-    let playerSprite: any;
-
-    let pipesFirst: any;
-    let pipesSecond: any;
-    let pipesThird: any;
-
-    let lowerFirst: any;
-    let upperFirst: any;
-    let lowerSecond: any;
-    let upperSecond: any;
-    let lowerThird: any;
-    let upperThird: any;
-
-    let movePipe: any;
-    let playerFall: any;
-
 
     function loadSprites() {
 
@@ -69,30 +68,44 @@ export const GameInit = () => {
         pipesSecond.style.right = pipeDimSecond.right - 256 + "px";
         pipesThird.style.right = pipeDimThird.right - 506 + "px";
 
-        let checkCollision = setInterval(Dummy);
         addJumpListener();
-        //console.log(checkCollision);
-        movePipe = setInterval(GameEngine.pipeMovement, 1000/60, pipesFirst, pipesSecond, pipesThird, gameWindow);
 
+        let checkCollision = setInterval(Dummy, 1000/60);
+
+        movePipe = setInterval(GameEngine.pipeMovement, 1000/60, pipesFirst, pipesSecond, pipesThird, gameWindow);
         playerFall = setInterval(GameEngine.moveY, 1000/60, playerSprite, groundSprite)
     }
 
-
-
-
     function Dummy() {
 
-        if (GameEngine.obstacleCollision(pipesFirst, pipesSecond, pipesThird) == true) {
+        if (GameEngine.obstacleCollision("playerSprite", "pipeLowerFirst", "pipeUpperFirst") == true) {
 
-            clearInterval(movePipe);
+            console.log("collide first")
+            //clearInterval(movePipe);
+        }
+
+        if (GameEngine.obstacleCollision("playerSprite", "pipeLowerSecond", "pipeUpperSecond") == true) {
+
+            console.log("collide second")
+            //clearInterval(movePipe);
+        }
+
+        if (GameEngine.obstacleCollision("playerSprite", "pipeLowerThird", "pipeUpperThird") == true) {
+
+            console.log("collide third")
+            //clearInterval(movePipe);
         }
     }
 
-
     function addJumpListener() {
 
-        document.addEventListener('keypress', GameEngine.jump); 
+        document.addEventListener('keypress', jumpDummy);
         console.log("jumpcall")
+    }
+
+    function jumpDummy(e: any) {
+
+        if (e.keyCode === 32) { GameEngine.jump(); }
     }
 /*
 

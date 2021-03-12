@@ -1,20 +1,22 @@
+import { groundSprite, lowerFirst, lowerSecond, lowerThird, playerSprite, upperFirst, upperSecond, upperThird } from "./gameInit";
+
 export class GameEngine {
 
 // ########################################### COLLISION ###########################################
 
 //playerSprite: string, obstacle1Sprite: string, obstacle2Sprite: string, score: string, groundDiv: string, jumpKey: number
 
-    public static obstacleCollision(playerSprite: string, obstacle1Sprite: string, obstacle2Sprite: string) {
+    public static obstacleCollision(playerSpriteDiv: string, obstacle1Sprite: string, obstacle2Sprite: string) {
 
-        let player: any = document.getElementById("playerSprite");
-        let obstacle1: any = document.getElementById("pipeLowerFirst");
-        let obstacle2: any = document.getElementById("pipeUpperFirst");
+        let player: any = document.getElementById(playerSpriteDiv);
+        let obstacle1: any = document.getElementById(obstacle1Sprite);
+        let obstacle2: any = document.getElementById(obstacle2Sprite);
     
         let playerDim = player.getBoundingClientRect();
         let obstacleDim1 = obstacle1.getBoundingClientRect();
         let obstacleDim2 = obstacle2.getBoundingClientRect();
         
-        if (playerDim.left + 34 >= obstacleDim1.left && playerDim.bottom >= obstacleDim1.top) {
+        if (playerDim.left + 34 >= obstacleDim1.left && playerDim.left <= obstacle1.left + 60 && playerDim.bottom >= obstacleDim1.top) {
 
             return true;
         }
@@ -30,6 +32,9 @@ export class GameEngine {
     // ########################################### OBSTACLE MOVEMENT ###########################################
 
     public static pipeMovement(pipesFirst: any, pipesSecond: any, pipesThird: any, gameWindow: any) {
+
+        let bottomRandomY = Math.random() * 170;
+        let gap = 450;
 
         let pipeDimFirst = pipesFirst.getBoundingClientRect();
         let pipeDimSecond = pipesSecond.getBoundingClientRect();
@@ -47,11 +52,22 @@ export class GameEngine {
         if (pipeDimFirst.left < gameWindowDim.left - 60) { 
 
             pipesFirst.style.left = 683 + "px";
-            //let bottomY = Math.random() * 170;
-            //pipesFirst.style.bottom = bottomY;
+            lowerFirst.style.bottom = bottomRandomY + "px";
+            upperFirst.style.bottom = bottomRandomY + gap + "px";
         }
-        if (pipeDimSecond.left < gameWindowDim.left - 60) { pipesSecond.style.left = 683 + "px"; }
-        if (pipeDimThird.left < gameWindowDim.left - 60) { pipesThird.style.left = 683 + "px"; }
+        if (pipeDimSecond.left < gameWindowDim.left - 60) {
+            
+            pipesSecond.style.left = 683 + "px"; 
+            lowerSecond.style.bottom = bottomRandomY + "px";
+            upperSecond.style.bottom = bottomRandomY + gap + "px";
+        }
+
+        if (pipeDimThird.left < gameWindowDim.left - 60) { 
+            
+            pipesThird.style.left = 683 + "px"; 
+            lowerThird.style.bottom = bottomRandomY + "px";
+            upperThird.style.bottom = bottomRandomY + gap + "px";
+        }
     }
 
     // ########################################### PLAYER MOVEMENT ###########################################
@@ -74,28 +90,21 @@ export class GameEngine {
         }
     }
 
-    public static jump (e: any) {
+    public static jump() {
 
-    console.log("asd")
+        let id: any = document.getElementById("playerSprite");
+        let groundId: any = document.getElementById("ground");
 
-        if (e.key === 32) {
+        let rect = id.getBoundingClientRect();
+        let groundDim = groundId.getBoundingClientRect();
 
-            
-            
-            let id: any = document.getElementById("playerSprite");
-            let groundId: any = document.getElementById("groundDiv");
+        let y: number = rect.top;
 
-            let rect = id.getBoundingClientRect();
-            let groundDim = groundId.getBoundingClientRect();
+        let groundY: number = groundDim.top - 25 // 25 = calibration, not optimal
 
-            let y: number = rect.top;
+        if (y <= groundY) {
 
-            let groundY: number = groundDim.top - 25 // 25 = calibration, not optimal
-
-            if (y <= groundY) { 
-
-                id.style.top = y - 70 + "px"; // Brúka CSS at gera smooth?
-            }
+            id.style.top = y - 70 + "px"; // Brúka CSS at gera smooth?
         }
     }
 }

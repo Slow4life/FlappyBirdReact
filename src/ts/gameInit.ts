@@ -25,8 +25,10 @@ export const GameInit = () => {
     let playButton: any;
     let scoreBoard: any;
     let deathScore: any;
+    let highScoreDiv: any;
     let scoreCheck: boolean;
     let scoreCount: number;
+    let highScore:number = 0;
     
 
     // Intervals
@@ -53,6 +55,7 @@ export const GameInit = () => {
         playButton = document.getElementById("playAgain");
         scoreBoard = document.getElementById("scoreBoard");
         deathScore = document.getElementById("deathScore");
+        highScoreDiv = document.getElementById("highScore");
     }
 
     // Helper function for div dimensions
@@ -109,6 +112,10 @@ export const GameInit = () => {
         // Show scores
         scoreBoard.innerHTML = "Score: " + scoreCount;
         deathScore.innerHTML = "Score: " + scoreCount;
+
+        if (scoreCount > highScore) { highScore = scoreCount; }
+
+        highScoreDiv.innerHTML = "High Score: " + highScore;
 
         // Collision
         if (GameEngine.obstacleCollision(playerDiv, pipeLowerFirst, pipeUpperFirst, groundDiv) || 

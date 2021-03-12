@@ -59,10 +59,12 @@ export const GameInit = () => {
     }
 
     function initialize() {
+
         document.addEventListener('keypress', jumpCheck);
 
         screen.style.display = "none"
         scoreBoard.style.display = "block"
+
         // Place player sprite
         playerDiv.style.right = 250 + "px";
         playerDiv.style.top = 100 + "px";
@@ -83,11 +85,12 @@ export const GameInit = () => {
 
     function gameStart() {
 
+        // Player falls vertically
+        GameEngine.moveY(playerDiv, groundDiv)
+
         // Pipe movement
         GameEngine.pipeMovement(pipesFirst, pipesSecond, pipesThird,
             pipeLowerFirst, pipeUpperFirst, pipeLowerSecond, pipeUpperSecond, pipeLowerThird, pipeUpperThird, windowDiv, 5);
-
-        GameEngine.moveY(playerDiv, groundDiv);
 
         // Collision
         if (GameEngine.obstacleCollision(playerDiv, pipeLowerFirst, pipeUpperFirst, groundDiv) || 
@@ -99,8 +102,8 @@ export const GameInit = () => {
 
 
     function playerDead(){
-         document.removeEventListener('keypress', jumpCheck)
-         playButton.onclick = function(){initialize()}; 
+
+         document.removeEventListener('keypress', jumpCheck);
          
          removeScore();
         
@@ -110,25 +113,27 @@ export const GameInit = () => {
             screen.style.display = "none"
         }
         clearInterval(gameLoop)
+
+        playButton.onclick = function(){initialize();}; 
     }
 
     function removeScore(){
+
         if (scoreBoard.style.display === "block") {
+
             scoreBoard.style.display = "none"
-        }else {
+        }
+
+        else {
+            
             scoreBoard.style.display = "block"
         }
     }
-
-
 
     function jumpCheck(e: any) {
 
         if (e.keyCode === 32) { GameEngine.jump(playerDiv, groundDiv); }
     }
-
-   
-
    
     function doOnce() {
 

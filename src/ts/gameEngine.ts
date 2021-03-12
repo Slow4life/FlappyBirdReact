@@ -96,13 +96,13 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
         let playerDim = playerDiv.getBoundingClientRect();
         let groundDim = groundDiv.getBoundingClientRect();
 
-        let y: number = playerDim.top;
+        let playerY: number = playerDim.top;
 
         let groundY: number = groundDim.top - 25 // 25 = calibration, not optimal
 
-        if (y <= groundY) {
+        if (playerY <= groundY) {
 
-            playerDiv.style.top = y - 70 + "px"; // Brúka CSS at gera smooth?
+            playerDiv.style.top = playerY - 70 + "px"; // Brúka CSS at gera smooth?
         }
     }
 }

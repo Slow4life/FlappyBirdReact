@@ -73,12 +73,14 @@ export const GameInit = () => {
         // Place pipes
         let gameWindowDim = getSpriteDim(windowDiv);
 
-        pipesFirst.style.left = gameWindowDim.width + 6 + "px";
-        pipesSecond.style.left = gameWindowDim.width + 256 + "px";
-        pipesThird.style.left = gameWindowDim.width + 506 + "px";
+        pipesFirst.style.left = gameWindowDim.width + "px";
+        pipesSecond.style.left = gameWindowDim.width + 250 + "px";
+        pipesThird.style.left = gameWindowDim.width + 500 + "px";
 
         // Score
         score = 0;
+
+        console.log(pipesFirst)
 
         // Calls all functions which are killed when game is over
         gameLoop = setInterval(gameStart, 1000/60);
@@ -94,7 +96,7 @@ export const GameInit = () => {
             pipeLowerFirst, pipeUpperFirst, pipeLowerSecond, pipeUpperSecond, pipeLowerThird, pipeUpperThird, windowDiv, 5);
 
         // Score update
-        let getScore = GameEngine.updateScore(pipeLowerFirst, pipeLowerSecond, pipeLowerThird, score);
+        let getScore = GameEngine.updateScore(pipesFirst, pipesSecond, pipesThird, playerDiv, score);
         
         // Collision
         if (GameEngine.obstacleCollision(playerDiv, pipeLowerFirst, pipeUpperFirst, groundDiv) || 

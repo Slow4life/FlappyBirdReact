@@ -60,20 +60,20 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
 
         if (pipeDimFirst.left < gameWindowDim.left - 60) { 
 
-            pipesFirst.style.left = 683 + "px";
+            pipesFirst.style.left = 684 + "px"; // Hardcoded calibration
             lowerFirst.style.bottom = bottomRandomY + "px";
             upperFirst.style.bottom = bottomRandomY + gap + "px";
         }
         if (pipeDimSecond.left < gameWindowDim.left - 60) {
             
-            pipesSecond.style.left = 683 + "px"; 
+            pipesSecond.style.left = 684 + "px"; 
             lowerSecond.style.bottom = bottomRandomY + "px";
             upperSecond.style.bottom = bottomRandomY + gap + "px";
         }
 
         if (pipeDimThird.left < gameWindowDim.left - 60) { 
             
-            pipesThird.style.left = 683 + "px"; 
+            pipesThird.style.left = 684 + "px"; 
             lowerThird.style.bottom = bottomRandomY + "px";
             upperThird.style.bottom = bottomRandomY + gap + "px";
         }
@@ -106,16 +106,25 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
         }
     }
 
-    // ########################################### UPDATE SCORE ###########################################
-    public static updateScore(obstacle1Div: any, obstacle2Div: any, obstacle3Div: any, score: number) {
+    // ########################################### SCORE ###########################################
+
+    public static updateScore(obstacle1Div: any, obstacle2Div: any, obstacle3Div: any, playerDiv: any, score: number) {
 
         let tempScore = score;
-        console.log("updatescore")
-        if(obstacle1Div.left < 253) {
+
+        let pipesFirstDim = obstacle1Div.getBoundingClientRect();
+        let pipesSecondDim = obstacle2Div.getBoundingClientRect();
+        let pipesThirdDim = obstacle3Div.getBoundingClientRect();
+        let playerDivDim = playerDiv.getBoundingClientRect();
+
+        if(pipesFirstDim.left + pipesFirstDim.width == playerDivDim.right - playerDivDim.width ||
+            pipesSecondDim.left + pipesSecondDim.width == playerDivDim.right - playerDivDim.width ||
+            pipesThirdDim.left + pipesThirdDim.width == playerDivDim.right - playerDivDim.width) {
 
             tempScore++
             console.log(tempScore)
         }
+
         return tempScore
     }
 }

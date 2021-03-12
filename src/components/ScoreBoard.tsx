@@ -7,9 +7,9 @@ function ScoreBoard(){
     return(
         <div id="scoreBoard" style={{
 
-            position: 'relative',
+            position: 'absolute',
             zIndex: 2000,
-    }}>score: 3</div>
+    }}>Score: </div>
         )
 }
 

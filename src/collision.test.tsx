@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
-test('render([raw html])',() => {
+test('collision detection',() => {
   // We do have a problem with cross domain scripting when trying to render crashTestDummies.html
   // render(<iframe id="iFrame" src="crashTestDummies.html"/>)
   // render(<iframe id="iFrame" src="file://C:/Users/janegil/WebstormProjects/FlappyBirdReact/public/crashTestDummies.html"/>)
@@ -34,6 +34,38 @@ test('render([raw html])',() => {
   const R6 = document.getElementById("R6").getBoundingClientRect()
   const R7 = document.getElementById("R7").getBoundingClientRect()
   const R8 = document.getElementById("R8").getBoundingClientRect()
+  expectCollision(R1,R3);
+  expectCollision(R2,R4)
+  expectCollision(R0,R5)
+  expectCollision(R0,R6)
+  expectCollision(R0,R7)
+  expectCollision(R0,R8)
+  expectNoCollision(R1,R2)
+  expectNoCollision(R1,R4)
+  expectNoCollision(R1,R5)
+  expectNoCollision(R1,R6)
+  expectNoCollision(R1,R7)
+  expectNoCollision(R1,R8)
+  expectNoCollision(R2,R3)
+  expectNoCollision(R2,R5)
+  expectNoCollision(R2,R6)
+  expectNoCollision(R2,R7)
+  expectNoCollision(R2,R8)
+  expectNoCollision(R3,R4)
+  expectNoCollision(R3,R5)
+  expectNoCollision(R3,R6)
+  expectNoCollision(R3,R7)
+  expectNoCollision(R3,R8)
+  expectNoCollision(R4,R5)
+  expectNoCollision(R4,R6)
+  expectNoCollision(R4,R7)
+  expectNoCollision(R4,R8)
+  expectNoCollision(R5,R6)
+  expectNoCollision(R5,R7)
+  expectNoCollision(R5,R8)
+  expectNoCollision(R6,R7)
+  expectNoCollision(R6,R8)
+  expectNoCollision(R7,R8)
 })
 
 export function collidingDOMRects(r1:DOMRect, r2:DOMRect){

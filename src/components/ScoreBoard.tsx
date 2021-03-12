@@ -1,6 +1,3 @@
-import { disconnect } from 'node:process'
-import React from 'react'
-
 function ScoreBoard(){
 
 

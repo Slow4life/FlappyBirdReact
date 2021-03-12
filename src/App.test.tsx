@@ -11,6 +11,11 @@ test('renders expected elements', () => {
   const mover1Element = document.getElementsByClassName('mover-1')[0] as HTMLElement;
   expect(gameWindowElement).toContainElement(mover1Element);   // Rather redundant.
   expect(document.getElementsByClassName('mover-1').length).toEqual(1);
-});
+})
 
 
+test('render([raw html])',() => {
+  render(<div id={"x"}>x</div>)
+  const divElement = document.getElementById("x");
+  expect(divElement).toBeInTheDocument();
+})

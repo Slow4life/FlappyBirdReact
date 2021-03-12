@@ -1,33 +1,26 @@
-import React from 'react';
-
 import Ground from "./groundSprite";
 import PlayerSprite from './playerSprite';
-//import Pipes from './pipes';
 import PipesFirst from './pipesFirst';
 import PipesSecond from './pipesSecond';
 import PipesThird from './pipesThird';
-
+import GameOverScreen from './GameOverScreen'
+import ScoreBoard from './ScoreBoard'
 import { GameInit } from '../ts/gameInit'
 
-interface FlappybirdProps{};
+function Flappybird() {
+    return(
+        <div id='gameWindow'>
+                <Ground/>
+                <PlayerSprite/>
+                <PipesFirst/>
+                <PipesSecond/>
+                <PipesThird/>
+                <GameOverScreen/>
+                <ScoreBoard/>
 
-class Flappybird extends React.Component<FlappybirdProps>{
-
-    constructor(props: FlappybirdProps){
-        super(props);
-    }
-    render(){
-        return(
-            <div id='gameWindow'>
-                    <Ground/>
-                    <PlayerSprite/>
-                    <PipesFirst/>
-                    <PipesSecond/>
-                    <PipesThird/>
-
-            </div>
-        )
-    }
+        </div>
+    )
+ 
 }
 
 GameInit();

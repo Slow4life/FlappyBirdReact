@@ -105,6 +105,19 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
             playerDiv.style.top = playerY - 70 + "px"; // Brúka CSS at gera smooth?
         }
     }
+
+    // ########################################### UPDATE SCORE ###########################################
+    public static updateScore(obstacle1Div: any, obstacle2Div: any, obstacle3Div: any, score: number) {
+
+        let tempScore = score;
+        console.log("updatescore")
+        if(obstacle1Div.left < 253) {
+
+            tempScore++
+            console.log(tempScore)
+        }
+        return tempScore
+    }
 }
 
 

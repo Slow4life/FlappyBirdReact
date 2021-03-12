@@ -1,51 +1,47 @@
-import { useEffect } from 'react';
 import { GameEngine } from './gameEngine'
-
-export let gameWindow: any;
-export let groundSprite: any;
-export let playerSprite: any;
-
-export let pipesFirst: any;
-export let pipesSecond: any;
-export let pipesThird: any;
-
-export let lowerFirst: any;
-export let upperFirst: any;
-export let lowerSecond: any;
-export let upperSecond: any;
-export let lowerThird: any;
-export let upperThird: any;
-
-export let movePipe: any;
-export let playerFall: any;
 
 export const GameInit = () => {
 
-    function loadSprites() {
+    // Player, ground, game window
+    let playerDiv: any;
+    let groundDiv: any;
+    let windowDiv: any;
 
-        // Game window
-        gameWindow = document.getElementById("gameWindow");
+    // Pipe pairs
+    let pipesFirst: any;
+    let pipesSecond: any;
+    let pipesThird: any;
 
-        // Ground
-        groundSprite = document.getElementById("ground");
+    // Pipes
+    let pipeLowerFirst: any;
+    let pipeUpperFirst: any;
+    let pipeLowerSecond: any;
+    let pipeUpperSecond: any;
+    let pipeLowerThird: any;
+    let pipeUpperThird: any;
 
-        // Player sprite
-        playerSprite = document.getElementById("playerSprite");
+    // Intervals
+    let gameLoop: any;
 
-        // Pipe pairs
+    function getDivs() {
+
+        playerDiv = document.getElementById("playerSprite");
+        groundDiv = document.getElementById("ground");
+        windowDiv = document.getElementById("gameWindow");
+
         pipesFirst = document.getElementById("pipesBothFirst");
         pipesSecond = document.getElementById("pipesBothSecond");
         pipesThird = document.getElementById("pipesBothThird");
 
-        // Pipes
-        lowerFirst = document.getElementById("pipeLowerFirst");
-        upperFirst = document.getElementById("pipeUpperFirst");
-        lowerSecond = document.getElementById("pipeLowerSecond");
-        upperSecond = document.getElementById("pipeUpperSecond");
-        lowerThird = document.getElementById("pipeLowerThird");
-        upperThird = document.getElementById("pipeUpperThird");
+        pipeLowerFirst = document.getElementById("pipeLowerFirst");
+        pipeUpperFirst = document.getElementById("pipeUpperFirst");
+        pipeLowerSecond = document.getElementById("pipeLowerSecond");
+        pipeUpperSecond = document.getElementById("pipeUpperSecond");
+        pipeLowerThird = document.getElementById("pipeLowerThird");
+        pipeUpperThird = document.getElementById("pipeUpperThird");
     }
 
+    // Helper function for div dimensions
     function getSpriteDim(pipe: any) {
 
         let pipeDim = pipe.getBoundingClientRect();
@@ -53,66 +49,47 @@ export const GameInit = () => {
         return pipeDim;
     }
 
-    function Initialize() {
+    function initialize() {
 
         // Place player sprite
-        playerSprite.style.right = 250 + "px";
-        playerSprite.style.top = 100 + "px";
+        console.log(playerDiv)
+        playerDiv.style.right = 250 + "px";
+        playerDiv.style.top = 100 + "px";
 
         // Place pipes
         let pipeDimFirst = getSpriteDim(pipesFirst);
         let pipeDimSecond = getSpriteDim(pipesSecond);
         let pipeDimThird = getSpriteDim(pipesThird);
+        let gameWindowDim = getSpriteDim(windowDiv);
 
-        pipesFirst.style.right = pipeDimFirst.right - 6 + "px";
-        pipesSecond.style.right = pipeDimSecond.right - 256 + "px";
-        pipesThird.style.right = pipeDimThird.right - 506 + "px";
+        pipesFirst.style.left = gameWindowDim.width + 6 + "px";
+        pipesSecond.style.left = gameWindowDim.width + 256 + "px";
+        pipesThird.style.left = gameWindowDim.width + 506 + "px";
 
-        addJumpListener();
+        // Makes player fall
+        
 
-        let checkCollision = setInterval(Dummy, 1000/60);
-
-        movePipe = setInterval(GameEngine.pipeMovement, 1000/60, pipesFirst, pipesSecond, pipesThird, gameWindow);
-        playerFall = setInterval(GameEngine.moveY, 1000/60, playerSprite, groundSprite)
+        // Calls all functions which are killed when game is over
+        gameLoop = setInterval(gameStart, 1000/60);
     }
 
-    function Dummy() {
+    function gameStart() {
 
-        if (GameEngine.obstacleCollision("playerSprite", "pipeLowerFirst", "pipeUpperFirst") == true) {
+        // Pipe movement
+        GameEngine.pipeMovement(pipesFirst, pipesSecond, pipesThird,
+            pipeLowerFirst, pipeUpperFirst, pipeLowerSecond, pipeUpperSecond, pipeLowerThird, pipeUpperThird, windowDiv);
 
-            console.log("collide first")
-            //clearInterval(movePipe);
-        }
+        GameEngine.moveY(playerDiv, groundDiv);
 
-        if (GameEngine.obstacleCollision("playerSprite", "pipeLowerSecond", "pipeUpperSecond") == true) {
+        // Collision
+        if (GameEngine.obstacleCollision(playerDiv, pipeLowerFirst, pipeUpperFirst, groundDiv) || 
+            GameEngine.obstacleCollision(playerDiv, pipeLowerSecond, pipeUpperSecond, groundDiv) || 
+            GameEngine.obstacleCollision(playerDiv, pipeLowerThird, pipeUpperThird, groundDiv)) { 
 
-            console.log("collide second")
-            //clearInterval(movePipe);
-        }
-
-        if (GameEngine.obstacleCollision("playerSprite", "pipeLowerThird", "pipeUpperThird") == true) {
-
-            console.log("collide third")
-            //clearInterval(movePipe);
-        }
+                clearInterval(gameLoop); }
     }
 
-    function addJumpListener() {
-
-        document.addEventListener('keypress', jumpDummy);
-        console.log("jumpcall")
-    }
-
-    function jumpDummy(e: any) {
-
-        if (e.keyCode === 32) { GameEngine.jump(); }
-    }
 /*
-
-    function removeJumpListener() {
-
-        document.removeEventListener("keypress", jump)
-    }
 
     function gameOver() {
 
@@ -120,20 +97,17 @@ export const GameInit = () => {
         clearInterval(collisionCheck);
     }
 */
-    // Runs until collision is detected
-    //let scoreInterval = setInterval(scoreBoard, 100/60)
+    function jumpCheck(e: any) {
 
+        if (e.keyCode === 32) { GameEngine.jump(playerDiv, groundDiv); }
+    }
 
-/*
-    let collisionCheckFirst = setInterval(GameEngine.obstacleCollision, 1000/60, "playerSprite", "pipeLowerFirst", "pipeUpperFirst")
-    let collisionCheckSecond = setInterval(GameEngine.obstacleCollision, 1000/60, "playerSprite", "pipeLowerSecond", "pipeUpperSecond")
-    let collisionCheckThird = setInterval(GameEngine.obstacleCollision, 1000/60, "playerSprite", "pipeLowerThird", "pipeUpperThird")
-*/
+    document.addEventListener('keypress', jumpCheck);
 
     function doOnce() {
 
-        document.addEventListener("DOMContentLoaded", loadSprites);
-        document.addEventListener("DOMContentLoaded", Initialize);
+        document.addEventListener("DOMContentLoaded", getDivs)
+        document.addEventListener("DOMContentLoaded", initialize);
     }
 
     doOnce();

@@ -9,9 +9,6 @@ import PipesThird from './pipesThird';
 
 import { GameInit } from '../ts/gameInit'
 
-// Takes player sprite, first obstacle, second obstacle, score div, ground div, jump key 
-
-
 interface FlappybirdProps{};
 
 class Flappybird extends React.Component<FlappybirdProps>{

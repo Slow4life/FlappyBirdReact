@@ -1,37 +1,51 @@
-import { groundSprite, lowerFirst, lowerSecond, lowerThird, playerSprite, upperFirst, upperSecond, upperThird } from "./gameInit";
+import { groupEnd } from "node:console";
 
 export class GameEngine {
 
 // ########################################### COLLISION ###########################################
 
-//playerSprite: string, obstacle1Sprite: string, obstacle2Sprite: string, score: string, groundDiv: string, jumpKey: number
+public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div: any, groundDiv:any) {
 
-    public static obstacleCollision(playerSpriteDiv: string, obstacle1Sprite: string, obstacle2Sprite: string) {
+    let playerDim = playerDiv.getBoundingClientRect();
+    let obstacleDim1 = obstacle1Div.getBoundingClientRect();
+    let obstacleDim2 = obstacle2Div.getBoundingClientRect();
+    let groundDim = groundDiv.getBoundingClientRect();
 
-        let player: any = document.getElementById(playerSpriteDiv);
-        let obstacle1: any = document.getElementById(obstacle1Sprite);
-        let obstacle2: any = document.getElementById(obstacle2Sprite);
-    
-        let playerDim = player.getBoundingClientRect();
-        let obstacleDim1 = obstacle1.getBoundingClientRect();
-        let obstacleDim2 = obstacle2.getBoundingClientRect();
-        
-        if (playerDim.left + 34 >= obstacleDim1.left && playerDim.left <= obstacle1.left + 60 && playerDim.bottom >= obstacleDim1.top) {
+    if (playerDim.x < obstacleDim1.x + obstacleDim1.width &&
+        playerDim.x + playerDim.width > obstacleDim1.x &&
+        playerDim.y < obstacleDim1.y + obstacleDim1.height &&
+        playerDim.y + playerDim.height * 0.9 > obstacleDim1.y) {
 
-            return true;
+           console.log("collision detected lower pipe")
+           return true;
         }
 
-        //if (playerDim.right >= obstacleDim2.left && playerDim.left <= obstacleDim2.right && playerDim.top <= obstacleDim2.bottom+100) {
+    if (playerDim.x < obstacleDim2.x + obstacleDim2.width &&
+        playerDim.x + playerDim.width > obstacleDim2.x &&
+        playerDim.y < obstacleDim2.y + obstacleDim2.height + obstacleDim1.height/2 &&
+        playerDim.y + playerDim.height > obstacleDim2.y ) {
 
-        //    return true;
-        //}
+           console.log("collision detected upper pipe")
+           return true;
+        }
 
-        return false;
+    let playerY: number = playerDim.y;
+    let groundY: number = groundDim.y - 25 // 25 = calibration, not optimal
+
+    // Player fall speed
+    if (playerY >= groundY) {
+
+        return true;
     }
+                
+
+    return false;
+}
 
     // ########################################### OBSTACLE MOVEMENT ###########################################
 
-    public static pipeMovement(pipesFirst: any, pipesSecond: any, pipesThird: any, gameWindow: any) {
+    public static pipeMovement(pipesFirst: any, pipesSecond: any, pipesThird: any,
+         lowerFirst: any, upperFirst: any, lowerSecond: any, upperSecond: any, lowerThird: any, upperThird: any, gameWindow: any) {
 
         let bottomRandomY = Math.random() * 170;
         let gap = 450;
@@ -72,39 +86,28 @@ export class GameEngine {
 
     // ########################################### PLAYER MOVEMENT ###########################################
 
-    public static moveY(playerSprite: string, groundDiv: string) {
-
-        let id: any = document.getElementById("playerSprite");
-        let ground: any = document.getElementById("ground"); // ID of ground
+    public static moveY(playerDiv: any, groundDiv: any) {
     
-        let rect = id.getBoundingClientRect();
-        let groundDim = ground.getBoundingClientRect();
+        let playerDim = playerDiv.getBoundingClientRect();
+        let groundDim = groundDiv.getBoundingClientRect();
     
-        let birdY: number = rect.top;
-        let groundY: number = groundDim.top - 25 // 25 = calibration, not optimal
+        let playerY: number = playerDim.top;
 
-        // Bird fall speed
-        if (birdY <= groundY) {
-
-            id.style.top = birdY + 3/20 + "px";
-        }
+        playerDiv.style.top = playerY + 3/20 + "px";
     }
 
-    public static jump() {
+    public static jump(playerDiv: any, groundDiv: any) {
 
-        let id: any = document.getElementById("playerSprite");
-        let groundId: any = document.getElementById("ground");
+        let playerDim = playerDiv.getBoundingClientRect();
+        let groundDim = groundDiv.getBoundingClientRect();
 
-        let rect = id.getBoundingClientRect();
-        let groundDim = groundId.getBoundingClientRect();
-
-        let y: number = rect.top;
+        let y: number = playerDim.top;
 
         let groundY: number = groundDim.top - 25 // 25 = calibration, not optimal
 
         if (y <= groundY) {
 
-            id.style.top = y - 70 + "px"; // Brúka CSS at gera smooth?
+            playerDiv.style.top = y - 70 + "px"; // Brúka CSS at gera smooth?
         }
     }
 }

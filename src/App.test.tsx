@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders expected elements', () => {
   render(<App />);
   const gameWindowElement  = document.getElementById('gameWindow') as HTMLElement; // <Flappybird></Flappybird>
   expect(gameWindowElement).toBeInTheDocument();
@@ -12,3 +12,5 @@ test('renders learn react link', () => {
   expect(gameWindowElement).toContainElement(mover1Element);   // Rather redundant.
   expect(document.getElementsByClassName('mover-1').length).toEqual(1);
 });
+
+

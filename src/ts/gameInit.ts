@@ -64,7 +64,6 @@ export const GameInit = () => {
         screen.style.display = "none"
         scoreBoard.style.display = "block"
         // Place player sprite
-        console.log(playerDiv)
         playerDiv.style.right = 250 + "px";
         playerDiv.style.top = 100 + "px";
 
@@ -78,9 +77,6 @@ export const GameInit = () => {
         pipesSecond.style.left = gameWindowDim.width + 256 + "px";
         pipesThird.style.left = gameWindowDim.width + 506 + "px";
 
-        // Makes player fall
-        
-
         // Calls all functions which are killed when game is over
         gameLoop = setInterval(gameStart, 1000/60);
     }
@@ -89,7 +85,7 @@ export const GameInit = () => {
 
         // Pipe movement
         GameEngine.pipeMovement(pipesFirst, pipesSecond, pipesThird,
-            pipeLowerFirst, pipeUpperFirst, pipeLowerSecond, pipeUpperSecond, pipeLowerThird, pipeUpperThird, windowDiv);
+            pipeLowerFirst, pipeUpperFirst, pipeLowerSecond, pipeUpperSecond, pipeLowerThird, pipeUpperThird, windowDiv, 5);
 
         GameEngine.moveY(playerDiv, groundDiv);
 
@@ -106,7 +102,6 @@ export const GameInit = () => {
          document.removeEventListener('keypress', jumpCheck)
          playButton.onclick = function(){initialize()}; 
 
-         removeScore();
         
         if (screen.style.display === "none") {
             screen.style.display = "block"
@@ -116,22 +111,7 @@ export const GameInit = () => {
         clearInterval(gameLoop)
     }
 
-    function removeScore(){
-        if (scoreBoard.style.display === "block") {
-            scoreBoard.style.display = "none"
-        }else {
-            scoreBoard.style.display = "block"
-        }
-    }
 
-/*
-
-    function gameOver() {
-
-        removeJumpListener();
-        clearInterval(collisionCheck);
-    }
-*/
     function jumpCheck(e: any) {
 
         if (e.keyCode === 32) { GameEngine.jump(playerDiv, groundDiv); }

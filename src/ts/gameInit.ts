@@ -24,7 +24,10 @@ export const GameInit = () => {
     let screen: any;
     let playButton: any;
     let scoreBoard: any;
-    let score: number;
+    let deathScore: any;
+    let scoreCheck: boolean;
+    let scoreCount: number;
+    
 
     // Intervals
     let gameLoop: any;
@@ -46,9 +49,10 @@ export const GameInit = () => {
         pipeLowerThird = document.getElementById("pipeLowerThird");
         pipeUpperThird = document.getElementById("pipeUpperThird");
 
-        screen = document.getElementById("gameover")
-        playButton = document.getElementById("playAgain")
-        scoreBoard = document.getElementById("scoreBoard")
+        screen = document.getElementById("gameover");
+        playButton = document.getElementById("playAgain");
+        scoreBoard = document.getElementById("scoreBoard");
+        deathScore = document.getElementById("deathScore");
     }
 
     // Helper function for div dimensions
@@ -78,7 +82,7 @@ export const GameInit = () => {
         pipesThird.style.left = gameWindowDim.width + 500 + "px";
 
         // Score
-        score = 0;
+        scoreCount = 0;
 
         console.log(pipesFirst)
 
@@ -96,8 +100,16 @@ export const GameInit = () => {
             pipeLowerFirst, pipeUpperFirst, pipeLowerSecond, pipeUpperSecond, pipeLowerThird, pipeUpperThird, windowDiv, 5);
 
         // Score update
-        let getScore = GameEngine.updateScore(pipesFirst, pipesSecond, pipesThird, playerDiv, score);
-        
+        scoreCheck = GameEngine.updateScore(pipesFirst, pipesSecond, pipesThird, playerDiv);
+        if(scoreCheck == true) {
+
+            scoreCount++;
+        }
+
+        // Show scores
+        scoreBoard.innerHTML = "Score: " + scoreCount;
+        deathScore.innerHTML = "Score: " + scoreCount;
+
         // Collision
         if (GameEngine.obstacleCollision(playerDiv, pipeLowerFirst, pipeUpperFirst, groundDiv) || 
             GameEngine.obstacleCollision(playerDiv, pipeLowerSecond, pipeUpperSecond, groundDiv) || 

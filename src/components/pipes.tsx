@@ -14,7 +14,7 @@ class Pipes extends React.Component<PipesProps, PipesState> {
   constructor(props: PipesProps){
     super(props);
 
-      let pipes = new Array();
+      let pipes = [];
       
       this.counter = 0;
       pipes.push(this.counter);
@@ -105,13 +105,13 @@ class Pipe extends React.Component<PipeProps> {
         width: 60,
         height: 200,
         bottom: this.bottomY + this.gap // Bottom pipe y + gap
-      }}><img src={pipeN}/></div>
+      }}><img src={pipeN} alt="" /></div>
 
       <div id='pipeLower' style={{
         width: 60,
         height: 200,
         bottom: this.bottomY
-      }}><img src={pipeS}/></div>
+      }}><img src={pipeS} alt="" /></div>
 
     </div>
     )

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+
 import { GameEngine } from './gameEngine'
 
 export let gameWindow: any;

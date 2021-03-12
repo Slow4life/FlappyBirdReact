@@ -11,26 +11,17 @@ import { GameInit } from '../ts/gameInit'
 
 // Takes player sprite, first obstacle, second obstacle, score div, ground div, jump key 
 
+function Flappybird(){
 
-interface FlappybirdProps{};
-
-class Flappybird extends React.Component<FlappybirdProps>{
-
-    constructor(props: FlappybirdProps){
-        super(props);
-    }
-    render(){
-        return(
-            <div id='gameWindow'>
-                    <Scrollingbase/>
-                    <PlayerSprite/>
-                    <PipesFirst/>
-                    <PipesSecond/>
-                    <PipesThird/>
-
-            </div>
-        )
-    }
+    return(
+        <div id='gameWindow'>
+            <Scrollingbase/>
+            <PlayerSprite/>
+            <PipesFirst/>
+            <PipesSecond/>
+            <PipesThird/>
+        </div>
+    )
 }
 
 GameInit();

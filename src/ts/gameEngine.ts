@@ -1,4 +1,4 @@
-import { groundSprite, lowerFirst, lowerSecond, lowerThird, playerSprite, upperFirst, upperSecond, upperThird } from "./gameInit";
+import { lowerFirst, lowerSecond, lowerThird, upperFirst, upperSecond, upperThird } from "./gameInit";
 
 export class GameEngine {
 

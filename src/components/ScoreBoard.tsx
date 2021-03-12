@@ -3,13 +3,13 @@ import React from 'react'
 
 function ScoreBoard(){
 
-    const scoreStyle = {
-        fontFamly:'Trebuchet MS',
-        zIndex: 20000
-    }
 
     return(
-        <div style={scoreStyle}>score: 3</div>
+        <div id="scoreBoard" style={{
+
+            position: 'relative',
+            zIndex: 2000,
+    }}>score: 3</div>
         )
 }
 

@@ -43,3 +43,8 @@
 #ground {
   z-index: +1;
 }
+
+@font-face {
+  font-family: "flappyFont";
+  src: url(assets/font/FlappyBirdy.woff) fromat("woff");
+}

@@ -1,14 +1,15 @@
 import React from 'react'
 import gameOverpng from '../assets/sprites/gameover.png'
-import flappyFont from '../assets/font/FlappyBirdy.woff'
+
 
 function GameOverScreen (){
 
-    const pStyle = {color: 'white',
-                   }
+
+    const pStyle = {color: '##ffad33',
+                    fontFamily: 'Trebuchet MS'}
 
     return (
-        <div style= {{
+        <div id="gameover" style= {{
             position: 'absolute',
             height: 200,
             bottom: 200,
@@ -20,9 +21,9 @@ function GameOverScreen (){
             margin: 5
             }}>
             <img src={gameOverpng}></img>
-            <p style = {pStyle}> your score was</p>
-            <p style = {pStyle}>3</p>
-            <button>play again</button>
+            <p style = {pStyle}>Score: 34 </p>
+ 
+            <button id="playAgain">Play again</button>
         </div>
     )
     

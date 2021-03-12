@@ -19,6 +19,8 @@ export const GameInit = () => {
     let pipeUpperSecond: any;
     let pipeLowerThird: any;
     let pipeUpperThird: any;
+    let screen: any;
+    let playButton: any;
 
     // Intervals
     let gameLoop: any;
@@ -39,6 +41,9 @@ export const GameInit = () => {
         pipeUpperSecond = document.getElementById("pipeUpperSecond");
         pipeLowerThird = document.getElementById("pipeLowerThird");
         pipeUpperThird = document.getElementById("pipeUpperThird");
+
+        screen = document.getElementById("gameover")
+        playButton = document.getElementById("playAgain")
     }
 
     // Helper function for div dimensions
@@ -50,7 +55,9 @@ export const GameInit = () => {
     }
 
     function initialize() {
+        document.addEventListener('keypress', jumpCheck);
 
+        screen.style.display = "none"
         // Place player sprite
         console.log(playerDiv)
         playerDiv.style.right = 250 + "px";
@@ -86,7 +93,20 @@ export const GameInit = () => {
             GameEngine.obstacleCollision(playerDiv, pipeLowerSecond, pipeUpperSecond, groundDiv) || 
             GameEngine.obstacleCollision(playerDiv, pipeLowerThird, pipeUpperThird, groundDiv)) { 
 
-                clearInterval(gameLoop); }
+                playerDead() }
+    }
+
+
+    function playerDead(){
+         document.removeEventListener('keypress', jumpCheck)
+         playButton.onclick = function(){initialize()}; 
+        
+        if (screen.style.display === "none") {
+            screen.style.display = "block"
+        }else {
+            screen.style.display = "none"
+        }
+        clearInterval(gameLoop)
     }
 
 /*
@@ -102,8 +122,9 @@ export const GameInit = () => {
         if (e.keyCode === 32) { GameEngine.jump(playerDiv, groundDiv); }
     }
 
-    document.addEventListener('keypress', jumpCheck);
+   
 
+   
     function doOnce() {
 
         document.addEventListener("DOMContentLoaded", getDivs)

@@ -19,8 +19,11 @@ export const GameInit = () => {
     let pipeUpperSecond: any;
     let pipeLowerThird: any;
     let pipeUpperThird: any;
+
+    //score and game over screen
     let screen: any;
     let playButton: any;
+    let scoreBoard: any
 
     // Intervals
     let gameLoop: any;
@@ -44,6 +47,7 @@ export const GameInit = () => {
 
         screen = document.getElementById("gameover")
         playButton = document.getElementById("playAgain")
+        scoreBoard = document.getElementById("scoreBoard")
     }
 
     // Helper function for div dimensions
@@ -58,6 +62,7 @@ export const GameInit = () => {
         document.addEventListener('keypress', jumpCheck);
 
         screen.style.display = "none"
+        scoreBoard.style.display = "block"
         // Place player sprite
         playerDiv.style.right = 250 + "px";
         playerDiv.style.top = 100 + "px";
@@ -96,6 +101,8 @@ export const GameInit = () => {
     function playerDead(){
          document.removeEventListener('keypress', jumpCheck)
          playButton.onclick = function(){initialize()}; 
+         
+         removeScore();
         
         if (screen.style.display === "none") {
             screen.style.display = "block"
@@ -104,6 +111,16 @@ export const GameInit = () => {
         }
         clearInterval(gameLoop)
     }
+
+    function removeScore(){
+        if (scoreBoard.style.display === "block") {
+            scoreBoard.style.display = "none"
+        }else {
+            scoreBoard.style.display = "block"
+        }
+    }
+
+
 
     function jumpCheck(e: any) {
 

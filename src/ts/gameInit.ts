@@ -101,7 +101,8 @@ export const GameInit = () => {
     function playerDead(){
          document.removeEventListener('keypress', jumpCheck)
          playButton.onclick = function(){initialize()}; 
-
+         
+         removeScore();
         
         if (screen.style.display === "none") {
             screen.style.display = "block"
@@ -110,6 +111,15 @@ export const GameInit = () => {
         }
         clearInterval(gameLoop)
     }
+
+    function removeScore(){
+        if (scoreBoard.style.display === "block") {
+            scoreBoard.style.display = "none"
+        }else {
+            scoreBoard.style.display = "block"
+        }
+    }
+
 
 
     function jumpCheck(e: any) {

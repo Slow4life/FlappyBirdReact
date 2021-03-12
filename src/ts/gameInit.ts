@@ -79,23 +79,14 @@ export const GameInit = () => {
 
     function Dummy() {
        
-        if (GameEngine.obstacleCollision("playerSprite", "pipeLowerFirst", "pipeUpperFirst")) {
+        if (GameEngine.obstacleCollision("playerSprite", "pipeLowerFirst", "pipeUpperFirst") ||
+            GameEngine.obstacleCollision("playerSprite", "pipeLowerSecond", "pipeUpperSecond") ||
+            GameEngine.obstacleCollision("playerSprite", "pipeLowerThird", "pipeUpperThird" )) {
 
             clearInterval(movePipe);
             clearInterval(playerFall)
         }
 
-        if (GameEngine.obstacleCollision("playerSprite", "pipeLowerSecond", "pipeUpperSecond")) {
-
-            clearInterval(movePipe);
-            clearInterval(playerFall)
-        }
-
-        if (GameEngine.obstacleCollision("playerSprite", "pipeLowerThird", "pipeUpperThird")) {
-
-            clearInterval(movePipe);
-            clearInterval(playerFall)
-        }
     }
 
     function addJumpListener() {

@@ -69,10 +69,6 @@ export const GameInit = () => {
         playerDiv.style.right = 250 + "px";
         playerDiv.style.top = 100 + "px";
 
-        // Place pipes
-        let pipeDimFirst = getSpriteDim(pipesFirst);
-        let pipeDimSecond = getSpriteDim(pipesSecond);
-        let pipeDimThird = getSpriteDim(pipesThird);
         let gameWindowDim = getSpriteDim(windowDiv);
 
         pipesFirst.style.left = gameWindowDim.width + 6 + "px";

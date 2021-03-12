@@ -36,3 +36,30 @@ test('render([raw html])',() => {
   const R8 = document.getElementById("R8").getBoundingClientRect()
 })
 
+export function collidingDOMRects(r1:DOMRect, r2:DOMRect){
+    if (r1.left > (r2.right)){
+        return false
+    }
+    if (r2.left > (r1.right)){
+        return false
+    }
+    if (r1.top > (r2.bottom)){
+        return false
+    }
+    if (r2.top > (r1.bottom)){
+        return false
+    }
+    return true
+}
+
+function expectCollision(r1:DOMRect, r2:DOMRect){
+    expect(collidingDOMRects(r1,r2)).toEqual(true)
+    // Symmetric relation: r1 collides with r2 <=> r2 collides with r1
+    expect(collidingDOMRects(r2,r1)).toEqual(true)
+}
+function expectNoCollision(r1:DOMRect, r2:DOMRect){
+    expect(collidingDOMRects(r1,r2)).toEqual(false)
+    // Symmetric relation: r1 collides with r2 <=> r2 collides with r1
+    expect(collidingDOMRects(r2,r1)).toEqual(false)
+}
+

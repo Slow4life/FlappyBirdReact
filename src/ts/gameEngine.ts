@@ -108,9 +108,7 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
 
     // ########################################### SCORE ###########################################
 
-    public static updateScore(obstacle1Div: any, obstacle2Div: any, obstacle3Div: any, playerDiv: any, score: number) {
-
-        let tempScore = score;
+    public static updateScore(obstacle1Div: any, obstacle2Div: any, obstacle3Div: any, playerDiv: any) {
 
         let pipesFirstDim = obstacle1Div.getBoundingClientRect();
         let pipesSecondDim = obstacle2Div.getBoundingClientRect();
@@ -121,11 +119,9 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
             pipesSecondDim.left + pipesSecondDim.width == playerDivDim.right - playerDivDim.width ||
             pipesThirdDim.left + pipesThirdDim.width == playerDivDim.right - playerDivDim.width) {
 
-            tempScore++
-            console.log(tempScore)
+            return true
         }
-
-        return tempScore
+        return false
     }
 }
 

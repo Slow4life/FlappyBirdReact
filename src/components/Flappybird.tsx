@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Scrollingbase from "./scrollingbase";
+import Ground from "./groundSprite";
 import PlayerSprite from './playerSprite';
 //import Pipes from './pipes';
 import PipesFirst from './pipesFirst';
@@ -19,7 +19,7 @@ class Flappybird extends React.Component<FlappybirdProps>{
     render(){
         return(
             <div id='gameWindow'>
-                    <Scrollingbase/>
+                    <Ground/>
                     <PlayerSprite/>
                     <PipesFirst/>
                     <PipesSecond/>

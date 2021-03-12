@@ -1,5 +1,3 @@
-import { groupEnd } from "node:console";
-
 export class GameEngine {
 
 // ########################################### COLLISION ###########################################
@@ -16,7 +14,6 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
         playerDim.y < obstacleDim1.y + obstacleDim1.height &&
         playerDim.y + playerDim.height * 0.9 > obstacleDim1.y) {
 
-           console.log("collision detected lower pipe")
            return true;
         }
 
@@ -24,8 +21,7 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
         playerDim.x + playerDim.width > obstacleDim2.x &&
         playerDim.y < obstacleDim2.y + obstacleDim2.height + obstacleDim1.height/2 &&
         playerDim.y + playerDim.height > obstacleDim2.y ) {
-
-           console.log("collision detected upper pipe")
+            
            return true;
         }
 
@@ -38,14 +34,13 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
         return true;
     }
                 
-
     return false;
 }
 
     // ########################################### OBSTACLE MOVEMENT ###########################################
 
     public static pipeMovement(pipesFirst: any, pipesSecond: any, pipesThird: any,
-         lowerFirst: any, upperFirst: any, lowerSecond: any, upperSecond: any, lowerThird: any, upperThird: any, gameWindow: any) {
+         lowerFirst: any, upperFirst: any, lowerSecond: any, upperSecond: any, lowerThird: any, upperThird: any, gameWindow: any, moveSpeed: number) {
 
         let bottomRandomY = Math.random() * 170;
         let gap = 450;
@@ -59,9 +54,9 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
         let secondX: number = pipeDimSecond.left;
         let thirdX: number = pipeDimThird.left;
 
-        pipesFirst.style.left = firstX - 5 + "px";
-        pipesSecond.style.left = secondX - 5 + "px";
-        pipesThird.style.left = thirdX - 5 + "px";
+        pipesFirst.style.left = firstX - moveSpeed + "px";
+        pipesSecond.style.left = secondX - moveSpeed + "px";
+        pipesThird.style.left = thirdX - moveSpeed + "px";
 
         if (pipeDimFirst.left < gameWindowDim.left - 60) { 
 

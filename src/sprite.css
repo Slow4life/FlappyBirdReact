@@ -22,3 +22,12 @@
 
     position: absolute;
 }
+
+#ground {
+    height: 112px;
+    max-width: 500px;
+    position: absolute;
+    overflow: hidden;
+    bottom: 0px;
+    z-index: +1;
+  }

@@ -1,6 +1,12 @@
 import { GameEngine } from './gameEngine'
+import { AudioManager } from "./AudioManager";
 
 export const GameInit = () => {
+
+    AudioManager.loadAudioFile("jump", "./audio/wing.wav", false)
+    AudioManager.loadAudioFile("die", "./audio/die.wav", false)
+    AudioManager.loadAudioFile("point", "./audio/point.wav", false)
+
 
     // Player, ground, game window
     let playerDiv: any;
@@ -107,6 +113,7 @@ export const GameInit = () => {
         if(scoreCheck == true) {
 
             scoreCount++;
+            AudioManager.playAudio("point");
         }
 
         // Show scores
@@ -127,6 +134,8 @@ export const GameInit = () => {
 
 
     function playerDead(){
+
+        AudioManager.playAudio("die")
 
          document.removeEventListener('keypress', jumpCheck);
          
@@ -157,7 +166,11 @@ export const GameInit = () => {
 
     function jumpCheck(e: any) {
 
-        if (e.keyCode === 32) { GameEngine.jump(playerDiv, groundDiv); }
+        if (e.keyCode === 32) {
+             GameEngine.jump(playerDiv, groundDiv); 
+             AudioManager.stopAudio("jump")
+             AudioManager.playAudio("jump")
+            }
     }
    
     function doOnce() {

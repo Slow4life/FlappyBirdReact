@@ -15,7 +15,8 @@ test('renders expected elements', () => {
 
 
 test('render([raw html])',() => {
-  render(<div id={"x"}>x</div>)
-  const divElement = document.getElementById("x");
-  expect(divElement).toBeInTheDocument();
+    <iframe id={"iFrame"} src={"http://localhost:3000/crashTestDummies.html"}/>
+  const iFrame = document.getElementById("iFrame");
+  const area51 = iFrame.contentWindow.document;
+ //expect(divElement).toBeInTheDocument();
 })

@@ -17,7 +17,6 @@ function Flappybird() {
                 <PipesThird/>
                 <GameOverScreen/>
                 <ScoreBoard/>
-
         </div>
     )
  

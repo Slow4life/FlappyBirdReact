@@ -23,7 +23,8 @@ export const GameInit = () => {
     //score and game over screen
     let screen: any;
     let playButton: any;
-    let scoreBoard: any
+    let scoreBoard: any;
+    let score: number;
 
     // Intervals
     let gameLoop: any;
@@ -69,11 +70,15 @@ export const GameInit = () => {
         playerDiv.style.right = 250 + "px";
         playerDiv.style.top = 100 + "px";
 
+        // Place pipes
         let gameWindowDim = getSpriteDim(windowDiv);
 
         pipesFirst.style.left = gameWindowDim.width + 6 + "px";
         pipesSecond.style.left = gameWindowDim.width + 256 + "px";
         pipesThird.style.left = gameWindowDim.width + 506 + "px";
+
+        // Score
+        score = 0;
 
         // Calls all functions which are killed when game is over
         gameLoop = setInterval(gameStart, 1000/60);
@@ -88,6 +93,9 @@ export const GameInit = () => {
         GameEngine.pipeMovement(pipesFirst, pipesSecond, pipesThird,
             pipeLowerFirst, pipeUpperFirst, pipeLowerSecond, pipeUpperSecond, pipeLowerThird, pipeUpperThird, windowDiv, 5);
 
+        // Score update
+        let getScore = GameEngine.updateScore(pipeLowerFirst, pipeLowerSecond, pipeLowerThird, score);
+        
         // Collision
         if (GameEngine.obstacleCollision(playerDiv, pipeLowerFirst, pipeUpperFirst, groundDiv) || 
             GameEngine.obstacleCollision(playerDiv, pipeLowerSecond, pipeUpperSecond, groundDiv) || 

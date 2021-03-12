@@ -8,6 +8,8 @@ export class GameEngine {
 
     public static obstacleCollision(playerSpriteDiv: string, obstacle1Sprite: string, obstacle2Sprite: string) {
 
+        
+
         let player: any = document.getElementById(playerSpriteDiv);
         let obstacle1: any = document.getElementById(obstacle1Sprite);
         let obstacle2: any = document.getElementById(obstacle2Sprite);
@@ -15,16 +17,27 @@ export class GameEngine {
         let playerDim = player.getBoundingClientRect();
         let obstacleDim1 = obstacle1.getBoundingClientRect();
         let obstacleDim2 = obstacle2.getBoundingClientRect();
-        
-        if (playerDim.left + 34 >= obstacleDim1.left && playerDim.left <= obstacle1.left + 60 && playerDim.bottom >= obstacleDim1.top) {
+        //console.log(playerDim);
+        //console.log(obstacleDim1);
 
-            return true;
-        }
+       // console.log("log collision" + playerDim.left + 34 >= obstacleDim1.left && playerDim.left <= obstacle1.left + 60 && playerDim.bottom >= obstacleDim1.top)
 
-        //if (playerDim.right >= obstacleDim2.left && playerDim.left <= obstacleDim2.right && playerDim.top <= obstacleDim2.bottom+100) {
+        if (playerDim.x < obstacleDim1.x + obstacleDim1.width &&
+            playerDim.x + playerDim.width > obstacleDim1.x &&
+            playerDim.y < obstacleDim1.y + obstacleDim1.height &&
+            playerDim.y + playerDim.height/2 > obstacleDim1.y) {
+               console.log("collision detected lower pipe")
+               return true;
+            }
 
-        //    return true;
-        //}
+        if (playerDim.x < obstacleDim2.x + obstacleDim2.width &&
+            playerDim.x + playerDim.width > obstacleDim2.x &&
+            playerDim.y < obstacleDim2.y + obstacleDim2.height + obstacleDim1.height/2 &&
+            playerDim.y + playerDim.height/2 > obstacleDim2.y ) {
+               console.log("collision detected upper pipe")
+               return true;
+            }
+                    
 
         return false;
     }

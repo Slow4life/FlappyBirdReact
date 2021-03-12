@@ -18,6 +18,7 @@ export let upperThird: any;
 
 export let movePipe: any;
 export let playerFall: any;
+export let checkCollision: any;
 
 export const GameInit = () => {
 
@@ -70,30 +71,30 @@ export const GameInit = () => {
 
         addJumpListener();
 
-        let checkCollision = setInterval(Dummy, 1000/60);
+        checkCollision = setInterval(Dummy, 1000/60);
 
         movePipe = setInterval(GameEngine.pipeMovement, 1000/60, pipesFirst, pipesSecond, pipesThird, gameWindow);
         playerFall = setInterval(GameEngine.moveY, 1000/60, playerSprite, groundSprite)
     }
 
     function Dummy() {
+       
+        if (GameEngine.obstacleCollision("playerSprite", "pipeLowerFirst", "pipeUpperFirst")) {
 
-        if (GameEngine.obstacleCollision("playerSprite", "pipeLowerFirst", "pipeUpperFirst") == true) {
-
-            console.log("collide first")
-            //clearInterval(movePipe);
+            clearInterval(movePipe);
+            clearInterval(playerFall)
         }
 
-        if (GameEngine.obstacleCollision("playerSprite", "pipeLowerSecond", "pipeUpperSecond") == true) {
+        if (GameEngine.obstacleCollision("playerSprite", "pipeLowerSecond", "pipeUpperSecond")) {
 
-            console.log("collide second")
-            //clearInterval(movePipe);
+            clearInterval(movePipe);
+            clearInterval(playerFall)
         }
 
-        if (GameEngine.obstacleCollision("playerSprite", "pipeLowerThird", "pipeUpperThird") == true) {
+        if (GameEngine.obstacleCollision("playerSprite", "pipeLowerThird", "pipeUpperThird")) {
 
-            console.log("collide third")
-            //clearInterval(movePipe);
+            clearInterval(movePipe);
+            clearInterval(playerFall)
         }
     }
 

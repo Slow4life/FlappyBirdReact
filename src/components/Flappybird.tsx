@@ -2,14 +2,12 @@ import React from 'react';
 
 import Scrollingbase from "./scrollingbase";
 import PlayerSprite from './playerSprite';
-//import Pipes from './pipes';
 import PipesFirst from './pipesFirst';
 import PipesSecond from './pipesSecond';
 import PipesThird from './pipesThird';
 import GameOverScreen from './GameOverScreen'
+import ScoreBoard from './ScoreBoard'
 import { GameInit } from '../ts/gameInit'
-
-interface FlappybirdProps{};
 
 function Flappybird() {
 
@@ -22,6 +20,7 @@ function Flappybird() {
                 <PipesSecond/>
                 <PipesThird/>
                 <GameOverScreen/>
+                <ScoreBoard/>
 
         </div>
     )

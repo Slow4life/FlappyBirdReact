@@ -12,11 +12,3 @@ test('renders expected elements', () => {
   expect(gameWindowElement).toContainElement(mover1Element);   // Rather redundant.
   expect(document.getElementsByClassName('mover-1').length).toEqual(1);
 })
-
-
-test('render([raw html])',() => {
-    <iframe id={"iFrame"} src={"http://localhost:3000/crashTestDummies.html"}/>
-  const iFrame = document.getElementById("iFrame");
-  const area51 = iFrame.contentWindow.document;
- //expect(divElement).toBeInTheDocument();
-})

@@ -1,10 +1,21 @@
-import { GameEngine } from './gameEngine'
-import { AudioManager } from "./AudioManager";
+import { GameEngine } from '../gameEngine/game'
+import { AudioManager } from "../gameEngine/Audio";
 
 export const GameInit = () => {
 
-
-
+    // Constants
+    const gameFps: number = 1000/60;
+    const jumpKey: number = 32;
+    const jumpHeight: number = 70;
+    const playerStartingX: number = 250;
+    const playerStartingY: number = 100;
+    const playerFallSpeed: number = 3/20;
+    const pipeTwoOffset: number = 250;
+    const pipeThreeOffset: number = 500;
+    const pipeMoveSpeed: number = 5;
+    const pipeResetOffset: number = 684;
+    const randomRange: number = 170;
+    const obstacleGap: number = 450;
 
     // Player, ground, game window
     let playerDiv: any;
@@ -34,7 +45,6 @@ export const GameInit = () => {
     let scoreCount: number;
     let highScore:number = 0;
     
-
     // Intervals
     let gameLoop: any;
 
@@ -68,8 +78,6 @@ export const GameInit = () => {
         AudioManager.loadAudioFile("point", "./audio/point.wav", false)
     }
 
-
-
     function initialize() {
 
         document.addEventListener('keypress', jumpCheck);
@@ -78,35 +86,36 @@ export const GameInit = () => {
         scoreBoard.style.display = "block"
 
         // Place player sprite
-        playerDiv.style.right = 250 + "px";
-        playerDiv.style.top = 100 + "px";
+        playerDiv.style.right = playerStartingX + "px";
+        playerDiv.style.top = playerStartingY + "px";
 
         // Place pipes
         let gameWindowDim = GameEngine.getSpriteDim(windowDiv);
 
         pipesFirst.style.left = gameWindowDim.width + "px";
-        pipesSecond.style.left = gameWindowDim.width + 250 + "px";
-        pipesThird.style.left = gameWindowDim.width + 500 + "px";
+        pipesSecond.style.left = gameWindowDim.width + pipeTwoOffset + "px";
+        pipesThird.style.left = gameWindowDim.width + pipeThreeOffset + "px";
 
         // Score
         scoreCount = 0;
 
         // Calls all functions which are killed when game is over
-        gameLoop = setInterval(gameStart, 1000/60);
+        gameLoop = setInterval(gameStart, gameFps);
     }
 
     function gameStart() {
 
         // Player falls vertically
-        GameEngine.moveY(playerDiv, 3/20)
+        GameEngine.moveY(playerDiv, playerFallSpeed)
 
         // Pipe movement
         GameEngine.obstacleMovement(pipesFirst, pipesSecond, pipesThird,
             pipeLowerFirst, pipeUpperFirst, pipeLowerSecond, pipeUpperSecond,
-             pipeLowerThird, pipeUpperThird, windowDiv, 5, 684, 170, 450);
+             pipeLowerThird, pipeUpperThird, windowDiv, pipeMoveSpeed, pipeResetOffset, randomRange, obstacleGap);
 
         // Score update
         scoreCheck = GameEngine.updateScore(pipesFirst, pipesSecond, pipesThird, playerDiv);
+
         if(scoreCheck === true) {
 
             scoreCount++;
@@ -126,7 +135,8 @@ export const GameInit = () => {
             GameEngine.obstacleCollision(playerDiv, pipeLowerSecond, pipeUpperSecond, groundDiv) || 
             GameEngine.obstacleCollision(playerDiv, pipeLowerThird, pipeUpperThird, groundDiv)) { 
 
-                playerDead() }
+            playerDead() 
+        }
     }
 
     // Triggers upon player death
@@ -139,13 +149,18 @@ export const GameInit = () => {
          removeScore();
         
         if (screen.style.display === "none") {
+
             screen.style.display = "block"
-        }else {
+        }
+        
+        else {
+
             screen.style.display = "none"
         }
+
         clearInterval(gameLoop)
 
-        playButton.onclick = function(){initialize();}; 
+        playButton.onclick = function(){ initialize(); }; 
     }
 
     // Triggers when player moves past pipe
@@ -165,11 +180,12 @@ export const GameInit = () => {
     // Listens to all keyboard presses
     function jumpCheck(e: any) {
 
-        if (e.keyCode === 32) { // 32 = space bar
-             GameEngine.jump(playerDiv, 70); 
+        if (e.keyCode === jumpKey) {
+
+             GameEngine.jump(playerDiv, jumpHeight);
              AudioManager.stopAudio("jump")
              AudioManager.playAudio("jump")
-            }
+        }
     }
    
     function doOnce() {

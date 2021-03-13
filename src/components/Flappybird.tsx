@@ -5,7 +5,7 @@ import PipesSecond from './pipesSecond';
 import PipesThird from './pipesThird';
 import GameOverScreen from './GameOverScreen'
 import ScoreBoard from './ScoreBoard'
-import { GameInit } from '../ts/gameInit'
+import { GameInit } from '../gameLoop/gameInit'
 
 function Flappybird() {
     return(

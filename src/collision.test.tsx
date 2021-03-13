@@ -1,6 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
+// Testing collision detection, based on the game objects' getBoundingClientRect()
+// does not work. In the test environment, getBoundingClientRect() always returns
+// a zero size 'rectangle' positioned at (0,0)
+
+
 test('collision detection',() => {
     // We do have a problem with cross domain scripting when trying to render crashTestDummies.html
     // render(<iframe id="iFrame" src="crashTestDummies.html"/>)
@@ -11,7 +16,7 @@ test('collision detection',() => {
     // const testArea = iFrame.contentDocument || iFrame.contentWindow.document
     // expect(testArea).not.toBeNull();
     // Copy the R0 div from crashTestDummies.html
-    // render(
+    render(
     <CollidingRectangles/>
     )
     const R0div = document.getElementById("R0")
@@ -78,14 +83,14 @@ export function collidingDOMRects(r1:DOMRect, r2:DOMRect){
 }
 
 function expectCollision(r1:DOMRect, r2:DOMRect){
-    expect(collidingDOMRects(r1,r2)).toEqual(true)
+    expect(collidingDOMRects(r1,r2)).toEqual(true);
     // Symmetric relation: r1 collides with r2 <=> r2 collides with r1
-    expect(collidingDOMRects(r2,r1)).toEqual(true)
+    expect(collidingDOMRects(r2,r1)).toEqual(true);
 }
 function expectNoCollision(r1:DOMRect, r2:DOMRect){
-    expect(collidingDOMRects(r1,r2)).toEqual(false)
+    expect(collidingDOMRects(r1,r2)).toEqual(false);
     // Symmetric relation: r1 collides with r2 <=> r2 collides with r1
-    expect(collidingDOMRects(r2,r1)).toEqual(false)
+    expect(collidingDOMRects(r2,r1)).toEqual(false);
 }
 
 class CollidingRectangles extends React.Component{

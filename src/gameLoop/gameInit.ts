@@ -10,8 +10,6 @@ export const GameInit = () => {
     const playerStartingX: number = 250;
     const playerStartingY: number = 100;
     const playerFallSpeed: number = 3/20;
-    const pipeTwoOffset: number = 250;
-    const pipeThreeOffset: number = 500;
     const pipeMoveSpeed: number = 5;
     const pipeResetOffset: number = 684;
     const randomRange: number = 170;
@@ -82,6 +80,7 @@ export const GameInit = () => {
 
         document.addEventListener('keypress', jumpCheck);
 
+        // Score screen
         screen.style.display = "none"
         scoreBoard.style.display = "block"
 
@@ -92,9 +91,10 @@ export const GameInit = () => {
         // Place pipes
         let gameWindowDim: DOMRect = GameEngine.getSpriteDim(windowDiv);
 
+        // Initial pipe locations
         pipesFirst.style.left = gameWindowDim.width + "px";
-        pipesSecond.style.left = gameWindowDim.width + pipeTwoOffset + "px";
-        pipesThird.style.left = gameWindowDim.width + pipeThreeOffset + "px";
+        pipesSecond.style.left = gameWindowDim.width + gameWindowDim.width/2 + "px";
+        pipesThird.style.left = gameWindowDim.width + gameWindowDim.width + "px";
 
         // Score
         scoreCount = 0;

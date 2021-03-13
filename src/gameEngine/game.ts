@@ -3,7 +3,7 @@ export class GameEngine {
 // Helper function for div dimensions
 public static getSpriteDim(div: any) {
 
-    let pipeDim = div.getBoundingClientRect();
+    let pipeDim: DOMRect = div.getBoundingClientRect();
 
     return pipeDim;
 }
@@ -12,10 +12,10 @@ public static getSpriteDim(div: any) {
 
 public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div: any, groundDiv:any) {
 
-    let playerDim = GameEngine.getSpriteDim(playerDiv);
-    let obstacleDim1 = GameEngine.getSpriteDim(obstacle1Div);
-    let obstacleDim2 = GameEngine.getSpriteDim(obstacle2Div);
-    let groundDim = GameEngine.getSpriteDim(groundDiv);
+    let playerDim: DOMRect = GameEngine.getSpriteDim(playerDiv);
+    let obstacleDim1: DOMRect = GameEngine.getSpriteDim(obstacle1Div);
+    let obstacleDim2: DOMRect = GameEngine.getSpriteDim(obstacle2Div);
+    let groundDim: DOMRect = GameEngine.getSpriteDim(groundDiv);
 
     if (playerDim.x < obstacleDim1.x + obstacleDim1.width &&
         playerDim.x + playerDim.width > obstacleDim1.x &&
@@ -55,11 +55,11 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
         let bottomRandomY = Math.random() * randomRange;
         let gap = obstacleGap;
 
-        let pipeDimFirst = GameEngine.getSpriteDim(pipesFirst);
-        let pipeDimSecond = GameEngine.getSpriteDim(pipesSecond);
-        let pipeDimThird = GameEngine.getSpriteDim(pipesThird);
-        let gameWindowDim = GameEngine.getSpriteDim(gameWindow);
-        let pipeDim = GameEngine.getSpriteDim(lowerFirst);
+        let pipeDimFirst: DOMRect = GameEngine.getSpriteDim(pipesFirst);
+        let pipeDimSecond: DOMRect = GameEngine.getSpriteDim(pipesSecond);
+        let pipeDimThird: DOMRect = GameEngine.getSpriteDim(pipesThird);
+        let gameWindowDim: DOMRect = GameEngine.getSpriteDim(gameWindow);
+        let pipeDim: DOMRect = GameEngine.getSpriteDim(lowerFirst);
 
         let firstX: number = pipeDimFirst.left;
         let secondX: number = pipeDimSecond.left;
@@ -94,7 +94,7 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
 
     public static playerFall(playerDiv: any, playerFallSpeed: number) {
     
-        let playerDim = GameEngine.getSpriteDim(playerDiv);
+        let playerDim: DOMRect = GameEngine.getSpriteDim(playerDiv);
     
         let playerY: number = playerDim.top;
 
@@ -103,7 +103,7 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
 
     public static playerJump(playerDiv: any, playerJumpHeight: number) {
 
-        let playerDim = GameEngine.getSpriteDim(playerDiv);
+        let playerDim: DOMRect = GameEngine.getSpriteDim(playerDiv);
 
         let playerY: number = playerDim.top;
 
@@ -114,10 +114,10 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
 
     public static updateScore(obstacle1Div: any, obstacle2Div: any, obstacle3Div: any, playerDiv: any) {
 
-        let pipesFirstDim = GameEngine.getSpriteDim(obstacle1Div);
-        let pipesSecondDim = GameEngine.getSpriteDim(obstacle2Div);
-        let pipesThirdDim = GameEngine.getSpriteDim(obstacle3Div);
-        let playerDivDim = GameEngine.getSpriteDim(playerDiv);
+        let pipesFirstDim: DOMRect = GameEngine.getSpriteDim(obstacle1Div);
+        let pipesSecondDim: DOMRect = GameEngine.getSpriteDim(obstacle2Div);
+        let pipesThirdDim: DOMRect = GameEngine.getSpriteDim(obstacle3Div);
+        let playerDivDim: DOMRect = GameEngine.getSpriteDim(playerDiv);
 
         if(pipesFirstDim.left + pipesFirstDim.width === playerDivDim.right - playerDivDim.width ||
             pipesSecondDim.left + pipesSecondDim.width === playerDivDim.right - playerDivDim.width ||

@@ -90,7 +90,7 @@ export const GameInit = () => {
         playerDiv.style.top = playerStartingY + "px";
 
         // Place pipes
-        let gameWindowDim = GameEngine.getSpriteDim(windowDiv);
+        let gameWindowDim: DOMRect = GameEngine.getSpriteDim(windowDiv);
 
         pipesFirst.style.left = gameWindowDim.width + "px";
         pipesSecond.style.left = gameWindowDim.width + pipeTwoOffset + "px";
@@ -195,5 +195,4 @@ export const GameInit = () => {
     }
 
     doOnce();
-
 }

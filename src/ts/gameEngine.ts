@@ -12,7 +12,7 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
     if (playerDim.x < obstacleDim1.x + obstacleDim1.width &&
         playerDim.x + playerDim.width > obstacleDim1.x &&
         playerDim.y < obstacleDim1.y + obstacleDim1.height &&
-        playerDim.y + playerDim.height * 0.9 > obstacleDim1.y) {
+        playerDim.y + playerDim.height * 0.9 > obstacleDim1.y) { // 0.9 = hardcoded calibration, not optimal
 
            return true;
         }
@@ -26,7 +26,7 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
         }
 
     let playerY: number = playerDim.y;
-    let groundY: number = groundDim.y - 25 // 25 = calibration, not optimal
+    let groundY: number = groundDim.y - 25 // 25 = hardcoded calibration, not optimal
 
     // Player fall speed
     if (playerY >= groundY) {
@@ -40,15 +40,18 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
     // ########################################### OBSTACLE MOVEMENT ###########################################
 
     public static pipeMovement(pipesFirst: any, pipesSecond: any, pipesThird: any,
-         lowerFirst: any, upperFirst: any, lowerSecond: any, upperSecond: any, lowerThird: any, upperThird: any, gameWindow: any, moveSpeed: number) {
+         lowerFirst: any, upperFirst: any, lowerSecond: any, upperSecond: any,
+          lowerThird: any, upperThird: any, gameWindow: any, moveSpeed: number,
+           pipeResetDistance: number, randomRange: number, obstacleGap: number) {
 
-        let bottomRandomY = Math.random() * 170;
-        let gap = 450;
+        let bottomRandomY = Math.random() * randomRange;
+        let gap = obstacleGap;
 
         let pipeDimFirst = pipesFirst.getBoundingClientRect();
         let pipeDimSecond = pipesSecond.getBoundingClientRect();
         let pipeDimThird = pipesThird.getBoundingClientRect();
         let gameWindowDim = gameWindow.getBoundingClientRect();
+        let pipeDim = lowerFirst.getBoundingClientRect();
 
         let firstX: number = pipeDimFirst.left;
         let secondX: number = pipeDimSecond.left;
@@ -56,24 +59,24 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
 
         pipesFirst.style.left = firstX - moveSpeed + "px";
         pipesSecond.style.left = secondX - moveSpeed + "px";
-        pipesThird.style.left = thirdX - moveSpeed + "px";
+        pipesThird.style.left = thirdX - moveSpeed + "px"; 
 
-        if (pipeDimFirst.left < gameWindowDim.left - 60) { 
+        if (pipeDimFirst.left < gameWindowDim.left - pipeDim.width) { 
 
-            pipesFirst.style.left = 684 + "px"; // Hardcoded calibration
+            pipesFirst.style.left = pipeResetDistance + "px";
             lowerFirst.style.bottom = bottomRandomY + "px";
             upperFirst.style.bottom = bottomRandomY + gap + "px";
         }
-        if (pipeDimSecond.left < gameWindowDim.left - 60) {
+        if (pipeDimSecond.left < gameWindowDim.left - pipeDim.width) {
             
-            pipesSecond.style.left = 684 + "px"; 
+            pipesSecond.style.left = pipeResetDistance + "px"; 
             lowerSecond.style.bottom = bottomRandomY + "px";
             upperSecond.style.bottom = bottomRandomY + gap + "px";
         }
 
-        if (pipeDimThird.left < gameWindowDim.left - 60) { 
+        if (pipeDimThird.left < gameWindowDim.left - pipeDim.width) { 
             
-            pipesThird.style.left = 684 + "px"; 
+            pipesThird.style.left = pipeResetDistance + "px"; 
             lowerThird.style.bottom = bottomRandomY + "px";
             upperThird.style.bottom = bottomRandomY + gap + "px";
         }
@@ -81,29 +84,22 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
 
     // ########################################### PLAYER MOVEMENT ###########################################
 
-    public static moveY(playerDiv: any, groundDiv: any) {
+    public static moveY(playerDiv: any, playerFallSpeed: number) {
     
         let playerDim = playerDiv.getBoundingClientRect();
-        let groundDim = groundDiv.getBoundingClientRect();
     
         let playerY: number = playerDim.top;
 
-        playerDiv.style.top = playerY + 3/20 + "px";
+        playerDiv.style.top = playerY + playerFallSpeed + "px";
     }
 
-    public static jump(playerDiv: any, groundDiv: any) {
+    public static jump(playerDiv: any, playerJumpHeight: number) {
 
         let playerDim = playerDiv.getBoundingClientRect();
-        let groundDim = groundDiv.getBoundingClientRect();
 
         let playerY: number = playerDim.top;
 
-        let groundY: number = groundDim.top - 25 // 25 = calibration, not optimal
-
-        if (playerY <= groundY) {
-
-            playerDiv.style.top = playerY - 70 + "px"; // Brúka CSS at gera smooth?
-        }
+        playerDiv.style.top = playerY - playerJumpHeight + "px";
     }
 
     // ########################################### SCORE ###########################################
@@ -115,9 +111,9 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
         let pipesThirdDim = obstacle3Div.getBoundingClientRect();
         let playerDivDim = playerDiv.getBoundingClientRect();
 
-        if(pipesFirstDim.left + pipesFirstDim.width == playerDivDim.right - playerDivDim.width ||
-            pipesSecondDim.left + pipesSecondDim.width == playerDivDim.right - playerDivDim.width ||
-            pipesThirdDim.left + pipesThirdDim.width == playerDivDim.right - playerDivDim.width) {
+        if(pipesFirstDim.left + pipesFirstDim.width === playerDivDim.right - playerDivDim.width ||
+            pipesSecondDim.left + pipesSecondDim.width === playerDivDim.right - playerDivDim.width ||
+            pipesThirdDim.left + pipesThirdDim.width === playerDivDim.right - playerDivDim.width) {
 
             return true
         }

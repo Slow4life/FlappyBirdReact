@@ -3,6 +3,7 @@ import { AudioManager } from "./AudioManager";
 
 export const GameInit = () => {
 
+    // Audio loading
     AudioManager.loadAudioFile("jump", "./audio/wing.wav", false)
     AudioManager.loadAudioFile("die", "./audio/die.wav", false)
     AudioManager.loadAudioFile("point", "./audio/point.wav", false)
@@ -42,6 +43,7 @@ export const GameInit = () => {
 
     function getDivs() {
 
+        // Loads all necessary Divs, in order to avoid potential null references
         playerDiv = document.getElementById("playerSprite");
         groundDiv = document.getElementById("ground");
         windowDiv = document.getElementById("gameWindow");
@@ -93,8 +95,6 @@ export const GameInit = () => {
         // Score
         scoreCount = 0;
 
-        console.log(pipesFirst)
-
         // Calls all functions which are killed when game is over
         gameLoop = setInterval(gameStart, 1000/60);
     }
@@ -102,15 +102,16 @@ export const GameInit = () => {
     function gameStart() {
 
         // Player falls vertically
-        GameEngine.moveY(playerDiv, groundDiv)
+        GameEngine.moveY(playerDiv, 3/20)
 
         // Pipe movement
         GameEngine.pipeMovement(pipesFirst, pipesSecond, pipesThird,
-            pipeLowerFirst, pipeUpperFirst, pipeLowerSecond, pipeUpperSecond, pipeLowerThird, pipeUpperThird, windowDiv, 5);
+            pipeLowerFirst, pipeUpperFirst, pipeLowerSecond, pipeUpperSecond,
+             pipeLowerThird, pipeUpperThird, windowDiv, 5, 684, 170, 450);
 
         // Score update
         scoreCheck = GameEngine.updateScore(pipesFirst, pipesSecond, pipesThird, playerDiv);
-        if(scoreCheck == true) {
+        if(scoreCheck === true) {
 
             scoreCount++;
             AudioManager.playAudio("point");
@@ -132,7 +133,7 @@ export const GameInit = () => {
                 playerDead() }
     }
 
-
+    // Triggers upon player death
     function playerDead(){
 
         AudioManager.playAudio("die")
@@ -151,6 +152,7 @@ export const GameInit = () => {
         playButton.onclick = function(){initialize();}; 
     }
 
+    // Triggers when player moves past pipe
     function removeScore(){
 
         if (scoreBoard.style.display === "block") {
@@ -164,10 +166,11 @@ export const GameInit = () => {
         }
     }
 
+    // Listens to all keyboard presses
     function jumpCheck(e: any) {
 
-        if (e.keyCode === 32) {
-             GameEngine.jump(playerDiv, groundDiv); 
+        if (e.keyCode === 32) { // 32 = space bar
+             GameEngine.jump(playerDiv, 70); 
              AudioManager.stopAudio("jump")
              AudioManager.playAudio("jump")
             }

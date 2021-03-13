@@ -101,7 +101,7 @@ export const GameInit = () => {
         GameEngine.moveY(playerDiv, 3/20)
 
         // Pipe movement
-        GameEngine.pipeMovement(pipesFirst, pipesSecond, pipesThird,
+        GameEngine.obstacleMovement(pipesFirst, pipesSecond, pipesThird,
             pipeLowerFirst, pipeUpperFirst, pipeLowerSecond, pipeUpperSecond,
              pipeLowerThird, pipeUpperThird, windowDiv, 5, 684, 170, 450);
 

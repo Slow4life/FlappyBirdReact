@@ -47,7 +47,7 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
 
     // ########################################### OBSTACLE MOVEMENT ###########################################
 
-    public static pipeMovement(pipesFirst: any, pipesSecond: any, pipesThird: any,
+    public static obstacleMovement(pipesFirst: any, pipesSecond: any, pipesThird: any,
          lowerFirst: any, upperFirst: any, lowerSecond: any, upperSecond: any,
           lowerThird: any, upperThird: any, gameWindow: any, moveSpeed: number,
            pipeResetDistance: number, randomRange: number, obstacleGap: number) {

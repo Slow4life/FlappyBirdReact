@@ -3,10 +3,7 @@ import { AudioManager } from "./AudioManager";
 
 export const GameInit = () => {
 
-    // Audio loading
-    AudioManager.loadAudioFile("jump", "./audio/wing.wav", false)
-    AudioManager.loadAudioFile("die", "./audio/die.wav", false)
-    AudioManager.loadAudioFile("point", "./audio/point.wav", false)
+
 
 
     // Player, ground, game window
@@ -64,15 +61,14 @@ export const GameInit = () => {
         scoreBoard = document.getElementById("scoreBoard");
         deathScore = document.getElementById("deathScore");
         highScoreDiv = document.getElementById("highScore");
+
+        // Audio loading
+        AudioManager.loadAudioFile("jump", "./audio/wing.wav", false)
+        AudioManager.loadAudioFile("die", "./audio/die.wav", false)
+        AudioManager.loadAudioFile("point", "./audio/point.wav", false)
     }
 
-    // Helper function for div dimensions
-    function getSpriteDim(pipe: any) {
 
-        let pipeDim = pipe.getBoundingClientRect();
-
-        return pipeDim;
-    }
 
     function initialize() {
 
@@ -86,7 +82,7 @@ export const GameInit = () => {
         playerDiv.style.top = 100 + "px";
 
         // Place pipes
-        let gameWindowDim = getSpriteDim(windowDiv);
+        let gameWindowDim = GameEngine.getSpriteDim(windowDiv);
 
         pipesFirst.style.left = gameWindowDim.width + "px";
         pipesSecond.style.left = gameWindowDim.width + 250 + "px";

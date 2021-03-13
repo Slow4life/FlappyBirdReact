@@ -92,7 +92,7 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
 
     // ########################################### PLAYER MOVEMENT ###########################################
 
-    public static moveY(playerDiv: any, playerFallSpeed: number) {
+    public static playerFall(playerDiv: any, playerFallSpeed: number) {
     
         let playerDim = GameEngine.getSpriteDim(playerDiv);
     
@@ -101,7 +101,7 @@ public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div:
         playerDiv.style.top = playerY + playerFallSpeed + "px";
     }
 
-    public static jump(playerDiv: any, playerJumpHeight: number) {
+    public static playerJump(playerDiv: any, playerJumpHeight: number) {
 
         let playerDim = GameEngine.getSpriteDim(playerDiv);
 

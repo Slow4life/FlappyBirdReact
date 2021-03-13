@@ -46,7 +46,7 @@ export const GameInit = () => {
     let highScore:number = 0;
     
     // Intervals
-    let gameLoop: any;
+    let gameLoopInterval: any;
 
     function getDivs() {
 
@@ -100,13 +100,13 @@ export const GameInit = () => {
         scoreCount = 0;
 
         // Calls all functions which are killed when game is over
-        gameLoop = setInterval(gameCycle, gameFps);
+        gameLoopInterval = setInterval(gameLoop, gameFps);
     }
 
-    function gameCycle() {
+    function gameLoop() {
 
         // Player falls vertically
-        GameEngine.moveY(playerDiv, playerFallSpeed)
+        GameEngine.playerFall(playerDiv, playerFallSpeed)
 
         // Pipe movement
         GameEngine.obstacleMovement(pipesFirst, pipesSecond, pipesThird,
@@ -158,7 +158,7 @@ export const GameInit = () => {
             screen.style.display = "none"
         }
 
-        clearInterval(gameLoop)
+        clearInterval(gameLoopInterval)
 
         playButton.onclick = function(){ initialize(); }; 
     }
@@ -182,7 +182,7 @@ export const GameInit = () => {
 
         if (e.keyCode === jumpKey) {
 
-             GameEngine.jump(playerDiv, jumpHeight);
+             GameEngine.playerJump(playerDiv, jumpHeight);
              AudioManager.stopAudio("jump")
              AudioManager.playAudio("jump")
         }

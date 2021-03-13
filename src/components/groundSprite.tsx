@@ -4,7 +4,7 @@ const Ground = (props:any) => {
   
   return(
 
-    <div id='ground'><img src={groundSprite}/></div>
+    <div id='ground'><img src={groundSprite} alt="null"/></div>
   )
 }
 

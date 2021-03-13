@@ -15,13 +15,13 @@ const PipesFirst = (props:any) => {
             width: 60,
             height: 200,
             bottom: bottomY + gap // Bottom pipe y + gap
-            }}><img src={pipeN}/></div>
+            }}><img src={pipeN} alt="null"/></div>
     
             <div id='pipeLowerFirst' style={{
             width: 60,
             height: 200,
             bottom: bottomY
-            }}><img src={pipeS}/></div>
+            }}><img src={pipeS} alt="null"/></div>
 
             </div>
       )

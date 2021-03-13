@@ -24,7 +24,7 @@ function GameOverScreen (){
             backgroundColor: "#ffe5b4",
              borderRadius: 25
             }}>
-            <img src={gameOverpng}></img>
+            <img src={gameOverpng} alt="null"></img>
             <div id="deathScore" style = {pStyle}>Score: </div>
             <div id="highScore" style = {pStyle}>Score: </div><br/>
  

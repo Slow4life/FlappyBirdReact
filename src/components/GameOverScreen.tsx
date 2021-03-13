@@ -5,8 +5,8 @@ function GameOverScreen (){
 
     const pStyle = {color: '##ffad33', fontFamily: 'Trebuchet MS'}
     const buttonStyle = { background: `url(${playButton}) no-repeat 5px center`,
-                          width: 64,
-                          height: 36,
+                          width: 120,
+                          height: 60,
                           border: 'none',
                           backgroundSize: 'cover' }
 
@@ -26,7 +26,7 @@ function GameOverScreen (){
             }}>
             <img src={gameOverpng}></img>
             <div id="deathScore" style = {pStyle}>Score: </div>
-            <div id="highScore" style = {pStyle}>Score: </div>
+            <div id="highScore" style = {pStyle}>Score: </div><br/>
  
             <button style={buttonStyle} id="playAgain"></button>
         </div>

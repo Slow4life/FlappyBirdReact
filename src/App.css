@@ -10,36 +10,3 @@
   color: black;
   overflow: hidden;
 }
-
-.ground {
-  height: 112px;
-  max-width: 500px;
-  margin: 0 auto;
-  position: absolute;
-  overflow: hidden;
-  bottom: 0px;
-  transform: translate3d(0, 0, 0);
-}
-
-.ground > div {
-  height: 200px;
-  width: 2526px;
-  background: url(assets/sprites/base.png);
-  top: 0;
-  left: 0;
-  height: 100%;
-  transform: translate3d(0, 0, 0);
-}
-.ground .mover-1 {
-  animation: moveGround 14s linear infinite;
-}
-
-@keyframes moveGround {
-  100% {
-    transform: translateX(-66.6666%);
-  }
-}
-
-#ground {
-  z-index: +1;
-}

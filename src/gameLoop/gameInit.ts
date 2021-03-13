@@ -100,10 +100,10 @@ export const GameInit = () => {
         scoreCount = 0;
 
         // Calls all functions which are killed when game is over
-        gameLoop = setInterval(gameStart, gameFps);
+        gameLoop = setInterval(gameCycle, gameFps);
     }
 
-    function gameStart() {
+    function gameCycle() {
 
         // Player falls vertically
         GameEngine.moveY(playerDiv, playerFallSpeed)

@@ -41,7 +41,7 @@ export const GameInit = () => {
     let highScoreDiv: any;
     let scoreCheck: boolean;
     let scoreCount: number;
-    let highScore:number = 0;
+    let highScore: number = 0;
     
     // Intervals
     let gameLoopInterval: any;

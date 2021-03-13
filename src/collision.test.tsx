@@ -66,7 +66,7 @@ test('collision detection',() => {
     expectNoCollision(R7,R8)
 })
 
-export function collidingDOMRects(r1:DOMRect, r2:DOMRect){
+export function collidingDOMRects(r1:any, r2:any){
     if (r1.left > (r2.right)){
         return false
     }
@@ -82,12 +82,12 @@ export function collidingDOMRects(r1:DOMRect, r2:DOMRect){
     return true
 }
 
-function expectCollision(r1:DOMRect, r2:DOMRect){
+function expectCollision(r1:any, r2:any){
     expect(collidingDOMRects(r1,r2)).toEqual(true);
     // Symmetric relation: r1 collides with r2 <=> r2 collides with r1
     expect(collidingDOMRects(r2,r1)).toEqual(true);
 }
-function expectNoCollision(r1:DOMRect, r2:DOMRect){
+function expectNoCollision(r1:any, r2:any){
     expect(collidingDOMRects(r1,r2)).toEqual(false);
     // Symmetric relation: r1 collides with r2 <=> r2 collides with r1
     expect(collidingDOMRects(r2,r1)).toEqual(false);
@@ -109,5 +109,20 @@ class CollidingRectangles extends React.Component{
             </div>
         )
     }
-
 }
+
+interface IMockRect{
+    id:string,
+    height: number,
+    width: number,
+    left: number,
+    top: number
+}
+
+class MockRect extends React.Component<IMockRect>{
+    render(){
+        return(`<div id={this.props.id} title={this.props.id} style={position: "absolute", height:${this.props.height}, width:${this.props.height},left:${this.props.left},top:${this.props.top}>
+                {this.props.id}
+            </div>`)
+        }
+    }

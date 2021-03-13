@@ -23,7 +23,7 @@ test('collision detection',() => {
     expect(R0div).not.toBeNull()
 
 
-    const R1 = (screen.getByTitle("R1")as HTMLDivElement).getBoundingClientRect()
+    const R1 = (document.getElementById("R1"))
     //  const R1 = (document.getElementById("R1")as HTMLDivElement).getBoundingClientRect()
     const R2 = document.getElementById("R2").getBoundingClientRect()
     const R3 = document.getElementById("R3").getBoundingClientRect()
@@ -66,7 +66,10 @@ test('collision detection',() => {
     expectNoCollision(R7,R8)
 })
 
-export function collidingDOMRects(r1:any, r2:any){
+export function collidingDOMRects(r1: DOMRect | MockRect, r2: DOMRect | MockRect){
+    // Parameters should really be DOMRect,
+    // but because getBoundingClientRect() does not work in the Jest test
+    // environment, we also need to accept MockRect parameters.
     if (r1.left > (r2.right)){
         return false
     }
@@ -98,7 +101,8 @@ class CollidingRectangles extends React.Component{
         return(
             <div id="R0" title="R0" style={{position: "absolute",height:100,width:100,left:200,top:300}}>
                 R0
-                <div id="R1" title="R1" style={{position: "absolute",height:10,width:200,left:-50,top:-50}}>R1</div>
+                <MockRect id={"R1"} height={10} width={200} left={-50} top={-50} />
+                // <div id="R1" title="R1" style={{position: "absolute",height:10,width:200,left:-50,top:-50}}>R1</div>
                 <div id="R2" title="R2" style={{position: "absolute",height:10,width:200,left:-50,top:130}}>R2</div>
                 <div id="R3" title="R3" style={{position: "absolute",height:180,width:10,left:-30,top:-70}}>R3</div>
                 <div id="R4" title="R4" style={{position: "absolute",height:180,width:10,left:130,top:-20}}>R4</div>
@@ -120,6 +124,10 @@ interface IMockRect{
 }
 
 class MockRect extends React.Component<IMockRect>{
+    public readonly  left = this.props.left;
+    public readonly  top = this.props.top;
+    public readonly  bottom = this.props.top + this.props.height;
+    public readonly  right = this.props.left + this.props.width;
     render(){
         return(`<div id={this.props.id} title={this.props.id} style={position: "absolute", height:${this.props.height}, width:${this.props.height},left:${this.props.left},top:${this.props.top}>
                 {this.props.id}

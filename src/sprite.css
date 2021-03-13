@@ -1,26 +1,33 @@
 #playerSprite {
     position: absolute;
-    left: 200px;
-    top: 100px
+    width: 34;
 }
 
-.pipesBoth {
+#pipesBothFirst {
     position: absolute;
-    right: 0;
     bottom: 0;
 }
 
-#pipeUpper, #pipeLower {
+#pipesBothSecond {
+    position: absolute;
+    bottom: 0;
+}
+
+#pipesBothThird {
+    position: absolute;
+    bottom: 0;
+}
+
+#pipeUpperFirst, #pipeLowerFirst, #pipeUpperSecond, #pipeLowerSecond, #pipeUpperThird, #pipeLowerThird {
 
     position: absolute;
 }
 
-#score {
-
+#ground {
+    height: 112px;
+    max-width: 500px;
     position: absolute;
-    font-family: 'Courier New', monospace;
-    border: 2px solid green;
-    width: 200px;
-    height: 50px;
-    left: 0px;
-}
+    overflow: hidden;
+    bottom: 0px;
+    z-index: +1;
+  }

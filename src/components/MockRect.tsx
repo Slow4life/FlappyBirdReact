@@ -1,5 +1,11 @@
 import React from "react";
 
+class InternalRects extends React.Component{
+    render(){
+        return(<p>dummy</p>)
+    }
+}
+
 export class CollidingRectangles extends React.Component{
     rects = [
         new MockRect({id:"R1", height:10,width:100,left:-50,top:-50}),
@@ -16,9 +22,7 @@ export class CollidingRectangles extends React.Component{
         return(
             <div id="R0" title="R0" style={{position: "absolute",height:100,width:100,left:200,top:300}}>
                 R0
-                {
-                   (new MockRect({id:"R1", height:10,width:100,left:-50,top:-50})).render()
-                }
+                <InternalRects/>
             </div>
         )
     }

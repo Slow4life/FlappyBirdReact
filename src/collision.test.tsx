@@ -92,17 +92,17 @@ function expectNoCollision(r1:any, r2:any){
 }
 
 class CollidingRectangles extends React.Component{
-    rects:Map<string,MockRect>
+    rects:Set<MockRect>
     constructor(){
         super(props)
-        this.rects.set("R1",new MockRect({id:"R1", height:10,width:100,left:-50,top:-50}));
-        this.rects.set("R2",new MockRect({id:"R2", height:10,width:200,left:-50,top:130}));
-        this.rects.set("R3",new MockRect({id:"R3", height:180,width:10,left:-30,top:-70}));
-        this.rects.set("R4",new MockRect({id:"R4", height:180,width:10,left:130,top:-20}));
-        this.rects.set("R5",new MockRect({id:"R5", height:50,width:50,left:25,top:25}));
-        this.rects.set("R6",new MockRect({id:"R6", height:20,width:20,left:90,top:-10}));
-        this.rects.set("R7",new MockRect({id:"R7", height:20,width:20,left:90,top:50}));
-        this.rects.set("R8",new MockRect({id:"R8", height:20,width:20,left:90,top:90}));
+        this.rects.set(new MockRect({id:"R1", height:10,width:100,left:-50,top:-50}));
+        this.rects.set(new MockRect({id:"R2", height:10,width:200,left:-50,top:130}));
+        this.rects.set(new MockRect({id:"R3", height:180,width:10,left:-30,top:-70}));
+        this.rects.set(new MockRect({id:"R4", height:180,width:10,left:130,top:-20}));
+        this.rects.set(new MockRect({id:"R5", height:50,width:50,left:25,top:25}));
+        this.rects.set(new MockRect({id:"R6", height:20,width:20,left:90,top:-10}));
+        this.rects.set(new MockRect({id:"R7", height:20,width:20,left:90,top:50}));
+        this.rects.set(new MockRect({id:"R8", height:20,width:20,left:90,top:90}));
     }
     render(){
         return(

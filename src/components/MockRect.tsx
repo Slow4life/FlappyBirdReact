@@ -15,13 +15,10 @@ export class CollidingRectangles extends React.Component{
     ]
 
     render(){
-        let internalRects = <ol><li>Internals</li></ol>
-        return(
-            <div id="R0" title="R0" style={{position: "absolute",height:100,width:100,left:200,top:300}}>
-                R0
-                {internalRects}
-            </div>
-        )
+        let result = <div id="R0" title="R0" style={{position: "absolute",height:100,width:100,left:200,top:300}}>
+            R0
+        </div>
+        return(result)
     }
 }
 

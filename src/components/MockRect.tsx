@@ -18,12 +18,12 @@ export class MockRect extends React.Component<IMockRect>{
     public readonly  right = this.props.left + this.props.width;
     render(){
         return(
-            <div id={this.props.id} title="R1" style={{position: "absolute",
+            <div id={this.props.id} title={this.props.id} style={{position: "absolute",
                 border: "thin solid red",
                 height: this.props.height,
                 width:this.props.width,
                 left:this.props.left,
-                top:this.props.top}}>R1</div>
+                top:this.props.top}}>{this.props.id}</div>
         )
     }
 }
@@ -41,16 +41,17 @@ export class CollidingRectangles extends React.Component{
                 </p>
                 <p>Otherwise, these are the rectangles defined in
                     <i>MockRect.tsx</i> and used to test …() in <i>collision.test.tsx</i></p>
-                <div id="R0" title="R0" style={{position: "absolute",height:100,width:100,left:75,top:200,border:"thin solid red"}}>
-                R0
-                {React.createElement(MockRect,({id:"R1", height:10,width:100,left:-50,top:-50}))}
-                {React.createElement(MockRect,({id:"R2", height:10,width:200,left:-50,top:130}))}
-                {React.createElement(MockRect,({id:"R3", height:180,width:10,left:-30,top:-70}))}
-                {React.createElement(MockRect,({id:"R4", height:180,width:10,left:130,top:-20}))}
-                {React.createElement(MockRect,({id:"R5", height:50,width:50,left:25,top:25}))}
-                {React.createElement(MockRect,({id:"R6", height:20,width:20,left:90,top:-10}))}
-                {React.createElement(MockRect,({id:"R7", height:20,width:20,left:90,top:50}))}
-                {React.createElement(MockRect,({id:"R8", height:20,width:20,left:90,top:90}))}
+                <p>If it is important to test if an exact touch is a collision, more cases should be added.</p>
+                <div id="R0" title="R0" style={{position: "absolute",height:100,width:100,left:75,top:250,border:"thin solid red"}}>
+                    R0
+                    <MockRect id={"R1"} height={10} width={200} left={-50} top={-50}/>
+                    <MockRect id={"R2"} height={10} width={200} left={-50} top={130}/>
+                    <MockRect id={"R3"} height={180} width={10} left={-30} top={-70}/>
+                    <MockRect id={"R4"} height={180} width={10} left={130} top={-20}/>
+                    <MockRect id={"R5"} height={50} width={50} left={25} top={25}/>
+                    <MockRect id={"R6"} height={20} width={20} left={90} top={-10}/>
+                    <MockRect id={"R7"} height={20} width={20} left={90} top={50}/>
+                    <MockRect id={"R8"} height={20} width={20} left={90} top={90}/>
                 </div>
             </div>
         //result.appendChild(<div>a child</div>)

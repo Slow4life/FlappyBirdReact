@@ -59,8 +59,8 @@ export class CollidingRectangles extends React.Component{
                 <code>return ( &lt;Flappybird&gt;&lt;/Flappybird&gt; )<br/>
                     &#47;&#47; return ( &lt;CollidingRectangles/&gt; )</code>
                 </p>
-                <p>Otherwise, these are the rectangles defined in
-                    <i>MockRect.tsx</i> and used to test …() in <i>collision.test.tsx</i></p>
+                <p>Otherwise, these are the rectangles defined
+                    in <i>MockRect.tsx</i> and used to test …() in <i>collision.test.tsx</i></p>
                 <p>If it is important to test if an exact touch is a collision, more cases should be added.</p>
                 {CollidingRectangles.r0}
             </div>

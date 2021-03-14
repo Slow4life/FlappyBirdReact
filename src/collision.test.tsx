@@ -33,11 +33,6 @@ test('collision detection',() => {
     const R7 = document.getElementById("R7").getBoundingClientRect()
     const R8 = document.getElementById("R8").getBoundingClientRect()
     expectCollision(R1,R3);
-    expectCollision(R2,R4)
-    expectCollision(R0,R5)
-    expectCollision(R0,R6)
-    expectCollision(R0,R7)
-    expectCollision(R0,R8)
     expectNoCollision(R1,R2)
     expectNoCollision(R1,R4)
     expectNoCollision(R1,R5)
@@ -97,19 +92,23 @@ function expectNoCollision(r1:any, r2:any){
 }
 
 class CollidingRectangles extends React.Component{
+    rects:Map<string,MockRect>
+    constructor(){
+        super(props)
+        this.rects.set("R1",new MockRect({id:"R1", height:10,width:100,left:-50,top:-50}));
+        this.rects.set("R2",new MockRect({id:"R2", height:10,width:200,left:-50,top:130}));
+        this.rects.set("R3",new MockRect({id:"R3", height:180,width:10,left:-30,top:-70}));
+        this.rects.set("R4",new MockRect({id:"R4", height:180,width:10,left:130,top:-20}));
+        this.rects.set("R5",new MockRect({id:"R5", height:50,width:50,left:25,top:25}));
+        this.rects.set("R6",new MockRect({id:"R6", height:20,width:20,left:90,top:-10}));
+        this.rects.set("R7",new MockRect({id:"R7", height:20,width:20,left:90,top:50}));
+        this.rects.set("R8",new MockRect({id:"R8", height:20,width:20,left:90,top:90}));
+    }
     render(){
         return(
             <div id="R0" title="R0" style={{position: "absolute",height:100,width:100,left:200,top:300}}>
                 R0
-                <MockRect id={"R1"} height={10} width={200} left={-50} top={-50} />
-                // <div id="R1" title="R1" style={{position: "absolute",height:10,width:200,left:-50,top:-50}}>R1</div>
-                <div id="R2" title="R2" style={{position: "absolute",height:10,width:200,left:-50,top:130}}>R2</div>
-                <div id="R3" title="R3" style={{position: "absolute",height:180,width:10,left:-30,top:-70}}>R3</div>
-                <div id="R4" title="R4" style={{position: "absolute",height:180,width:10,left:130,top:-20}}>R4</div>
-                <div id="R5" title="R5" style={{position: "absolute",height:50,width:50,left:25,top:25}}>R5</div>
-                <div id="R6" title="R6" style={{position: "absolute",height:20,width:20,left:90,top:-10}}>R6</div>
-                <div id="R7" title="R7" style={{position: "absolute",height:20,width:20,left:90,top:50}}>R7</div>
-                <div id="R8" title="R8" style={{position: "absolute",height:20,width:20,left:90,top:90}}>R8</div>
+
             </div>
         )
     }
@@ -123,7 +122,7 @@ interface IMockRect{
     top: number
 }
 
-class MockRect extends React.Component<IMockRect>{
+export class MockRect extends React.Component<IMockRect>{
     public readonly  left = this.props.left;
     public readonly  top = this.props.top;
     public readonly  bottom = this.props.top + this.props.height;

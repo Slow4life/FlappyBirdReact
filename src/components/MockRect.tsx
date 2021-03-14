@@ -1,10 +1,6 @@
 import React from "react";
 
-class InternalRects extends React.Component{
-    render(){
-        return(<p>dummy</p>)
-    }
-}
+
 
 export class CollidingRectangles extends React.Component{
     rects = [
@@ -16,13 +12,14 @@ export class CollidingRectangles extends React.Component{
         new MockRect({id:"R6", height:20,width:20,left:90,top:-10}),
         new MockRect({id:"R7", height:20,width:20,left:90,top:50}),
         new MockRect({id:"R8", height:20,width:20,left:90,top:90})
-]
+    ]
 
     render(){
+        let internalRects = <ol><li>Internals</li></ol>
         return(
             <div id="R0" title="R0" style={{position: "absolute",height:100,width:100,left:200,top:300}}>
                 R0
-                <InternalRects/>
+                {internalRects}
             </div>
         )
     }
@@ -48,6 +45,5 @@ export class MockRect extends React.Component<IMockRect>{
         return(
         <div>dummy</div>
         )
-
     }
 }

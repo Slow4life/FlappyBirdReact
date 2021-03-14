@@ -1,6 +1,27 @@
 import React from "react";
 
+interface IMockRect{
+    id:string,
+    height: number,
+    width: number,
+    left: number,
+    top: number
+}
 
+export class MockRect extends React.Component<IMockRect>{
+    // Stand-in class for DOMRect in test, because
+    // getBoundingClientRect() does not work in the Jest environment.
+    // (It always returns a point at Origin (0,0).)
+    public readonly  left = this.props.left;
+    public readonly  top = this.props.top;
+    public readonly  bottom = this.props.top + this.props.height;
+    public readonly  right = this.props.left + this.props.width;
+    render(){
+        return(
+            <div>dummy</div>
+        )
+    }
+}
 
 export class CollidingRectangles extends React.Component{
     rects = [
@@ -19,7 +40,13 @@ export class CollidingRectangles extends React.Component{
     render(){
         let result =
             <div>
-                <div>intro</div>
+                <p>If you see this page, but want to play FlappyBird,
+                have someone edit <i>App.tsx</i> like this:<br/>
+                <code>return ( &lt;Flappybird&gt;&lt;/Flappybird&gt; )<br/>
+                    // return ( &lt;CollidingRectangles/&gt; )</code>
+                </p>
+                <p>Otherwise, these are the rectangles defined in <i>MockRect.tsx</i>
+                and used to test …() in <i>collision.test.tsx</i></p>
                 <div id="R0" title="R0" style={{position: "absolute",height:100,width:100,left:200,top:300,border:"thin solid silver"}}>
                 R0
                 {React.createElement(MockRect,({id:"R1", height:10,width:100,left:-50,top:-50}))}
@@ -34,28 +61,5 @@ export class CollidingRectangles extends React.Component{
             </div>
         //result.appendChild(<div>a child</div>)
         return(result)
-    }
-}
-
-interface IMockRect{
-    id:string,
-    height: number,
-    width: number,
-    left: number,
-    top: number
-}
-
-export class MockRect extends React.Component<IMockRect>{
-    // Stand-in class for DOMRect in test, because
-    // getBoundingClientRect() does not wirk in the Jest environment.
-    // (It always returns a point in origo.)
-    public readonly  left = this.props.left;
-    public readonly  top = this.props.top;
-    public readonly  bottom = this.props.top + this.props.height;
-    public readonly  right = this.props.left + this.props.width;
-    render(){
-        return(
-        <div>dummy</div>
-        )
     }
 }

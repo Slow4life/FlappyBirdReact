@@ -24,15 +24,7 @@ test('collision detection',() => {
     expect(R0div).not.toBeNull()
 
 
-    const R1 = (document.getElementById("R1"))
-    //  const R1 = (document.getElementById("R1")as HTMLDivElement).getBoundingClientRect()
-    const R2 = document.getElementById("R2").getBoundingClientRect()
-    const R3 = document.getElementById("R3").getBoundingClientRect()
-    const R4 = document.getElementById("R4").getBoundingClientRect()
-    const R5 = document.getElementById("R5").getBoundingClientRect()
-    const R6 = document.getElementById("R6").getBoundingClientRect()
-    const R7 = document.getElementById("R7").getBoundingClientRect()
-    const R8 = document.getElementById("R8").getBoundingClientRect()
+
     expectCollision(CollidingRectangles.r1,CollidingRectangles.r3);
     expectNoCollision(CollidingRectangles.r1,CollidingRectangles.r2)
     expectNoCollision(CollidingRectangles.r1,CollidingRectangles.r4)
@@ -67,6 +59,7 @@ export function collidingDOMRects(r1: DOMRect | MockRect, r2: DOMRect | MockRect
     // but because getBoundingClientRect() does not work in the Jest test
     // environment, we also need to accept MockRect parameters.
     // TODO to be replaced with function from the engine.
+    const r1left = r1.left //debug
     if (r1.left > (r2.right)){
         return false
     }
@@ -82,12 +75,12 @@ export function collidingDOMRects(r1: DOMRect | MockRect, r2: DOMRect | MockRect
     return true
 }
 
-function expectCollision(r1:any, r2:any){
+function expectCollision(r1: DOMRect | MockRect, r2: DOMRect | MockRect){
     expect(collidingDOMRects(r1,r2)).toEqual(true);
     // Symmetric relation: r1 collides with r2 <=> r2 collides with r1
     expect(collidingDOMRects(r2,r1)).toEqual(true);
 }
-function expectNoCollision(r1:any, r2:any){
+function expectNoCollision(r1: DOMRect | MockRect, r2: DOMRect | MockRect){
     expect(collidingDOMRects(r1,r2)).toEqual(false);
     // Symmetric relation: r1 collides with r2 <=> r2 collides with r1
     expect(collidingDOMRects(r2,r1)).toEqual(false);

@@ -33,40 +33,40 @@ test('collision detection',() => {
     const R6 = document.getElementById("R6").getBoundingClientRect()
     const R7 = document.getElementById("R7").getBoundingClientRect()
     const R8 = document.getElementById("R8").getBoundingClientRect()
-    expectCollision(R1,R3);
-    expectNoCollision(R1,R2)
-    expectNoCollision(R1,R4)
-    expectNoCollision(R1,R5)
-    expectNoCollision(R1,R6)
-    expectNoCollision(R1,R7)
-    expectNoCollision(R1,R8)
-    expectNoCollision(R2,R3)
-    expectNoCollision(R2,R5)
-    expectNoCollision(R2,R6)
-    expectNoCollision(R2,R7)
-    expectNoCollision(R2,R8)
-    expectNoCollision(R3,R4)
-    expectNoCollision(R3,R5)
-    expectNoCollision(R3,R6)
-    expectNoCollision(R3,R7)
-    expectNoCollision(R3,R8)
-    expectNoCollision(R4,R5)
-    expectNoCollision(R4,R6)
-    expectNoCollision(R4,R7)
-    expectNoCollision(R4,R8)
-    expectNoCollision(R5,R6)
-    expectNoCollision(R5,R7)
-    expectNoCollision(R5,R8)
-    expectNoCollision(R6,R7)
-    expectNoCollision(R6,R8)
-    expectNoCollision(R7,R8)
+    expectCollision(CollidingRectangles.r1,CollidingRectangles.r3);
+    expectNoCollision(CollidingRectangles.r1,CollidingRectangles.r2)
+    expectNoCollision(CollidingRectangles.r1,CollidingRectangles.r4)
+    expectNoCollision(CollidingRectangles.r1,CollidingRectangles.r5)
+    expectNoCollision(CollidingRectangles.r1,CollidingRectangles.r6)
+    expectNoCollision(CollidingRectangles.r1,CollidingRectangles.r7)
+    expectNoCollision(CollidingRectangles.r1,CollidingRectangles.r8)
+    expectNoCollision(CollidingRectangles.r2,CollidingRectangles.r3)
+    expectNoCollision(CollidingRectangles.r2,CollidingRectangles.r5)
+    expectNoCollision(CollidingRectangles.r2,CollidingRectangles.r6)
+    expectNoCollision(CollidingRectangles.r2,CollidingRectangles.r7)
+    expectNoCollision(CollidingRectangles.r2,CollidingRectangles.r8)
+    expectNoCollision(CollidingRectangles.r3,CollidingRectangles.r4)
+    expectNoCollision(CollidingRectangles.r3,CollidingRectangles.r5)
+    expectNoCollision(CollidingRectangles.r3,CollidingRectangles.r6)
+    expectNoCollision(CollidingRectangles.r3,CollidingRectangles.r7)
+    expectNoCollision(CollidingRectangles.r3,CollidingRectangles.r8)
+    expectNoCollision(CollidingRectangles.r4,CollidingRectangles.r5)
+    expectNoCollision(CollidingRectangles.r4,CollidingRectangles.r6)
+    expectNoCollision(CollidingRectangles.r4,CollidingRectangles.r7)
+    expectNoCollision(CollidingRectangles.r4,CollidingRectangles.r8)
+    expectNoCollision(CollidingRectangles.r5,CollidingRectangles.r6)
+    expectNoCollision(CollidingRectangles.r5,CollidingRectangles.r7)
+    expectNoCollision(CollidingRectangles.r5,CollidingRectangles.r8)
+    expectNoCollision(CollidingRectangles.r6,CollidingRectangles.r7)
+    expectNoCollision(CollidingRectangles.r6,CollidingRectangles.r8)
+    expectNoCollision(CollidingRectangles.r7,CollidingRectangles.r8)
 })
 
 export function collidingDOMRects(r1: DOMRect | MockRect, r2: DOMRect | MockRect){
     // Parameters should really be DOMRect,
     // but because getBoundingClientRect() does not work in the Jest test
     // environment, we also need to accept MockRect parameters.
-    // TODO to be raplaced with function from the engine.
+    // TODO to be replaced with function from the engine.
     if (r1.left > (r2.right)){
         return false
     }

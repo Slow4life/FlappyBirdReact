@@ -41,7 +41,7 @@ export class CollidingRectangles extends React.Component{
     static readonly r7 = new MockRect({ id:"R7", height:20, width:20, left:90, top:50})
     static readonly r8 = new MockRect({ id:"R8", height:20, width:20, left:90, top:90})
     static readonly r =
-        <div id="R0" title="R0" style={{position: "absolute",height:100,width:100,left:75,top:250,border:"none"}}>
+        <div style={{position: "absolute",height:250,width:100,left:75,top:300,border:"none"}}>
             {CollidingRectangles.r0.render()}
             {CollidingRectangles.r1.render()}
             {CollidingRectangles.r2.render()}
@@ -61,7 +61,8 @@ export class CollidingRectangles extends React.Component{
                     &#47;&#47; return ( &lt;CollidingRectangles/&gt; )</code>
                 </p>
                 <p>Otherwise, these are the rectangles defined
-                    in <i>MockRect.tsx</i> and used to test …() in <i>collision.test.tsx</i></p>
+                    in <i>MockRect.tsx</i> and used to test
+                    <code>GameEngine.dOMRectCollision()</code> in <i>gameEngine/game.ts</i></p>
                 <p>If it is important to test if an exact touch is a collision, more cases should be added.</p>
                 {CollidingRectangles.r}
             </div>

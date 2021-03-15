@@ -109,7 +109,7 @@ export const GameInit = () => {
     function gameLoop() {
 
         // Player falls vertically
-        GameEngine.playerFall(playerDiv, playerFallSpeed)
+        GameEngine.gravity(playerDiv, playerFallSpeed)
 
         // Pipe movement
         GameEngine.obstacleMovement(pipesFirst, pipesSecond, pipesThird,
@@ -185,7 +185,7 @@ export const GameInit = () => {
 
         if (e.keyCode === jumpKey) {
 
-             GameEngine.playerJump(playerDiv, jumpHeight);
+             GameEngine.elementJump(playerDiv, jumpHeight);
              AudioManager.playAudio("jump")
         }
     }

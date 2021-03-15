@@ -54,7 +54,6 @@ public static obstacleCollision(playerDiv: DOMRect,
         playerDim.y < obstacleDim1.y + obstacleDim1.height &&
         playerDim.y + playerDim.height * 0.9 > obstacleDim1.y) {    // 0.9 = hardcoded calibration, not optimal
 
-
            return true;
         }
 
@@ -149,22 +148,22 @@ public static obstacleCollision(playerDiv: DOMRect,
 
     // ########################################### PLAYER MOVEMENT ###########################################
 
-    public static playerFall(playerDiv: any, playerFallSpeed: number) {
+    public static gravity(element: any, gravityAmount: number) {
     
-        let playerDim: DOMRect = GameEngine.getSpriteDim(playerDiv);
+        let elementDim: DOMRect = GameEngine.getSpriteDim(element);
     
-        let playerY: number = playerDim.top;
+        let elementY: number = elementDim.top;
 
-        playerDiv.style.top = playerY + playerFallSpeed + "px";
+        element.style.top = elementY + gravityAmount + "px";
     }
 
-    public static playerJump(playerDiv: any, playerJumpHeight: number) {
+    public static elementJump(element: any, jumpHeight: number) {
 
-        let playerDim: DOMRect = GameEngine.getSpriteDim(playerDiv);
+        let elementDim: DOMRect = GameEngine.getSpriteDim(element);
 
-        let playerY: number = playerDim.top;
+        let elementY: number = elementDim.top;
 
-        playerDiv.style.top = playerY - playerJumpHeight + "px";
+        element.style.top = elementY - jumpHeight + "px";
     }
 
     // ########################################### SCORE ###########################################

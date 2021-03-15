@@ -50,6 +50,27 @@ public static obstacleCollision(playerDiv: DOMRect,
     return false;
 }
 
+    static dOMRectCollision(r1: DOMRect | MockRect, r2: DOMRect | MockRect){
+        // Parameters should really be DOMRect,
+        // but because getBoundingClientRect() does not work in the Jest test
+        // environment, we also need to accept MockRect parameters.
+        // TODO to be replaced with function from the engine.
+        const r1left = r1.left //debug
+        if (r1.left > (r2.right)){
+            return false
+        }
+        if (r2.left > (r1.right)){
+            return false
+        }
+        if (r1.top > (r2.bottom)){
+            return false
+        }
+        if (r2.top > (r1.bottom)){
+            return false
+        }
+        return true
+    }
+
     // ########################################### OBSTACLE MOVEMENT ###########################################
 
     public static obstacleMovement(pipesFirst: any, pipesSecond: any, pipesThird: any,

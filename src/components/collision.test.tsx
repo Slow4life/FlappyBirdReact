@@ -1,6 +1,7 @@
 import React from 'react';
 import { MockRect, CollidingRectangles} from './MockRect'
 import { render, screen } from '@testing-library/react';
+import {GameEngine} from '../gameEngine/game';
 
 // Testing collision detection, based on the game objects' getBoundingClientRect()
 // does not work. In the test environment, getBoundingClientRect() always returns
@@ -54,36 +55,17 @@ test('collision detection',() => {
     expectNoCollision(CollidingRectangles.r7,CollidingRectangles.r8)
 })
 
-export function collidingDOMRects(r1: DOMRect | MockRect, r2: DOMRect | MockRect){
-    // Parameters should really be DOMRect,
-    // but because getBoundingClientRect() does not work in the Jest test
-    // environment, we also need to accept MockRect parameters.
-    // TODO to be replaced with function from the engine.
-    const r1left = r1.left //debug
-    if (r1.left > (r2.right)){
-        return false
-    }
-    if (r2.left > (r1.right)){
-        return false
-    }
-    if (r1.top > (r2.bottom)){
-        return false
-    }
-    if (r2.top > (r1.bottom)){
-        return false
-    }
-    return true
-}
+
 
 function expectCollision(r1: DOMRect | MockRect, r2: DOMRect | MockRect){
-    expect(collidingDOMRects(r1,r2)).toEqual(true);
+    expect(GameEngine.dOMRectCollision(r1,r2)).toEqual(true);
     // Symmetric relation: r1 collides with r2 <=> r2 collides with r1
-    expect(collidingDOMRects(r2,r1)).toEqual(true);
+    expect(GameEngine.dOMRectCollision(r2,r1)).toEqual(true);
 }
 function expectNoCollision(r1: DOMRect | MockRect, r2: DOMRect | MockRect){
-    expect(collidingDOMRects(r1,r2)).toEqual(false);
+    expect(GameEngine.dOMRectCollision(r1,r2)).toEqual(false);
     // Symmetric relation: r1 collides with r2 <=> r2 collides with r1
-    expect(collidingDOMRects(r2,r1)).toEqual(false);
+    expect(GameEngine.dOMRectCollision(r2,r1)).toEqual(false);
 }
 
 

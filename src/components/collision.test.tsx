@@ -26,14 +26,24 @@ test('collision detection',() => {
 
 
 
-    expectCollision(CollidingRectangles.r1,CollidingRectangles.r3);
+    expectCollision(CollidingRectangles.r0,CollidingRectangles.r0);
+    expectNoCollision(CollidingRectangles.r0,CollidingRectangles.r1);
+    expectNoCollision(CollidingRectangles.r0,CollidingRectangles.r2);
+    expectNoCollision(CollidingRectangles.r0,CollidingRectangles.r3);
+    expectNoCollision(CollidingRectangles.r0,CollidingRectangles.r4);
+    expectCollision(CollidingRectangles.r0,CollidingRectangles.r5);
+    expectCollision(CollidingRectangles.r0,CollidingRectangles.r6);
+    expectCollision(CollidingRectangles.r0,CollidingRectangles.r7);
+    expectCollision(CollidingRectangles.r0,CollidingRectangles.r8);
     expectNoCollision(CollidingRectangles.r1,CollidingRectangles.r2)
+    expectCollision(CollidingRectangles.r1,CollidingRectangles.r3);
     expectNoCollision(CollidingRectangles.r1,CollidingRectangles.r4)
     expectNoCollision(CollidingRectangles.r1,CollidingRectangles.r5)
     expectNoCollision(CollidingRectangles.r1,CollidingRectangles.r6)
     expectNoCollision(CollidingRectangles.r1,CollidingRectangles.r7)
     expectNoCollision(CollidingRectangles.r1,CollidingRectangles.r8)
     expectNoCollision(CollidingRectangles.r2,CollidingRectangles.r3)
+    expectCollision(CollidingRectangles.r2,CollidingRectangles.r4)
     expectNoCollision(CollidingRectangles.r2,CollidingRectangles.r5)
     expectNoCollision(CollidingRectangles.r2,CollidingRectangles.r6)
     expectNoCollision(CollidingRectangles.r2,CollidingRectangles.r7)

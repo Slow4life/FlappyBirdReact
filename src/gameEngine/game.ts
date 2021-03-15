@@ -13,6 +13,7 @@ public static getSpriteDim(div: any) {
 
 // ########################################### COLLISION ###########################################
 
+
 public static obstacleCollision(playerDiv: DOMRect,
                                 obstacle1Div: DOMRect,
                                 obstacle2Div: DOMRect,
@@ -38,12 +39,18 @@ public static obstacleCollision(playerDiv: DOMRect,
 
     // unreachable code:
     assert(false)
+    // The way to test the following, more optimized code:
+    // Run both general and optimized code in parallel.
+    // Assert that the results are equal.
+    // Run through a lot of games.
+    // Remove the general code
 
 
     if (playerDim.x < obstacleDim1.x + obstacleDim1.width &&
         playerDim.x + playerDim.width > obstacleDim1.x &&
         playerDim.y < obstacleDim1.y + obstacleDim1.height &&
-        playerDim.y + playerDim.height * 0.9 > obstacleDim1.y) { // 0.9 = hardcoded calibration, not optimal
+        playerDim.y + playerDim.height * 0.9 > obstacleDim1.y) {    // 0.9 = hardcoded calibration, not optimal
+
 
            return true;
         }

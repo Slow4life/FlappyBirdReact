@@ -186,7 +186,6 @@ export const GameInit = () => {
         if (e.keyCode === jumpKey) {
 
              GameEngine.playerJump(playerDiv, jumpHeight);
-             AudioManager.stopAudio("jump")
              AudioManager.playAudio("jump")
         }
     }

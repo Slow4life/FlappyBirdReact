@@ -1,5 +1,5 @@
 import { GameEngine } from '../gameEngine/game'
-import { AudioManager } from "../gameEngine/Audio";
+import { AudioManager } from "../gameEngine/AudioManager/AudioManager";
 
 export const GameInit = () => {
 

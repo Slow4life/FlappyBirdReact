@@ -1,5 +1,5 @@
-
 /*class for individual sound effects
+* the audio manager calls this class to create a HTMLAduioElement
 */
 export class SoundEffect {
     private sound: HTMLAudioElement;

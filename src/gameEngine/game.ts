@@ -18,13 +18,14 @@ public static obstacleCollision(playerDiv: DOMRect,
                                 obstacle1Div: DOMRect,
                                 obstacle2Div: DOMRect,
                                 groundDiv:DOMRect) {
-    let playerDim: DOMRect = GameEngine.getSpriteDim(playerDiv);
+    const playerDim: DOMRect = GameEngine.getSpriteDim(playerDiv);
     const theoreticalPlayerHeight = playerDim.height;
-    const practicalPlayerHeight = theoreticalPlayerHeight * 0.9;    // 0.9 = hardcoded calibration, not optimal
-    playerDim.height = practicalPlayerHeight;
+    // const practicalPlayerHeight = theoreticalPlayerHeight * 0.9;    // 0.9 = hardcoded calibration, not optimal
+    // playerDim.height = practicalPlayerHeight;
     const obstacleDim1: DOMRect = GameEngine.getSpriteDim(obstacle1Div);
     const obstacleDim2: DOMRect = GameEngine.getSpriteDim(obstacle2Div);
     const groundDim: DOMRect = GameEngine.getSpriteDim(groundDiv);
+    /*
     if (GameEngine.dOMRectCollision(playerDim, obstacleDim1)){
         return true
     }
@@ -36,9 +37,8 @@ public static obstacleCollision(playerDiv: DOMRect,
     }
     // No collision detected, so
     return false;
+    */
 
-    // unreachable code:
-    assert(false)
     // The way to test the following, more optimized code:
     // Run both general and optimized code in parallel.
     // Assert that the results are equal.

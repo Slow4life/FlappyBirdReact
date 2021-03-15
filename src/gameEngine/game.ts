@@ -103,46 +103,46 @@ public static obstacleCollision(playerDiv: DOMRect,
 
     // ########################################### OBSTACLE MOVEMENT ###########################################
 
-    public static obstacleMovement(pipesFirst: any, pipesSecond: any, pipesThird: any,
+    public static obstacleMovement(obstaclesFirst: any, obstaclesSecond: any, obstaclesThird: any,
          lowerFirst: any, upperFirst: any, lowerSecond: any, upperSecond: any,
           lowerThird: any, upperThird: any, gameWindow: any, moveSpeed: number,
-           pipeResetDistance: number, randomRange: number, obstacleGap: number) {
+          obstacleResetDistance: number, randomRange: number, obstacleGap: number) {
 
-        let bottomRandomY = Math.random() * randomRange;
+        let bottomY = Math.random() * randomRange;
         let gap = obstacleGap;
 
-        let pipeDimFirst: DOMRect = GameEngine.getSpriteDim(pipesFirst);
-        let pipeDimSecond: DOMRect = GameEngine.getSpriteDim(pipesSecond);
-        let pipeDimThird: DOMRect = GameEngine.getSpriteDim(pipesThird);
+        let obstacleDimFirst: DOMRect = GameEngine.getSpriteDim(obstaclesFirst);
+        let obstacleDimSecond: DOMRect = GameEngine.getSpriteDim(obstaclesSecond);
+        let obstacleDimThird: DOMRect = GameEngine.getSpriteDim(obstaclesThird);
         let gameWindowDim: DOMRect = GameEngine.getSpriteDim(gameWindow);
-        let pipeDim: DOMRect = GameEngine.getSpriteDim(lowerFirst);
+        let obstacleDim: DOMRect = GameEngine.getSpriteDim(lowerFirst);
 
-        let firstX: number = pipeDimFirst.left;
-        let secondX: number = pipeDimSecond.left;
-        let thirdX: number = pipeDimThird.left;
+        let firstX: number = obstacleDimFirst.left;
+        let secondX: number = obstacleDimSecond.left;
+        let thirdX: number = obstacleDimThird.left;
 
-        pipesFirst.style.left = firstX - moveSpeed + "px";
-        pipesSecond.style.left = secondX - moveSpeed + "px";
-        pipesThird.style.left = thirdX - moveSpeed + "px"; 
+        obstaclesFirst.style.left = firstX - moveSpeed + "px";
+        obstaclesSecond.style.left = secondX - moveSpeed + "px";
+        obstaclesThird.style.left = thirdX - moveSpeed + "px"; 
 
-        if (pipeDimFirst.left < gameWindowDim.left - pipeDim.width) { 
+        if (obstacleDimFirst.left < gameWindowDim.left - obstacleDim.width) { 
 
-            pipesFirst.style.left = pipeResetDistance + "px";
-            lowerFirst.style.bottom = bottomRandomY + "px";
-            upperFirst.style.bottom = bottomRandomY + gap + "px";
+            obstaclesFirst.style.left = obstacleResetDistance + "px";
+            lowerFirst.style.bottom = bottomY + "px";
+            upperFirst.style.bottom = bottomY + gap + "px";
         }
-        if (pipeDimSecond.left < gameWindowDim.left - pipeDim.width) {
+        if (obstacleDimSecond.left < gameWindowDim.left - obstacleDim.width) {
             
-            pipesSecond.style.left = pipeResetDistance + "px"; 
-            lowerSecond.style.bottom = bottomRandomY + "px";
-            upperSecond.style.bottom = bottomRandomY + gap + "px";
+            obstaclesSecond.style.left = obstacleResetDistance + "px"; 
+            lowerSecond.style.bottom = bottomY + "px";
+            upperSecond.style.bottom = bottomY + gap + "px";
         }
 
-        if (pipeDimThird.left < gameWindowDim.left - pipeDim.width) { 
+        if (obstacleDimThird.left < gameWindowDim.left - obstacleDim.width) { 
             
-            pipesThird.style.left = pipeResetDistance + "px"; 
-            lowerThird.style.bottom = bottomRandomY + "px";
-            upperThird.style.bottom = bottomRandomY + gap + "px";
+            obstaclesThird.style.left = obstacleResetDistance + "px"; 
+            lowerThird.style.bottom = bottomY + "px";
+            upperThird.style.bottom = bottomY + gap + "px";
         }
     }
 
@@ -170,14 +170,14 @@ public static obstacleCollision(playerDiv: DOMRect,
 
     public static updateScore(obstacle1Div: any, obstacle2Div: any, obstacle3Div: any, playerDiv: any) {
 
-        let pipesFirstDim: DOMRect = GameEngine.getSpriteDim(obstacle1Div);
-        let pipesSecondDim: DOMRect = GameEngine.getSpriteDim(obstacle2Div);
-        let pipesThirdDim: DOMRect = GameEngine.getSpriteDim(obstacle3Div);
+        let obstacleFirstDim: DOMRect = GameEngine.getSpriteDim(obstacle1Div);
+        let obstacleSecondDim: DOMRect = GameEngine.getSpriteDim(obstacle2Div);
+        let obstacleThirdDim: DOMRect = GameEngine.getSpriteDim(obstacle3Div);
         let playerDivDim: DOMRect = GameEngine.getSpriteDim(playerDiv);
 
-        if(pipesFirstDim.left + pipesFirstDim.width === playerDivDim.right - playerDivDim.width ||
-            pipesSecondDim.left + pipesSecondDim.width === playerDivDim.right - playerDivDim.width ||
-            pipesThirdDim.left + pipesThirdDim.width === playerDivDim.right - playerDivDim.width) {
+        if(obstacleFirstDim.left + obstacleFirstDim.width === playerDivDim.right - playerDivDim.width ||
+            obstacleSecondDim.left + obstacleSecondDim.width === playerDivDim.right - playerDivDim.width ||
+            obstacleThirdDim.left + obstacleThirdDim.width === playerDivDim.right - playerDivDim.width) {
 
             return true
         }

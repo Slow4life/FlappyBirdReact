@@ -91,7 +91,7 @@ export class AudioManager{
     @param sfx: sfx of the audio file you want to change the volume of.
     @param volume: value that the volume should be changed to. should be between 0 and 1.
     */
-    public static setVolume(sfx: string, volume: number){
+    public static setVolume(sfx: string, volume: number):void {
         if(AudioManager.soundArray[sfx] !== null){      
             AudioManager.soundArray[sfx].volume = volume;
         }

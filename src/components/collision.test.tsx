@@ -1,6 +1,6 @@
 import React from 'react';
 import { MockRect, CollidingRectangles} from './MockRect'
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import {GameEngine} from '../gameEngine/game';
 
 // Testing collision detection, based on the game objects' getBoundingClientRect()

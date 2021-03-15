@@ -9,22 +9,11 @@ import {GameEngine} from '../gameEngine/game';
 
 
 test('collision detection',() => {
-    // We do have a problem with cross domain scripting when trying to render crashTestDummies.html
-    // render(<iframe id="iFrame" src="crashTestDummies.html"/>)
-    // render(<iframe id="iFrame" src="file://C:/Users/janegil/WebstormProjects/FlappyBirdReact/public/crashTestDummies.html"/>)
-    // Copy the R0 div from
-    // const iFrame = document.getElementById("iFrame") as HTMLIFrameElement;
-    // expect(iFrame).not.toBeNull();
-    // const testArea = iFrame.contentDocument || iFrame.contentWindow.document
-    // expect(testArea).not.toBeNull();
-    // Copy the R0 div from crashTestDummies.html
     render(
     <CollidingRectangles/>
     )
     const R0div = document.getElementById("R0")
     expect(R0div).not.toBeNull()
-
-
 
     expectCollision(CollidingRectangles.r0,CollidingRectangles.r0);
     expectNoCollision(CollidingRectangles.r0,CollidingRectangles.r1);

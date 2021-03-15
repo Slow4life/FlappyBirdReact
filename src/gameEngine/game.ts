@@ -18,14 +18,17 @@ public static obstacleCollision(playerDiv: DOMRect,
                                 obstacle1Div: DOMRect,
                                 obstacle2Div: DOMRect,
                                 groundDiv:DOMRect) {
-    const playerDim: DOMRect = GameEngine.getSpriteDim(playerDiv);
+    let playerDim: DOMRect = GameEngine.getSpriteDim(playerDiv);
     const theoreticalPlayerHeight = playerDim.height;
-    // const practicalPlayerHeight = theoreticalPlayerHeight * 0.9;    // 0.9 = hardcoded calibration, not optimal
-    // playerDim.height = practicalPlayerHeight;
     const obstacleDim1: DOMRect = GameEngine.getSpriteDim(obstacle1Div);
     const obstacleDim2: DOMRect = GameEngine.getSpriteDim(obstacle2Div);
     const groundDim: DOMRect = GameEngine.getSpriteDim(groundDiv);
     /*
+
+
+    // const practicalPlayerHeight = theoreticalPlayerHeight * 0.9;    // 0.9 = hardcoded calibration, not optimal
+    // playerDim.height = practicalPlayerHeight;
+
     if (GameEngine.dOMRectCollision(playerDim, obstacleDim1)){
         return true
     }

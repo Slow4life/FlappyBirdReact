@@ -8,9 +8,10 @@ export class SoundEffect {
     @param assetPath: path to the audio file.
     @param loop: if the file should loop or played once.
     */
-    public constructor(assetPath: string, loop: boolean){
+    public constructor(assetPath: string, loop: boolean, volume: number){
         this.sound = new Audio(assetPath);
         this.sound.loop = loop;
+        this.sound.volume = volume
         this.sound.crossOrigin="anonymous";
     }
 
@@ -35,41 +36,65 @@ export class SoundEffect {
         this.sound.pause();
         this.sound.currentTime = 0;
     }
+
+    //get volume of sound effect
+    public get volume(): number{
+        return this.sound.volume;
+    }
+
+    //set the volume of sound effect
+    public set volume(value: number){
+        this.sound.volume = value;
+    }
+
+    
 }
 
 //class for managing all the sound files
 export class AudioManager{
 
     //holds all the loaded audio files
-    private static soundArray: {[name: string]: SoundEffect} = {};
+    private static soundArray: {[sfx: string]: SoundEffect} = {};
 
     /*
     loads the audio file
-    @Param name: name for the audio file for when you want to play or stop.
+    @Param sfx: sfx for the audio file for when you want to play or stop.
     @param audioPath: path to the audio file.
     @param loop: if the file should loop or played once. 
     */
-    public static loadAudioFile(name: string, audioPath: string, loop: boolean): void{
-        AudioManager.soundArray[name] = new SoundEffect(audioPath, loop);
+    public static loadAudioFile(sfx: string, audioPath: string, loop: boolean, volume: number): void{
+        AudioManager.soundArray[sfx] = new SoundEffect(audioPath, loop, volume);
     }
 
     /*
     plays the select audio file.
-    @param name: name of the audio file youn want to play.
+    @param sfx: sfx of the audio file youn want to play.
     */
-    public static playAudio(name: string): void {
-        if(AudioManager.soundArray[name] !== undefined){
-            AudioManager.soundArray[name].play();
+    public static playAudio(sfx: string): void {
+        if(AudioManager.soundArray[sfx] !== null){
+            AudioManager.soundArray[sfx].play();
         }
     }
 
     /*
     stops the select audio file.
-    @param name: name of the audio file you want to stop.
+    @param sfx: sfx of the audio file you want to stop.
     */
-    public static stopAudio(name: string): void {
-        if(AudioManager.soundArray[name] !== undefined){
-            AudioManager.soundArray[name].stop();
+    public static stopAudio(sfx: string): void {
+        if(AudioManager.soundArray[sfx] !== null){
+            AudioManager.soundArray[sfx].stop();
         }
+    }
+
+    /*
+    sets volume of a audio element
+    @param sfx: sfx of the audio file you want to change the volume of.
+    @param volume: value that the volume should be changed to. should be between 0 and 1.
+    */
+    public static setVolume(sfx: string, volume: number){
+        if(AudioManager.soundArray[sfx] !== null){      
+            AudioManager.soundArray[sfx].volume = volume;
+        }
+        
     }
 }

@@ -1,4 +1,5 @@
 import {MockRect} from "../components/MockRect";
+import assert from "assert";
 
 export class GameEngine {
 
@@ -16,11 +17,28 @@ public static obstacleCollision(playerDiv: DOMRect,
                                 obstacle1Div: DOMRect,
                                 obstacle2Div: DOMRect,
                                 groundDiv:DOMRect) {
-
     let playerDim: DOMRect = GameEngine.getSpriteDim(playerDiv);
-    let obstacleDim1: DOMRect = GameEngine.getSpriteDim(obstacle1Div);
-    let obstacleDim2: DOMRect = GameEngine.getSpriteDim(obstacle2Div);
-    let groundDim: DOMRect = GameEngine.getSpriteDim(groundDiv);
+    const theoreticalPlayerHeight = playerDim.height;
+    const practicalPlayerHeight = theoreticalPlayerHeight * 0.9;    // 0.9 = hardcoded calibration, not optimal
+    playerDim.height = practicalPlayerHeight;
+    const obstacleDim1: DOMRect = GameEngine.getSpriteDim(obstacle1Div);
+    const obstacleDim2: DOMRect = GameEngine.getSpriteDim(obstacle2Div);
+    const groundDim: DOMRect = GameEngine.getSpriteDim(groundDiv);
+    if (GameEngine.dOMRectCollision(playerDim, obstacleDim1)){
+        return true
+    }
+    if (GameEngine.dOMRectCollision(playerDim, obstacleDim2)){
+        return true
+    }
+    if (GameEngine.dOMRectCollision(playerDim, groundDim)){
+        return true
+    }
+    // No collision detected, so
+    return false;
+
+    // unreachable code:
+    assert(false)
+
 
     if (playerDim.x < obstacleDim1.x + obstacleDim1.width &&
         playerDim.x + playerDim.width > obstacleDim1.x &&
@@ -54,8 +72,11 @@ public static obstacleCollision(playerDiv: DOMRect,
         // Parameters should really be DOMRect,
         // but because getBoundingClientRect() does not work in the Jest test
         // environment, we also need to accept MockRect parameters.
-        // TODO to be replaced with function from the engine.
-        const r1left = r1.left //debug
+
+        // Testing rectangles pairwise for collition, to facilitate testing
+
+        // More general that needed in the initial FlappyBird implementation:
+        // will detect collisions from all directions.
         if (r1.left > (r2.right)){
             return false
         }

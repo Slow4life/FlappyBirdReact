@@ -12,6 +12,7 @@ export class MockRect extends React.Component<IMockRect>{
     // Stand-in class for DOMRect in test, because
     // getBoundingClientRect() does not work in the Jest environment.
     // (It always returns a point at Origin (0,0).)
+    // If the test environment was complete, we would use DOMRect only.
     public readonly  left = this.props.left;
     public readonly  top = this.props.top;
     public readonly  bottom = this.props.top + this.props.height;

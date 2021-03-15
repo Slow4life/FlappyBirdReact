@@ -65,8 +65,6 @@ test('collision detection',() => {
     expectNoCollision(CollidingRectangles.r7,CollidingRectangles.r8)
 })
 
-
-
 function expectCollision(r1: DOMRect | MockRect, r2: DOMRect | MockRect){
     expect(GameEngine.dOMRectCollision(r1,r2)).toEqual(true);
     // Symmetric relation: r1 collides with r2 <=> r2 collides with r1

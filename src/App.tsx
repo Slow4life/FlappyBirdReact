@@ -4,8 +4,8 @@ import {CollidingRectangles} from './components/MockRect' // Remove from product
 import Flappybird from './components/Flappybird';
 
 function App() {
-  // return ( <Flappybird></Flappybird> )
-  return ( <CollidingRectangles/> )     // Test aid, remove from production
+  return ( <Flappybird></Flappybird> )
+  // return ( <CollidingRectangles/> )     // Test aid, remove from production
 }
 
 export default App;

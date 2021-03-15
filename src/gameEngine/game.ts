@@ -1,3 +1,5 @@
+import {MockRect} from "../components/MockRect";
+
 export class GameEngine {
 
 // Helper function for div dimensions
@@ -10,7 +12,10 @@ public static getSpriteDim(div: any) {
 
 // ########################################### COLLISION ###########################################
 
-public static obstacleCollision(playerDiv: any, obstacle1Div: any, obstacle2Div: any, groundDiv:any) {
+public static obstacleCollision(playerDiv: DOMRect,
+                                obstacle1Div: DOMRect,
+                                obstacle2Div: DOMRect,
+                                groundDiv:DOMRect) {
 
     let playerDim: DOMRect = GameEngine.getSpriteDim(playerDiv);
     let obstacleDim1: DOMRect = GameEngine.getSpriteDim(obstacle1Div);

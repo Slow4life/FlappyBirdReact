@@ -10,6 +10,9 @@ export const GameInit = () => {
     const playerStartingX: number = 250;
     const playerStartingY: number = 100;
     const playerFallSpeed: number = 3/20;
+    const pipeOneStartOffset: number = 6;
+    const pipeTwoStartOffset: number = 256;
+    const pipeThreeStartOffset: number = 506;
     const pipeMoveSpeed: number = 5;
     const pipeResetOffset: number = 684;
     const randomRange: number = 170;
@@ -92,9 +95,9 @@ export const GameInit = () => {
         let gameWindowDim: DOMRect = GameEngine.getSpriteDim(windowDiv);
 
         // Initial pipe locations
-        pipesFirst.style.left = gameWindowDim.width + "px";
-        pipesSecond.style.left = gameWindowDim.width + gameWindowDim.width/2 + "px";
-        pipesThird.style.left = gameWindowDim.width + gameWindowDim.width + "px";
+        pipesFirst.style.left = gameWindowDim.width + pipeOneStartOffset + "px";
+        pipesSecond.style.left = gameWindowDim.width + pipeTwoStartOffset + "px";
+        pipesThird.style.left = gameWindowDim.width + pipeThreeStartOffset + "px";
 
         // Score
         scoreCount = 0;
@@ -187,7 +190,7 @@ export const GameInit = () => {
              AudioManager.playAudio("jump")
         }
     }
-   
+
     function doOnce() {
 
         document.addEventListener("DOMContentLoaded", getDivs)

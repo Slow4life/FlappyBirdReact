@@ -5,8 +5,8 @@ function GameOverScreen (){
 
     const pStyle = {color: '##ffad33', fontFamily: 'Trebuchet MS'}
     const buttonStyle = { background: `url(${playButton}) no-repeat 5px center`,
-                          width: 120,
-                          height: 60,
+                          width: 80,
+                          height: 40,
                           border: 'none',
                           backgroundSize: 'cover' }
 

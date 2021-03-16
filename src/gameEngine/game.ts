@@ -167,7 +167,7 @@ public static collision(playerDiv: DOMRect,
 
     // ########################################### SCORE ###########################################
 
-    public static updateScore(obstacle1Div: any, obstacle2Div: any, obstacle3Div: any, playerDiv: any) {
+    public static updateHUD(obstacle1Div: any, obstacle2Div: any, obstacle3Div: any, playerDiv: any) {
 
         let obstacleFirstDim: DOMRect = GameEngine.getSpriteDim(obstacle1Div);
         let obstacleSecondDim: DOMRect = GameEngine.getSpriteDim(obstacle2Div);

@@ -117,7 +117,7 @@ export const GameInit = () => {
              pipeLowerThird, pipeUpperThird, windowDiv, pipeMoveSpeed, pipeResetOffset, randomRange, obstacleGap);
 
         // Score update
-        scoreCheck = GameEngine.updateScore(pipesFirst, pipesSecond, pipesThird, playerDiv);
+        scoreCheck = GameEngine.updateHUD(pipesFirst, pipesSecond, pipesThird, playerDiv);
 
         if(scoreCheck === true) {
 

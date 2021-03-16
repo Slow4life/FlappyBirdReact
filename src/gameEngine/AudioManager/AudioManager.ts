@@ -9,7 +9,7 @@ export class AudioManager{
 
     /*
     loads the audio file
-    @Param sfx: sfx for the audio file for when you want to play or stop.
+    @Param sfx: sfx name for the audio file for when you want to play or stop it.
     @param audioPath: path to the audio file.
     @param loop: if the file should loop or played once. 
     */
@@ -47,5 +47,14 @@ export class AudioManager{
             AudioManager.soundArray[sfx].volume = volume;
         }
         
+    }
+    /*
+    destroys the selected audio file.
+    @param sfx: sfx of the audio file you want to destroy.
+    */
+    public static destroy(sfx: string) {
+         if(AudioManager.soundArray[sfx] !== null){      
+            AudioManager.soundArray[sfx].destroy();
+        }
     }
 }

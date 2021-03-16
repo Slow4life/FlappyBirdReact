@@ -47,5 +47,9 @@ export class SoundEffect {
         this.sound.volume = value;
     }
 
+    public destroy(): void {
+        this.sound = undefined;
+    }
+
     
 }

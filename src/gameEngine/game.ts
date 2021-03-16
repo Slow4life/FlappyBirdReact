@@ -1,5 +1,4 @@
 import {MockRect} from "../components/MockRect";
-import assert from "assert";
 
 export class GameEngine {
 
@@ -14,7 +13,7 @@ public static getSpriteDim(div: any) {
 // ########################################### COLLISION ###########################################
 
 
-public static obstacleCollision(playerDiv: DOMRect,
+public static collision(playerDiv: DOMRect,
                                 obstacle1Div: DOMRect,
                                 obstacle2Div: DOMRect,
                                 groundDiv:DOMRect) {
@@ -103,7 +102,7 @@ public static obstacleCollision(playerDiv: DOMRect,
 
     // ########################################### OBSTACLE MOVEMENT ###########################################
 
-    public static obstacleMovement(obstaclesFirst: any, obstaclesSecond: any, obstaclesThird: any,
+    public static addHorizontalForceToElement(obstaclesFirst: any, obstaclesSecond: any, obstaclesThird: any,
          lowerFirst: any, upperFirst: any, lowerSecond: any, upperSecond: any,
           lowerThird: any, upperThird: any, gameWindow: any, moveSpeed: number,
           obstacleResetDistance: number, randomRange: number, obstacleGap: number) {
@@ -157,7 +156,7 @@ public static obstacleCollision(playerDiv: DOMRect,
         element.style.top = elementY + gravityAmount + "px";
     }
 
-    public static elementJump(element: any, jumpHeight: number) {
+    public static addVerticalForceToElement(element: any, jumpHeight: number) {
 
         let elementDim: DOMRect = GameEngine.getSpriteDim(element);
 

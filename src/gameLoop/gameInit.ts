@@ -112,7 +112,7 @@ export const GameInit = () => {
         GameEngine.gravity(playerDiv, playerFallSpeed)
 
         // Pipe movement
-        GameEngine.obstacleMovement(pipesFirst, pipesSecond, pipesThird,
+        GameEngine.addHorizontalForceToElement(pipesFirst, pipesSecond, pipesThird,
             pipeLowerFirst, pipeUpperFirst, pipeLowerSecond, pipeUpperSecond,
              pipeLowerThird, pipeUpperThird, windowDiv, pipeMoveSpeed, pipeResetOffset, randomRange, obstacleGap);
 
@@ -134,9 +134,9 @@ export const GameInit = () => {
         highScoreDiv.innerHTML = "High Score: " + highScore;
 
         // Collision
-        if (GameEngine.obstacleCollision(playerDiv, pipeLowerFirst, pipeUpperFirst, groundDiv) || 
-            GameEngine.obstacleCollision(playerDiv, pipeLowerSecond, pipeUpperSecond, groundDiv) || 
-            GameEngine.obstacleCollision(playerDiv, pipeLowerThird, pipeUpperThird, groundDiv)) { 
+        if (GameEngine.collision(playerDiv, pipeLowerFirst, pipeUpperFirst, groundDiv) || 
+            GameEngine.collision(playerDiv, pipeLowerSecond, pipeUpperSecond, groundDiv) || 
+            GameEngine.collision(playerDiv, pipeLowerThird, pipeUpperThird, groundDiv)) { 
 
             playerDead() 
         }
@@ -185,7 +185,7 @@ export const GameInit = () => {
 
         if (e.keyCode === jumpKey) {
 
-             GameEngine.elementJump(playerDiv, jumpHeight);
+             GameEngine.addVerticalForceToElement(playerDiv, jumpHeight);
              AudioManager.playAudio("jump")
         }
     }

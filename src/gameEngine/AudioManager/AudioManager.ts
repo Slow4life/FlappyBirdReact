@@ -5,7 +5,7 @@ import { SoundEffect } from "./SoundEffect";
 export class AudioManager{
 
     //holds all the loaded audio files
-    private static soundArray: {[sfx: string]: SoundEffect} = {};
+    private static soundEffects: {[sfx: string]: SoundEffect} = {};
 
     /*
     loads the audio file
@@ -14,7 +14,7 @@ export class AudioManager{
     @param loop: if the file should loop or played once. 
     */
     public static loadAudioFile(sfx: string, audioPath: string, loop: boolean, volume: number): void{
-        AudioManager.soundArray[sfx] = new SoundEffect(audioPath, loop, volume);
+        AudioManager.soundEffects[sfx] = new SoundEffect(audioPath, loop, volume);
     }
 
     /*
@@ -22,8 +22,8 @@ export class AudioManager{
     @param sfx: sfx of the audio file youn want to play.
     */
     public static playAudio(sfx: string): void {
-        if(AudioManager.soundArray[sfx] !== null){
-            AudioManager.soundArray[sfx].play();
+        if(AudioManager.soundEffects[sfx] != null){
+            AudioManager.soundEffects[sfx].play();
         }
     }
 
@@ -32,8 +32,8 @@ export class AudioManager{
     @param sfx: sfx of the audio file you want to stop.
     */
     public static stopAudio(sfx: string): void {
-        if(AudioManager.soundArray[sfx] !== null){
-            AudioManager.soundArray[sfx].stop();
+        if(AudioManager.soundEffects[sfx] != null){
+            AudioManager.soundEffects[sfx].stop();
         }
     }
 
@@ -43,8 +43,8 @@ export class AudioManager{
     @param volume: value that the volume should be changed to. should be between 0 and 1.
     */
     public static setVolume(sfx: string, volume: number): void {
-        if(AudioManager.soundArray[sfx] !== null){      
-            AudioManager.soundArray[sfx].volume = volume;
+        if(AudioManager.soundEffects[sfx] != null){      
+            AudioManager.soundEffects[sfx].volume = volume;
         }
         
     }
@@ -53,8 +53,8 @@ export class AudioManager{
     @param sfx: sfx of the audio file you want to destroy.
     */
     public static destroy(sfx: string) {
-         if(AudioManager.soundArray[sfx] !== null){      
-            AudioManager.soundArray[sfx].destroy();
+         if(AudioManager.soundEffects[sfx] != null){      
+            AudioManager.soundEffects[sfx].destroy();
         }
     }
 }

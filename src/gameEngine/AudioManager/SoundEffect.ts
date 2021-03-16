@@ -12,7 +12,6 @@ export class SoundEffect {
         this.sound = new Audio(assetPath);
         this.sound.loop = loop;
         this.sound.volume = volume
-        this.sound.crossOrigin="anonymous";
     }
 
     //getter for the loop

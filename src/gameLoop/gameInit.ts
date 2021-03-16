@@ -1,5 +1,5 @@
 import { GameEngine } from '../gameEngine/game'
-import { AudioManager } from "../gameEngine/Audio";
+import { AudioManager } from "../gameEngine/AudioManager/AudioManager";
 
 export const GameInit = () => {
 
@@ -74,9 +74,9 @@ export const GameInit = () => {
         highScoreDiv = document.getElementById("highScore");
 
         // Audio loading
-        AudioManager.loadAudioFile("jump", "./audio/wing.wav", false)
-        AudioManager.loadAudioFile("die", "./audio/die.wav", false)
-        AudioManager.loadAudioFile("point", "./audio/point.wav", false)
+        AudioManager.loadAudioFile("jump", "./audio/wing.wav", false, 0.7)
+        AudioManager.loadAudioFile("die", "./audio/die.wav", false, 0.7)
+        AudioManager.loadAudioFile("point", "./audio/point.wav", false, 0.5)
     }
 
     function initialize() {

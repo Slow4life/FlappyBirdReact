@@ -24,6 +24,8 @@ export class SoundEffect {
         this.sound.loop = value;
     }
 
+    // plays the sound effect if the sound effect is being played
+    // it will be reset before being played again
     public play(): void {
         if (!this.sound.paused) {
             this.stop();
@@ -31,6 +33,7 @@ export class SoundEffect {
         this.sound.play();
     }
 
+    //pauses the sound effect and resets it.
     public stop(): void {
         this.sound.pause();
         this.sound.currentTime = 0;
@@ -45,10 +48,5 @@ export class SoundEffect {
     public set volume(value: number){
         this.sound.volume = value;
     }
-
-    public destroy(): void {
-        this.sound = undefined;
-    }
-
     
 }

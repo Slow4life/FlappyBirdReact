@@ -34,27 +34,30 @@ export class AudioManager{
     public static stopAudio(sfx: string): void {
         if(AudioManager.soundEffects[sfx] != null){
             AudioManager.soundEffects[sfx].stop();
+            
         }
     }
 
     /*
     sets volume of a audio element
     @param sfx: sfx of the audio file you want to change the volume of.
-    @param volume: value that the volume should be changed to. should be between 0 and 1.
+    @param value: value that the volume should be changed to. should be between 0 and 1.
     */
-    public static setVolume(sfx: string, volume: number): void {
+    public static setVolume(sfx: string, value: number): void {
         if(AudioManager.soundEffects[sfx] != null){      
-            AudioManager.soundEffects[sfx].volume = volume;
+            AudioManager.soundEffects[sfx].volume = value;
         }
-        
     }
+
     /*
-    destroys the selected audio file.
-    @param sfx: sfx of the audio file you want to destroy.
+    sets volume of a audio element
+    @param sfx: sfx of the audio file you want to set loop of.
+    @param loop: set the loop of the audio file. if it should be repeated or played once
     */
-    public static destroy(sfx: string) {
-         if(AudioManager.soundEffects[sfx] != null){      
-            AudioManager.soundEffects[sfx].destroy();
+    public static setLoop(sfx: string, loop: boolean): void {
+        if(AudioManager.soundEffects[sfx] != null){      
+            AudioManager.soundEffects[sfx].loop = loop;
         }
     }
+
 }

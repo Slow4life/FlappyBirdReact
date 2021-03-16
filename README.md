@@ -1,3 +1,13 @@
+Game Engine Tutorial
+
+Our game engine holds all functions needed for the game loop to run any given game conforming to our specific game engine. The game loop, which is defined outside the game engine, repeatedly calls any function needed for the game to run. It does so until the game engine returns a true collision Boolean, at which point the loop ends, and the developer of the given game either decided to completely terminate the game or to restart the loop, thus restarting the game. The game engine itself covers three elements of game design:
+1.	Physics (including player and environment physics), which manipulates HTML elements within the DOM.
+2.	Audio. Allows for loading, playing, as well as stopping of sounds. Takes string as argument. 
+3.	Collision. Returns a Boolean, which is either true or false, based on whether the player element collides with any other element in the DOM.
+In order to create game objects, one needs to use react components with the “tsx” or “jsx” extensions. All HTML tags need added IDs, since all DOM elements are requested using “getElementById()”. The game loop needs a function that holds all required game engine functions calls. Also, the game needs to invoke a setInterval containing all wanted function calls, thus creating the loop. Whenever the loop breaks, one needs to call an initializer function, so that every element returns to its starting location. In order for the game audio inclusion to function, one has to load the needed sounds into the game (using the audioManager class), which the game then executes whenever needed.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
